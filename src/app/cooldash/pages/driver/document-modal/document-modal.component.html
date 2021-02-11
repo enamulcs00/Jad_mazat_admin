@@ -1,0 +1,39 @@
+<h2 mat-dialog-title *ngIf="item">Change Document</h2>
+<mat-dialog-content>
+    <div class="usr_profile_inrmain">
+        <div class="row">
+            <div class="col-12">
+                <div class="usr_profile_img">
+                    
+                    <div class="user_profile_edit">
+                        <input type="file" accept="image/*" (change)="profilePic($event)" />
+                    </div>
+                    <div class="usr_profile_imgbx">
+                        <div class="user_img">
+                            <figure *ngIf="categoryImage">
+                                <img style="height: 100px;width: 100px" [src]="categoryImage" />
+                            </figure>
+                        </div>
+                    </div>
+                    <div *ngIf="submitted && !categoryImage" class="invalid-feedback">
+                        Document is required.
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+
+
+<div class="botton_right_buttons">
+    <mat-dialog-actions>
+        <button class="btn btn-primary mr-3" *ngIf="item" (click)="onUpdate()">
+            Update Document
+        </button>
+        <button class="btn btn-danger" (click)="close()">Close</button>
+
+    </mat-dialog-actions>
+    </div>

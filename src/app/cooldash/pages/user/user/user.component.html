@@ -1,0 +1,150 @@
+<div class="container-fluid">
+  <div class="card mb-4">
+    <div class="card-header py-3">
+      <div class="tittle_outer">
+        <div class="user_title">
+          <div class="user_title_inner">
+            <h6 i18n="@@Users" class="m-0 text-black">Users</h6>
+          </div>
+          <!--<div class="user_add_button">
+                        <button class="btn btn-primary" (click)="addUser()">
+                            <span class="fas fa-plus"></span> Add User
+                        </button>
+                    </div>-->
+        </div>
+      </div>
+      <div class="filters_outer">
+        <div class="user_filter">
+          <input
+            type="text"
+            class="form-control"
+            name="searchText"
+            [(ngModel)]="searchText"
+            placeholder="Search User"
+          />
+        </div>
+        <div class="user_serch_btn">
+          <button
+            i18n="@@Search"
+            type="submit"
+            class="btn btn-primary pl-4 pr-4"
+            (click)="searchUser()"
+          >
+            Search
+          </button>
+          <button
+            i18n="@@Reset"
+            type="reset"
+            class="btn btn-primary pl-4 pr-4 ml-2"
+            (click)="reset()"
+          >
+            Reset
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body table-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th i18n="@@Image">Image</th>
+              <th i18n="@@Name">Name</th>
+              <th i18n="@@Email">Email</th>
+              <th i18n="@@Phone_Number">Phone Number</th>
+              <th i18n="@@E_Phone_Number" style="min-width: 10rem">
+                E-Phone Number
+              </th>
+              <th i18n="@@Status" style="min-width: 6rem">Status</th>
+              <th i18n="@@Action">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of userList | paginate: config; let i = index">
+              <td>{{ (currentPage - 1) * 25 + i + 1 }}</td>
+              <td>
+                <ng-container *ngIf="item.profilePic; else noImage">
+                  <img
+                    src="{{ imageUrl }}{{ item.profilePic }}"
+                    width="70px"
+                    height="70px"
+                  />
+                </ng-container>
+                <ng-template #noImage>
+                  <img
+                    src="assets/img/default-user.png"
+                    width="70px"
+                    height="70px"
+                  />
+                </ng-template>
+              </td>
+              <td>{{ item.firstName }} {{ item.lastName }}</td>
+              <td>{{ item.email }}</td>
+              <td>{{ item.countryCode }} {{ item.phone }}</td>
+              <ng-container *ngIf="item.emergencyPhone; else noNumber">
+                <td>
+                  {{ item.emergencyPhone.countryCode }}
+                  {{ item.emergencyPhone.phone }}
+                </td>
+              </ng-container>
+              <ng-template #noNumber>
+                <td>-</td>
+              </ng-template>
+              <td>
+                <ui-switch
+                  labelOn="ON"
+                  switchColor="#4e73df"
+                  id="status"
+                  name="status"
+                  [(ngModel)]="item.status"
+                  (ngModelChange)="updateStatus(item)"
+                  labelOff="OFF"
+                >
+                </ui-switch>
+              </td>
+              <td>
+                <div class="product_action">
+                  <button
+                    class="btn btn-warning mr-1"
+                    title="View User"
+                    (click)="onViewUser(item)"
+                    title="View"
+                  >
+                    <span class="fas fa-fw fa-eye"></span>
+                  </button>
+                  <button
+                    class="btn btn-success mr-1"
+                    title="Edit User"
+                    (click)="onEditUser(item)"
+                    title="Edit"
+                  >
+                    <span class="fas fa-fw fa-edit"></span>
+                  </button>
+                  <!-- <button class="btn btn-danger mr-1" title="Delete User" (click)="deleteUser(item)">
+                                        <span class="fas fa-fw fa-trash"></span>
+                                    </button> -->
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="loader" class="loader"></div>
+        <h4
+          *ngIf="userList && userList.length == 0 && !loader"
+          class="text-center"
+        >
+          No records found.
+        </h4>
+      </div>
+      <div *ngIf="userList.length != 0 && !loader" class="pagination_ui">
+        <pagination-controls
+          (pageChange)="pageChange($event)"
+          id="page"
+          class="my-pagination"
+        >
+        </pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

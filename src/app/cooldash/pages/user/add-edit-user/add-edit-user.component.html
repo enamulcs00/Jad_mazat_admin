@@ -1,0 +1,206 @@
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="tittle_outer">
+                <div class=" user_title">
+                   <div class="user_title_inner">
+                    <h6 class="m-0 text-black" *ngIf="!id">
+                        Add User
+                    </h6>
+                    <h6 class="m-0 text-black" *ngIf="id">
+                        Edit User
+                    </h6>
+                
+                
+                
+                </div>
+                   <div class="user_add_button"> 
+                    <button class="btn btn-primary" (click)="history.back()">
+                        <span class="fas fa-arrow-left"></span> Back
+                    </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card-body">
+            <form [formGroup]="userForm">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="title">First Name</label>
+                        <div class="input-group">
+                            <input type="text" id="name" class="form-control" formControlName="firstName"
+                                placeholder="" />
+                        </div>
+                        <div *ngIf="submitted && userForm.controls.firstName.errors" class="invalid-feedback">
+                            <div *ngIf="userForm.controls.firstName.errors.required">
+                                First Name is required
+                            </div>
+                            <div *ngIf="userForm.controls.firstName.errors.minlength">
+                                First Name must be at least 3 characters long.
+                            </div>
+                            <div *ngIf="userForm.controls.firstName.errors.maxlength">
+                                First Name can be max 16 characters long.
+                            </div>
+                            <div *ngIf="userForm.controls.firstName.errors.pattern">
+                                Invalid character.
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" form-group col-md-6">
+                        <label for="title">Last Name</label>
+                        <div class="input-group">
+                            <input type="text" id="name" class="form-control" formControlName="lastName"
+                                placeholder="" />
+                        </div>
+                        <div *ngIf="submitted && userForm.controls.lastName.errors" class="invalid-feedback">
+                            <div *ngIf="userForm.controls.lastName.errors.required">
+                                Last Name is required
+                            </div>
+                            <div *ngIf="userForm.controls.lastName.errors.minlength">
+                                Last Name must be at least 3 characters long.
+                            </div>
+                            <div *ngIf="userForm.controls.lastName.errors.maxlength">
+                                Last Name can be max 16 characters long.
+                            </div>
+                            <div *ngIf="userForm.controls.lastName.errors.pattern">
+                                Invalid character.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="title">Email</label>
+                        <div class="input-group">
+                            <input type="text" id="name" class="form-control" formControlName="email" placeholder="" />
+                        </div>
+                        <div *ngIf="submitted && userForm.controls.email.errors" class="invalid-feedback">
+                            <div *ngIf="userForm.controls.email.errors.required">
+                                Email is required
+                            </div>
+                            <div *ngIf="userForm.controls.email.errors.pattern">
+                                Email is not valid
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6" *ngIf="!id">
+                        <label for="category">Password</label>
+                        <div class="input-group">
+                            <input type="password" id="name" class="form-control" formControlName="password"
+                                placeholder="" />
+                        </div>
+                        <div *ngIf="submitted && userForm.controls.password.errors" class="invalid-feedback">
+                            <div *ngIf="userForm.controls.password.errors.required">
+                                Password is required
+                            </div>
+                            <div *ngIf="userForm.controls.password.errors.minlength">
+                                Password must be atleast 8 characters
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="category">Phone Number</label>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="login_email country_code_div">
+                                    <div class="loginmail_input" *ngIf="countryCodes && countryCodes.length>0">
+                                        <ngx-select-dropdown (change)="selectionChanged1($event)"
+                                            formControlName="countryCode" [config]="config1" [options]="countryCodes">
+                                        </ngx-select-dropdown>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <div class="input-group">
+                                    <input type="text" id="name" class="form-control" formControlName="phone"
+                                        placeholder="" />
+                                </div>
+                                <div *ngIf="submitted && userForm.controls.phone.errors" class="invalid-feedback">
+                                    <div *ngIf="userForm.controls.phone.errors.required">
+                                        Phone Number is required
+                                    </div>
+                                    <div *ngIf="userForm.controls.phone.errors.minlength">
+                                        Phone Number must be at least 7 characters long.
+                                    </div>
+                                    <div *ngIf="userForm.controls.phone.errors.maxlength">
+                                        Phone Number can be max 15 characters long.
+                                    </div>
+                                    <div *ngIf="userForm.controls.phone.errors.pattern">
+                                        Phone Number not valid.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6" formGroupName="emergencyPhone">
+                        <label for="category">Emergency Phone Number</label>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="login_email country_code_div">
+                                    <div class="loginmail_input" *ngIf="countryCodes && countryCodes.length>0">
+                                        <ngx-select-dropdown (change)="selectionChanged2($event)"
+                                            formControlName="countryCode" [config]="config2" [options]="countryCodes">
+                                        </ngx-select-dropdown>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <div class="input-group">
+                                    <input type="text" id="name" class="form-control" formControlName="phone"
+                                        placeholder="" />
+                                </div>
+                                <div *ngIf="submitted && userForm.controls['emergencyPhone'].get('phone').errors"
+                                    class="invalid-feedback">
+                                    <div *ngIf="userForm.controls['emergencyPhone'].get('phone').errors.required">
+                                        Phone Number is required
+                                    </div>
+                                    <div *ngIf="userForm.controls['emergencyPhone'].get('phone').errors.minlength">
+                                        Phone Number must be at least 7 characters long.
+                                    </div>
+                                    <div *ngIf="userForm.controls['emergencyPhone'].get('phone').errors.maxlength">
+                                        Phone Number can be max 15 characters long.
+                                    </div>
+                                    <div *ngIf="userForm.controls['emergencyPhone'].get('phone').errors.pattern">
+                                        Phone Number not valid.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="types">Image</label>
+                        <div class="usr_profile_img">
+                            <div class="usr_profile_imgbx">
+                                <div class="user_img">
+                                    <figure *ngIf="userImage">
+                                        <img style="height: 150px;width: 150px" [src]="userImage" />
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="user_profile_edit">
+                                <input type="file" accept="image/*" (change)="profilePic($event)" />
+                            </div>
+                            <div *ngIf="submitted && !userImage" class="invalid-feedback">
+                                Image is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group form-actions add_edit">
+                    <button type="submit" class="btn btn-sm btn-success" *ngIf="!id" (click)="submit()">
+                        Add
+                    </button>
+                    <button type="submit" class="btn btn-sm btn-success" *ngIf="id" (click)="update()">
+                        Update
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

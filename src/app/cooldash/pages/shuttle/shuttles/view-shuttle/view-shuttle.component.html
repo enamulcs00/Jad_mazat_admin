@@ -1,0 +1,113 @@
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="m-0 font-weight-bold text-primary">View Shuttle</h6>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <button class="btn btn-primary" (click)="history.back()">
+                                <span class="fas fa-arrow-left"></span> Back
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body" *ngIf="shuttleDetail">
+            <div *ngIf="shuttleDetail">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" name="Name" value="{{shuttleDetail.name}}" class="form-control"
+                                disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Shuttle Type</label>
+                            <input type="text" name="Name" [value]="shuttleDetail.shuttleType== 'ac' ? 'AC' : 'Non-AC'"
+                                class="form-control" disabled />
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="shuttleDetail.driver">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Driver Name</label>
+                            <input type="text" name="Name"
+                                value="{{shuttleDetail.driver.firstName}} {{shuttleDetail.driver.lastName}}"
+                                class="form-control" disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Vehicle Name</label>
+                            <input type="text" name="Name" value="{{shuttleDetail.driver.vehicleName}}"
+                                class="form-control" disabled />
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Start Time</label>
+                            <input type="text" name="Name" value="{{shuttleDetail.startTime}}" class="form-control"
+                                disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="shuttleDetail.shuttleRoute">
+                        <div class="form-group">
+                            <label>End Time</label>
+                            <input type="text" name="Name" value="{{shuttleDetail.endTime}}" class="form-control"
+                                disabled />
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <div class="row">
+                        <div class="col-md-6" *ngIf="shuttleDetail.shuttleRoute">
+                        <div class="form-group">
+                            <label>Shuttle Type</label>
+                            <input type="text" name="Name" value="{{shuttleDetail.shuttleRoute.name}}" class="form-control"
+                            disabled />
+                            </div>
+                        </div>
+                    </div> -->
+                <div class="row" *ngIf="shuttleDetail.driver">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" name="Name" value="{{shuttleDetail.driver.email}}" class="form-control"
+                                disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="text" name="Email"
+                                value="{{shuttleDetail.driver.countryCode}} {{shuttleDetail.driver.phone}}"
+                                class="form-control" disabled />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" *ngIf="shuttleDetail.shuttleRoute">
+                        <div class="form-group">
+                            <label>Shuttle Routes</label>
+                            <ul>
+                                <li *ngFor="let route of shuttleDetail.shuttleRoute">
+                                    {{route.name}}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

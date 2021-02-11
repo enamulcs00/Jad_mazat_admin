@@ -1,0 +1,189 @@
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="m-0 font-weight-bold text-primary" *ngIf="!id">
+                                Add Shuttle
+                            </h6>
+                            <h6 class="m-0 font-weight-bold text-primary" *ngIf="id">
+                                Edit Shuttle
+                            </h6>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <button class="btn btn-primary" (click)="history.back()">
+                                <span class="fas fa-arrow-left"></span> Back
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body add_driver_outer">
+            <form [formGroup]="shuttleForm">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="title"> Name</label>
+                        <div class="input-group">
+                            <input type="text" id="name" class="form-control" formControlName="name" maxlength="25"
+                                placeholder="" />
+                        </div>
+                        <div *ngIf="submitted && shuttleForm.controls.name.errors" class="invalid-feedback">
+                            <div *ngIf="shuttleForm.controls.name.errors.required">
+                                Name is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="category">Driver Name</label>
+                        <div class="login_email country_code_div">
+                            <div class="loginmail_input" *ngIf="driverList && driverList.length>0">
+                                <ngx-select-dropdown (change)="selectionChanged1($event)" formControlName="driver"
+                                    [config]="config1" [options]="driverList">
+                                </ngx-select-dropdown>
+                            </div>
+                            <div *ngIf="submitted && shuttleForm.controls.driver.errors" class="invalid-feedback">
+                                <div *ngIf="shuttleForm.controls.driver.errors.required">
+                                    Driver is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="types">Shuttle Type</label>
+                        <div class="input-group">
+                            <select class="form-control" formControlName="shuttleType" *ngIf="shuttleType">
+                                <option value="" selected disabled hidden>Choose here</option>
+                                <option *ngFor="let type of shuttleType" [value]="type.value">
+                                    {{ type.name }}
+                                </option>
+                            </select>
+                            <div *ngIf="
+                        submitted && shuttleForm.controls.shuttleType.errors
+                        " class="invalid-feedback">
+                                <div *ngIf="shuttleForm.controls.shuttleType.errors.required">
+                                    Shuttle Type is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="types">Accepted Currency</label>
+                        <div class="input-group">
+                            <select class="form-control" formControlName="currency">
+                                <option value="" selected disabled hidden>Choose here</option>
+                                <option *ngFor="let currency of currencyOptions" [value]="currency.symbol">
+                                    {{ currency.code }}
+                                </option>
+                            </select>
+                            <div *ngIf="
+                        submitted && shuttleForm.controls.currency.errors
+                        " class="invalid-feedback">
+                                <div *ngIf="shuttleForm.controls.currency.errors.required">
+                                    Currency is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="types">Seat Type</label>
+                        <div class="input-group">
+                            <select class="form-control" formControlName="seatType" *ngIf="seatType">
+                                <option value="" selected disabled hidden>Choose here</option>
+                                <option *ngFor="let data of seatType;let i = index" [value]="i">
+                                    {{ data }}
+                                </option>
+                            </select>
+                            <div *ngIf="
+                          submitted && shuttleForm.controls.seatType.errors
+                        " class="invalid-feedback">
+                                <div *ngIf="shuttleForm.controls.seatType.errors.required">
+                                    Seat Type is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="category">Shuttle Route</label>
+                        <div class="login_email country_code_div">
+                            <div class="loginmail_input" *ngIf="shuttleRouteList && shuttleRouteList.length>0">
+                                <!-- <ngx-select-dropdown (change)="selectionChanged2($event)" formControlName="shuttleRoute"
+                                    [config]="config2" [options]="shuttleRouteList">
+                                </ngx-select-dropdown> -->
+                                <ng-multiselect-dropdown placeholder="Select Shuttle Route" [data]="shuttleRouteList"
+                                    formControlName="shuttleRoute" [settings]="dropDownSetting">
+                                </ng-multiselect-dropdown>
+                            </div>
+                            <div *ngIf="submitted && shuttleForm.controls.shuttleRoute.errors" class="invalid-feedback">
+                                <div *ngIf="shuttleForm.controls.shuttleRoute.errors.required">
+                                    Shuttle Route is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="types">Vender Name</label>
+                        <div class="input-group">
+                            <select class="form-control" formControlName="venderId">
+                                <option value="" selected disabled hidden>Choose here</option>
+                                <option *ngFor="let vender of venders" [value]="vender._id">
+                                    {{ vender.firstName }} {{ vender.lastName }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="title">Start Time</label>
+                        <div class="input-group">
+                            <input readonly class="form-control" formControlName="startTime" [owlDateTime]="dt1"
+                                placeholder="Time">
+                            <div class="input-group-append">
+                                <span class="input-group-text trigger" pickerType="timer" [owlDateTimeTrigger]="dt1"><i
+                                        class="fa fa-calendar"></i></span>
+                            </div>
+                            <owl-date-time #dt1 [pickerType]="'timer'" [showSecondsTimer]="true" [hour12Timer]="false">
+                            </owl-date-time>
+                        </div>
+                        <div *ngIf="submitted && shuttleForm.controls.startTime.errors" class="invalid-feedback">
+                            <div *ngIf="shuttleForm.controls.startTime.errors.required">
+                                Start Time is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="title">End Time</label>
+                        <div class="input-group">
+                            <input readonly class="form-control" formControlName="endTime" [owlDateTime]="dt2"
+                                placeholder="Time">
+                            <div class="input-group-append">
+                                <span class="input-group-text trigger" pickerType="timer" [owlDateTimeTrigger]="dt2"><i
+                                        class="fa fa-calendar"></i></span>
+                            </div>
+                            <owl-date-time #dt2 [pickerType]="'timer'" [showSecondsTimer]="true" [hour12Timer]="false">
+                            </owl-date-time>
+                        </div>
+                        <div *ngIf="submitted && shuttleForm.controls.endTime.errors" class="invalid-feedback">
+                            <div *ngIf="shuttleForm.controls.endTime.errors.required">
+                                Open Time is required
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="form-group form-actions add_edit">
+                    <button type="submit" class="btn btn-sm btn-success" *ngIf="!id" (click)="submit()">
+                        Add
+                    </button>
+                    <button type="submit" class="btn btn-sm btn-success" *ngIf="id" (click)="update()">
+                        Update
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

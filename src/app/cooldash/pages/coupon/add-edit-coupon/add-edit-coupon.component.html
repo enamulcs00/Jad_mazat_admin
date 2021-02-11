@@ -1,0 +1,220 @@
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+
+        <div class="card-header py-3">
+            <div class="tittle_outer">
+                <div class=" user_title">
+                   <div class="user_title_inner">
+                
+                    <h6 class="m-0 text-black" *ngIf="!id">
+                        Add Coupon
+                    </h6>
+                    <h6 class="m-0 text-black" *ngIf="id">
+                        Edit Coupon
+                    </h6>
+                
+                </div>
+                   <div class="user_add_button"> 
+                    <button class="btn btn-primary" (click)="history.back()">
+                        <span class="fas fa-arrow-left"></span> Back
+                    </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card-body">
+            <form [formGroup]="couponForm">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="title">Name</label>
+                        <div class="input-group">
+                            <input type="text" id="name" class="form-control" formControlName="name" placeholder="" />
+                        </div>
+                        <div *ngIf="submitted && couponForm.controls.name.errors" class="invalid-feedback">
+                            <div *ngIf="couponForm.controls.name.errors.required">
+                                Name is required
+                            </div>
+                            <div *ngIf="couponForm.controls.name.errors.maxlength">
+                                Name can be max 15 characters long.
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" form-group col-md-6">
+                        <label for="title">Code</label>
+                        <div class="input-group">
+                            <input type="text" id="name" class="form-control" formControlName="code" placeholder="" />
+                        </div>
+                        <div *ngIf="submitted && couponForm.controls.code.errors" class="invalid-feedback">
+                            <div *ngIf="couponForm.controls.code.errors.required">
+                                Code is required
+                            </div>
+                            <div *ngIf="couponForm.controls.code.errors.maxlength">
+                                Code can be max 15 characters long.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="body">Description</label>
+                        <div class="input-group">
+                            <textarea type="text" row="3" id="body" class="form-control" formControlName="description" placeholder=""></textarea>
+                            <div *ngIf="submitted && couponForm.controls.description.errors" class="invalid-feedback">
+                                <div *ngIf="couponForm.controls.description.errors.required">
+                                    Description is required
+                                </div>
+                                <div *ngIf="couponForm.controls.description.errors.maxlength">
+                                    Description can be max 250 characters long.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group col-md-6">
+                        <label for="price">Per Day Limit</label>
+                        <div class="input-group">
+                            <input type="number" appNumberOnly min="0" id="perDayLimit" class="form-control"
+                                formControlName="perDayLimit" placeholder="" />
+                            <div *ngIf="submitted && couponForm.controls.perDayLimit.errors" class="invalid-feedback">
+                                <div *ngIf="couponForm.controls.perDayLimit.errors.required">
+                                    Per Day Limit is required
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="form-group col-md-6">
+                        <label for="price">Minimum Amount</label>
+                        <div class="input-group">
+                            <input type="number" min="0" id="minAmountToApply" class="form-control"
+                                formControlName="minAmountToApply" appNumberOnly placeholder="" />
+                            <div *ngIf="submitted && couponForm.controls.minAmountToApply.errors"
+                                class="invalid-feedback">
+                                <div *ngIf="couponForm.controls.minAmountToApply.errors.required">
+                                    Minimum Amont is required
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="title">Start Date</label>
+                        <div class="input-group">
+                            <input (dateTimeInput)="emitValue($event)" class="form-control" readonly [min]="startMinDate" formControlName="startDate" [owlDateTime]="dt1" placeholder="Date">
+                            <div class="input-group-append">
+                                <span class="input-group-text trigger" pickerType="calendar" [owlDateTimeTrigger]="dt1"><i class="fa fa-calendar"></i></span>
+                            </div>
+                            <owl-date-time #dt1 [pickerType]="'calendar'"></owl-date-time>
+                        </div>
+                        <div *ngIf="submitted && couponForm.controls.startDate.errors" class="invalid-feedback">
+                            <div *ngIf="couponForm.controls.startDate.errors.required">
+                                Start Date is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="title">End Date</label>
+                        <div class="input-group">
+                            <input class="form-control" readonly [min]="endMinDate" formControlName="endDate" [owlDateTime]="dt2" placeholder="Date">
+                            <div class="input-group-append">
+                                <span class="input-group-text trigger" pickerType="calendar" [owlDateTimeTrigger]="dt2"><i class="fa fa-calendar"></i></span>
+                            </div>
+                            <owl-date-time #dt2 [pickerType]="'calendar'"></owl-date-time>
+                        </div>
+                        <div *ngIf="submitted && couponForm.controls.endDate.errors" class="invalid-feedback">
+                            <div *ngIf="couponForm.controls.endDate.errors.required">
+                                End Date is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="price">Discount (%)</label>
+                        <div class="input-group">
+                            <input type="number" min="0" appNumberOnly id="discount" class="form-control" formControlName="discount" placeholder="" />
+                            <div *ngIf="submitted && couponForm.controls.discount.errors" class="invalid-feedback">
+                                <div *ngIf="couponForm.controls.discount.errors.required">
+                                    Discount is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="price">Max Discount (Flat)</label>
+                        <div class="input-group">
+                            <input type="number" appNumberOnly min="0" id="maxDiscount" class="form-control" formControlName="maxDiscount" placeholder="" />
+                            <div *ngIf="submitted && couponForm.controls.maxDiscount.errors" class="invalid-feedback">
+                                <div *ngIf="couponForm.controls.maxDiscount.errors.required">
+                                    Max Discount is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- <div class="form-group col-md-6">
+                        <label for="price">Limit</label>
+                        <div class="input-group">
+                            <input type="number" appNumberOnly min="0" id="useLimit" class="form-control"
+                                formControlName="useLimit" placeholder="" />
+                            <div *ngIf="submitted && couponForm.controls.useLimit.errors" class="invalid-feedback">
+                                <div *ngIf="couponForm.controls.useLimit.errors.required">
+                                    Limit is required
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="types">Discount Type</label>
+                        <div class="input-group">
+                            <select class="form-control" formControlName="type" *ngIf="discountType">
+                                <option value="" selected disabled hidden>Choose here</option>
+                                <option *ngFor="let type of discountType" [value]="type.value">
+                                    {{ type.name }}
+                                </option>
+                            </select>
+                            <div *ngIf="
+                          submitted && couponForm.controls.type.errors
+                        " class="invalid-feedback">
+                                <div *ngIf="couponForm.controls.type.errors.required">
+                                    Coupon Type is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="types">Module Type</label>
+                        <div class="input-group">
+                            <select class="form-control" formControlName="verticalType" *ngIf="verticalTypes">
+                                <option value="" selected disabled hidden>Choose here</option>
+                                <option *ngFor="let type of verticalTypes" [value]="type.value">
+                                    {{ type.name }}
+                                </option>
+                            </select>
+                            <div *ngIf="
+                          submitted && couponForm.controls.verticalType.errors
+                        " class="invalid-feedback">
+                                <div *ngIf="couponForm.controls.verticalType.errors.required">
+                                    Vertical Type is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group form-actions add_edit">
+                    <button type="submit" class="btn btn-sm btn-success" *ngIf="!id" (click)="submit()">
+                        Add
+                    </button>
+                    <button type="submit" class="btn btn-sm btn-success" *ngIf="id" (click)="update()">
+                        Update
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

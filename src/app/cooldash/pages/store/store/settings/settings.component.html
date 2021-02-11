@@ -1,0 +1,76 @@
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="m-0 font-weight-bold text-primary" *ngIf="!settings">
+                                Add Settings
+                            </h6>
+                            <h6 class="m-0 font-weight-bold text-primary" *ngIf="settings">
+                                Edit Settings
+                            </h6>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <button class="btn btn-primary" (click)="history.back()">
+                                <span class="fas fa-arrow-left"></span> Back
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="restaurantForm">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="title">Delivery Charges</label>
+                        <div class="input-group">
+                            <input type="number" min="0" appNumberOnly id="deliveryFee" class="form-control" formControlName="deliveryFee" placeholder="" />
+                        </div>
+                        <div *ngIf="submitted && restaurantForm.controls.deliveryFee.errors" class="invalid-feedback">
+                            <div *ngIf="restaurantForm.controls.deliveryFee.errors.required">
+                                Delivery Charges is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="price">Tax</label>
+                        <div class="input-group">
+                            <input type="number" min="0" appNumberOnly id="tax" class="form-control" formControlName="tax" placeholder="" />
+                            <div *ngIf="submitted && restaurantForm.controls.tax.errors" class="invalid-feedback">
+                                <div *ngIf="restaurantForm.controls.tax.errors.required">
+                                    Tax is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="price">Service Fee</label>
+                        <div class="input-group">
+                            <input type="number" min="0" appNumberOnly id="serviceFee" class="form-control" formControlName="serviceFee" placeholder="" />
+                            <div *ngIf="submitted && restaurantForm.controls.serviceFee.errors" class="invalid-feedback">
+                                <div *ngIf="restaurantForm.controls.serviceFee.errors.required">
+                                    Service Fee is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group form-actions add_edit">
+                    <button type="submit" class="btn btn-sm btn-success" *ngIf="!settings" (click)="submit()">
+                        Add
+                    </button>
+                    <button type="submit" class="btn btn-sm btn-success" *ngIf="settings" (click)="update()">
+                        Update
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

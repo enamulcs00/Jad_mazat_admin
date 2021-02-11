@@ -1,0 +1,135 @@
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="m-0 font-weight-bold text-primary" *ngIf="!id">
+                                Add Vender
+                            </h6>
+                            <h6 class="m-0 font-weight-bold text-primary" *ngIf="id">
+                                Edit Vender
+                            </h6>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <button class="btn btn-primary" (click)="history.back()">
+                                <span class="fas fa-arrow-left"></span> Back
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body add_driver_outer">
+            <form [formGroup]="venderForm">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="title">First Name</label>
+                        <div class="input-group">
+                            <input type="text" id="firstName" class="form-control" formControlName="firstName"
+                                maxlength="25" placeholder="" />
+                        </div>
+                        <div *ngIf="submitted && venderForm.controls.firstName.errors" class="invalid-feedback">
+                            <div *ngIf="venderForm.controls.firstName.errors.required">
+                                First Name is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="title">Last Name</label>
+                        <div class="input-group">
+                            <input type="text" id="lastName" class="form-control" formControlName="lastName"
+                                maxlength="25" placeholder="" />
+                        </div>
+                        <div *ngIf="submitted && venderForm.controls.lastName.errors" class="invalid-feedback">
+                            <div *ngIf="venderForm.controls.lastName.errors.required">
+                                Last Name is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="title">Email</label>
+                        <div class="input-group">
+                            <input type="text" id="email" class="form-control" formControlName="email" placeholder="" />
+                        </div>
+                        <div *ngIf="submitted && venderForm.controls.email.errors" class="invalid-feedback">
+                            <div *ngIf="venderForm.controls.email.errors.required">
+                                Email is required
+                            </div>
+                            <div *ngIf="venderForm.controls.email.errors.pattern">
+                                Email is not valid
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6" *ngIf="!id">
+                        <label for="category">Password</label>
+                        <div class="input-group">
+                            <input type="password" id="password" class="form-control" formControlName="password"
+                                placeholder="" />
+                        </div>
+                        <div *ngIf="submitted && venderForm.controls.password.errors" class="invalid-feedback">
+                            <div *ngIf="venderForm.controls.password.errors.required">
+                                Password is required
+                            </div>
+                            <div *ngIf="venderForm.controls.password.errors.minlength">
+                                Password must be atleast 8 characters
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="title"> Country Code</label>
+                        <div class="input-group">
+                            <input type="text" id="countryCode" class="form-control" formControlName="countryCode"
+                                maxlength="5" placeholder="" />
+                        </div>
+                        <div *ngIf="submitted && venderForm.controls.countryCode.errors" class="invalid-feedback">
+                            <div *ngIf="venderForm.controls.countryCode.errors.required">
+                                Country Code is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="title"> Phone Number</label>
+                        <div class="input-group">
+                            <input type="number" id="phone" class="form-control" formControlName="phone" maxlength="15"
+                                placeholder="" />
+                        </div>
+                        <div *ngIf="submitted && venderForm.controls.phone.errors" class="invalid-feedback">
+                            <div *ngIf="venderForm.controls.phone.errors.required">
+                                Phone Number is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6" >
+                        <label for="category">Address</label>
+                        <div class="input-group">
+                            <input class="form-control" type="text" name="name" formControlName="address" placeholder=""
+                                ngx-google-places-autocomplete #placesRef="ngx-places"
+                                (onAddressChange)="handleAddress($event)" />
+                        </div>
+                        <div *ngIf="submitted && venderForm.controls.address.errors" class="invalid-feedback">
+                            <div *ngIf="venderForm.controls.address.errors.required">
+                                Address is required
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group form-actions add_edit">
+                    <button type="submit" class="btn btn-sm btn-success" *ngIf="!id" (click)="submit()">
+                        Add
+                    </button>
+                    <button type="submit" class="btn btn-sm btn-success" *ngIf="id" (click)="update()">
+                        Update
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

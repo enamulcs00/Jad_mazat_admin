@@ -1,0 +1,99 @@
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+
+
+        <div class="card-header py-3">
+            <div class="tittle_outer">
+                <div class=" user_title">
+                   <div class="user_title_inner"> <h6 class="m-0 text-black">Vehicle Types</h6></div>
+                   <div class="user_add_button"> 
+                    <button class="btn btn-primary" (click)="addVehicleType()">
+                        <span class="fas fa-plus"></span> Add Vehicle Type
+                    </button>
+                    </div>
+                </div>
+            </div>
+            <div class="filters_outer">
+                <div class="user_filter">
+                    <input type="text" class="form-control" name="searchText" [(ngModel)]="searchText" placeholder="Search Vehicle Type">
+                </div>
+                <div class="user_serch_btn">
+                    <button type="submit" class="btn btn-primary pl-4 pr-4" (click)="searchVehicleType()">Search</button>
+                    <button type="reset" class="btn btn-primary pl-4 pr-4 ml-2" (click)="reset()">Reset</button>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="card-body table-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th style="min-width: 5rem;">Min Fare</th>
+                            <th style="min-width: 5rem;">Fare</th>
+                            <th>Seats</th>
+                            <!-- <th>Seat Type</th> -->
+                            <th style="min-width: 7rem;">Vertical Type</th>
+                            <th style="min-width: 8rem;">Created Date</th>
+                            <th style="min-width: 5rem;">Status</th>
+                            <th style="min-width: 6rem;">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of vehicleList; let i = index">
+                            <td>{{ i + serialNumber + 1 }}</td>
+                            <td>
+                                <img src="{{ imageUrl }}{{ item.image }}" width="70px" height="70px" />
+                            </td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.basefare }}</td>
+                            <td>{{ item.fare }}</td>
+                            <td>{{ item.seats }}</td>
+                            <!-- <td>{{ item.seatType }}</td> -->
+                            <td *ngIf="item.verticalType ==1">Delivery</td>
+                            <td *ngIf="item.verticalType ==2">Taxi</td>
+                            <td *ngIf="item.verticalType ==3">Shuttle</td>
+                            <td>
+                                {{ item.createdAt | date: "yyyy-MM-dd" }}
+                            </td>
+                            <td>
+                                <ui-switch labelOn="ON" switchColor="#4e73df" id="Active" name="status" [(ngModel)]="item.status" (ngModelChange)="updateActiveStatus(item)" labelOff="OFF">
+                                </ui-switch>
+                            </td>
+                            <td>
+                                <div class="product_action">
+                                    <button class="btn btn-success mr-1" (click)="onEditSelect(item)">
+                                        <span class="fas fa-fw fa-edit"></span>
+                                    </button>
+                                    <button class="btn btn-danger" (click)="deleteVehicle(item)">
+                                        <span class="fas fa-fw fa-trash"></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="loader" class="loader"></div>
+                <h4 *ngIf="vehicleList && vehicleList.length == 0 && !loader" class="text-center">
+                    No records found.
+                </h4>
+            </div>
+            <!-- <pagination
+          *ngIf="categoryList.length != 0 && !loader"
+          [totalItems]="totalItems"
+          [boundaryLinks]="true"
+          [maxSize]="5"
+          [(ngModel)]="currentPage"
+          (pageChanged)="pageChange($event)"
+        ></pagination> -->
+        </div>
+    </div>
+</div>

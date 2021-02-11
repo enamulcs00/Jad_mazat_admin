@@ -1,0 +1,128 @@
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="tittle_outer">
+                <div class=" user_title">
+                   <div class="user_title_inner">
+                
+                    <h6 class="m-0 text-black">
+                        View Coupon
+                    </h6>
+                
+                </div>
+                   <div class="user_add_button"> 
+                    <button class="btn btn-primary" (click)="history.back()">
+                        <span class="fas fa-arrow-left"></span> Back
+                    </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="card-body" *ngIf="couponDetails">
+            <div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label> Name</label>
+                            <input type="text" name="Name" value="{{couponDetails.name}}" class="form-control"
+                                disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Code</label>
+                            <input type="text" name="Email" value="{{couponDetails.code}}" class="form-control"
+                                disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Discount (%)</label>
+                            <input type="text" name="Email" value="{{couponDetails.discount}}" class="form-control"
+                                disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="couponDetails.maxDiscount">
+                        <div class="form-group">
+                            <label>Max Discount (Flat)</label>
+                            <input type="text" name="Email" value="{{couponDetails.maxDiscount}}" class="form-control"
+                                disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea type="text" name="address" class="form-control" disabled
+                                *ngIf="couponDetails.description">{{couponDetails.description}}
+                            </textarea>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Minimum Amount</label>
+                            <input type="text" name="minAmountToApply" [value]="couponDetails.minAmountToApply"
+                                class="form-control" disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="couponDetails.useLimit">
+                        <div class="form-group">
+                            <label>Limit</label>
+                            <input type="text" name="street" [value]="couponDetails.useLimit" class="
+                                form-control" disabled />
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-md-6" *ngIf="couponDetails.perDayLimit">
+                        <div class="form-group">
+                            <label>Per Day Limit</label>
+                            <input type="text" name="street" [value]="couponDetails.perDayLimit" class="
+                                form-control" disabled />
+                        </div>
+                    </div> -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Module Type</label>
+                            <input type="text" name="Name" [value]="
+                            couponDetails.verticalType == '0'
+                            ? 'Restaurant' :
+                            couponDetails.verticalType == '1'
+                                  ? 'Store'
+                                  : couponDetails.verticalType == '2'
+                                  ? 'Taxi'
+                                  : 'Shuttle'
+                              " class="form-control" disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Discount Type</label>
+                            <input type="text" name="Name" [value]="
+                          couponDetails.type == '0'
+                                ? 'Percentage'
+                                : couponDetails.type == '1'
+                                ? 'Flat'
+                                : 'Percentage & Flat'
+                            " class="form-control" disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Start Date</label>
+                            <input type="text" name="discount" [value]="couponDetails.startDate  | date: 'yyyy-MM-dd'"
+                                class=" form-control" disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>End Date</label>
+                            <input type="text" name="discount" [value]="couponDetails.endDate | date: 'yyyy-MM-dd'"
+                                class="form-control" disabled />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

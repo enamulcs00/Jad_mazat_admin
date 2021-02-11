@@ -1,0 +1,80 @@
+<div class="container-fluid" *ngIf="bookingsDetail">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-6">
+              <h6 class="m-0 font-weight-bold text-primary">View Taxi Booking</h6>
+            </div>
+            <div class="col-md-6 text-right">
+              <button class="btn btn-primary" (click)="history.back()">
+                <span class="fas fa-arrow-left"></span> Back
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div *ngIf="bookingsDetail">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Taxi Order No</label>
+              <input type="text" name="Name" [value]="bookingsDetail.taxiOrderNo" class="form-control" disabled />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>User Name</label>
+                <input type="text" name="Name" [value]="bookingsDetail.userFirstName + bookingsDetail.userLastName" class="form-control" disabled />
+            </div>
+          </div>
+           <div class="col-md-6">
+            <div class="form-group">
+              <label>Source Address</label>
+              <textarea row="4" type="text" class="form-control" id="body" [value]="
+                  bookingsDetail.source.address" class="form-control" disabled></textarea>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Destination Address</label>
+              <textarea row="4" type="text" class="form-control" id="body" [value]="
+                  bookingsDetail.destination.address" class="form-control" disabled></textarea>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Distance</label>
+              <input type="text" name="Name" [value]="bookingsDetail.distance" class="form-control" disabled />
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Total Booking</label>
+              <input type="text" name="discount" [value]="bookingsDetail.totalAmount" class="form-control"
+                disabled />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Payment Mode</label>
+              <input type="text" name="mode" [value]="bookingsDetail.paymentMode" class="form-control"
+                disabled />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="text" name="number" [value]="bookingsDetail.countryCode+ '-' + bookingsDetail.phone" class="form-control"
+                disabled />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

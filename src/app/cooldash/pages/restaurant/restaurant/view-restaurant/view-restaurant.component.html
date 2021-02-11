@@ -1,0 +1,217 @@
+<div class="container-fluid" *ngIf="restaurantDetail">
+    <div class="card shadow mb-4">
+
+
+        <div class="card-header py-3">
+            <div class="tittle_outer">
+                <div class=" user_title">
+                   <div class="user_title_inner">
+                    <h6 class="m-0 text-black" >
+                        View Restaurant
+                    </h6>
+                
+                
+                
+                </div>
+                   <div class="user_add_button"> 
+                    <button class="btn btn-primary" (click)="history.back()">
+                        <span class="fas fa-arrow-left"></span> Back
+                      </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="card-body">
+            <!-- Content Row -->
+            <div class="grid_name">
+                <!-- Earnings (Monthly) Card Example -->
+                <div class=" comman_name_grid hvrcursor" routerLink="/restaurant/order" title="View Orders">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Orders
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        {{ restaurantDetail.orders }}
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-fw fa-user fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="comman_name_grid hvrcursor" [routerLink]="'/restaurant/outlet/' + id" title="View Outlet">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        Outlets
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        {{ restaurantDetail.outlets }}
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-fw fa-list fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pending Requests Card Example -->
+                <div class=" comman_name_grid hvrcursor" [routerLink]="'/restaurant/food-item/' + id" title="View Food Item">
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                        Food Items
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        {{ restaurantDetail.items }}
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fa fa-shopping-cart fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class=" comman_name_grid hvrcursor" [routerLink]="'/restaurant/food-type/' + id" title="View Food Categories">
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                        Food Categories
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        {{ restaurantDetail.types }}
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fa fa-list-alt fa-2x text-gray-300 "></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="restaurantDetail.detail">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" name="Name" [value]="restaurantDetail.detail.name" class="form-control" disabled />
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+            <div class="form-group">
+              <label>Description</label>
+              <textarea row="4" type="text" class="form-control" id="body" [value]="
+                  restaurantDetail.detail.description
+                    ? restaurantDetail.detail.description
+                    : '-'
+                " class="form-control" placeholder="Description" disabled></textarea>
+            </div>
+          </div> -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Type of Food</label>
+                            <input type="text" name="Name" [value]="
+                  restaurantDetail.detail.foodType == '0'
+                    ? 'Vegetrainian'
+                    : restaurantDetail.detail.foodType == '1'
+                    ? 'Non-Vegetrainian'
+                    : 'Vegetrainian & Non-Vegetrainian'
+                " class="form-control" disabled />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Discount</label>
+                            <input type="text" name="discount" [value]="restaurantDetail.detail.discount" class="form-control" disabled />
+                        </div>
+                    </div>
+
+                    <!-- <div class="col-md-6">
+            <div class="form-group">
+              <label>Open Time</label>
+              <input type="text" name="open-time" [value]="restaurantDetail.detail.openTime" class="form-control"
+                disabled />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Close Time</label>
+              <input type="text" name="open-time" [value]="restaurantDetail.detail.closeTime" class="form-control"
+                disabled />
+            </div>
+          </div> -->
+                    <!-- <div class="col-md-6">
+            <div class="form-group">
+              <label>Minimum Order Amount</label>
+              <input type="text" name="open-time" [value]="restaurantDetail.detail.minOrderAmount" class="form-control"
+                disabled />
+            </div>
+          </div> -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Average Order Price</label>
+                            <input type="text" name="price" [value]="restaurantDetail.detail.avgOrderPrice" class="form-control" disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Average Delivery Time</label>
+                            <input type="text" name="time" [value]="restaurantDetail.detail.avgDeliveryTime" class="form-control" disabled />
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+            <div class="form-group">
+              <label>tax</label>
+              <input type="text" name="open-time" [value]="restaurantDetail.detail.tax" class="form-control" disabled />
+            </div>
+          </div> -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Restaurant Category</label>
+                            <ul class="list-inline caticon">
+                                <li *ngFor="let category of restaurantDetail.detail.categories" class="mb-2">
+                                    <i class="fas fa-utensils mr-1 text-primary"></i> {{ category.name }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Image</label>
+                            <div>
+                                <ng-container *ngIf="restaurantDetail.detail.image">
+                                    <img [src]="comm.imageUrl + restaurantDetail.detail.image" style="height: 150px; width: 150px;" />
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

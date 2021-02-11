@@ -1,0 +1,140 @@
+<div class="container-fluid" *ngIf="documents">
+    <div class="card shadow mb-4">
+
+        <div class="card-header py-3">
+            <div class="tittle_outer">
+                <div class=" user_title">
+                   <div class="user_title_inner"> <h6 class="m-0 text-black">Documents</h6></div>
+                   <div class="user_add_button"> 
+                    <button class="btn btn-primary" (click)="history.back()">
+                        <span class="fas fa-arrow-left"></span> Back
+                    </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card-body">
+            <ng-container *ngIf="documents && documents.length>0">
+                <div class="row">
+                    <ng-container *ngFor="let data of documents; let i = index">
+                        <div class="col-xl-3 col-lg-6">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                    <ng-container *ngIf="data.name == 'Licence'">Licence
+                                    </ng-container>
+                                     <ng-container *ngIf="data.name == 'License'">License
+                                    </ng-container>
+                                          <ng-container *ngIf="data.name == 'ID'">ID
+                                    </ng-container>
+                                        <ng-container *ngIf="data.name == 'VehiclePhoto'">Vehicle Photo
+                                    </ng-container>
+                                          <ng-container *ngIf="data.name == 'VehicleDocument'">Vehicle Document
+                                    </ng-container>
+                                    </h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body" *ngIf="data._id">
+                                    <div class="chart-pie pt-4 pb-2">
+                                        <ng-container *ngIf="data.image">
+                                            <img [src]="comm.imageUrl + data.image"
+                                                style="height: 185px; width: 100%;" />
+                                        </ng-container>
+                                    </div>
+                                    <div *ngIf="data.status == 0">
+                                        <button class="btn btn-info  mr-1 mt-2" (click)="approved(data)">
+                                            Approved
+                                        </button>
+                                        <button class="btn btn-danger mt-2" (click)="disapproved(data)">
+                                            Disapproved
+                                        </button>
+                                    </div>
+                                    <div *ngIf="data.status == 1">
+                                        <button class="btn btn-info  mr-1" disabled>
+                                            Approved
+                                        </button>
+                                    </div>
+                                    <div *ngIf="data.status == 2">
+                                        <button class="btn btn-danger  mr-1" disabled>
+                                            Disapproved
+                                        </button>
+                                    </div>
+                                    <div class="mt-2 pb-2">
+                                        <button class="btn btn-success  mr-1"
+                                            (click)="changeDocument(data)">
+                                            Change Document
+                                        </button>
+                                    </div>
+                                </div>
+                                <div *ngIf="!data._id">
+                                    <div class="card-body">
+                                        <div class="chart-pie pt-4 pb-2">
+                                            <figure *ngIf="data.image">
+                                                <img style="height: 185px; width: 100%;" [src]="data.image" />
+                                            </figure>
+                                            <div class="user_profile_edit">
+                                                <input type="file" accept="image/*"
+                                                    (change)="profilePic($event, data, i )" />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button class="mat-raised-button mat-primary  mr-1"
+                                                (click)="addDocuments(data, i)">
+                                                Add Document
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <h4 *ngIf="documents && documents.length == 0" class="text-center">
+                        No documents found.
+                    </h4>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="documents && documents.length==0">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4" *ngFor="let data of doucmentList; let i = index">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">
+                                      <ng-container *ngIf="data.name == 'Licence'">Licence
+                                    </ng-container>
+                                              <ng-container *ngIf="data.name == 'License'">License
+                                    </ng-container>
+                                          <ng-container *ngIf="data.name == 'ID'">ID
+                                    </ng-container>
+                                        <ng-container *ngIf="data.name == 'VehiclePhoto'">Vehicle Photo
+                                    </ng-container>
+                                          <ng-container *ngIf="data.name == 'VehicleDocument'">Vehicle Document
+                                    </ng-container>
+                                </h6>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="chart-pie pt-4 pb-2">
+                                    <figure *ngIf="data.image">
+                                        <img style="height: 185px; width: 100%;" [src]="data.image" />
+                                    </figure>
+                                    <div class="user_profile_edit">
+                                        <input type="file" accept="image/*" (change)="profilePic($event, data, i )" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="btn btn-success  mr-1" (click)="addDocuments(data, i)">
+                                        Add Document
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

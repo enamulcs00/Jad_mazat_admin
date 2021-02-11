@@ -1,0 +1,39 @@
+.user_filter input {
+    width: 100%;
+}
+
+.user_filter {
+    position: relative;
+}
+
+.user_filter .mat-datepicker-toggle {
+    position: absolute;
+    right: 15px;
+}
+
+::ng-deep .user_filter .mat-datepicker-toggle button:focus {
+    outline: none !important
+}
+
+@media (max-width: 1200px) {
+    .mt20 {
+        margin-top: 12px;
+    }
+}
+
+@media (max-width: 767px) {
+    .mt20 {
+        margin-top: 0px;
+    }
+}
+
+::ng-deep .mat-datepicker-content {
+    @media (max-width: 767px) {
+        .mat-calendar {
+            width: 249px !important;
+        }
+        .mt20 {
+            margin-top: 0px;
+        }
+    }
+}

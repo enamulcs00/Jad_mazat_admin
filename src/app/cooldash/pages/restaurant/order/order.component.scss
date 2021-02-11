@@ -1,0 +1,21 @@
+.error1 {
+    background: #ff00009c;
+    color: #fff;
+}
+
+@media (max-width: 967px) {
+    .textcenter,
+    .text-right.textright {
+        text-align: center !important;
+    }
+    .textcenter {
+        font-size: 28px;
+        margin-bottom: 11px !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .text-right.textright .mr-3 {
+        margin-right: 9px !important;
+    }
+}

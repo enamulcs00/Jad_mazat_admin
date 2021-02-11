@@ -1,0 +1,138 @@
+<div class="container-fluid">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <div class="tittle_outer">
+        <div class="user_title">
+          <div class="user_title_inner">
+            <h6 i18n="@@drivers" class="m-0 text-black">Drivers</h6>
+          </div>
+          <div class="user_add_button">
+            <button i18n="@@add_driver" class="btn btn-primary" (click)="downloadCsv()">
+              <span class="fas fa-download"></span> Download CSV
+            </button>
+          </div>
+
+
+        </div>
+      </div>
+      <div class="filters_outer">
+        <div class="user_filter">
+          <input type="text" class="form-control" name="searchText" [(ngModel)]="searchText" i18n="@@search_firstname"
+            placeholder="Search First Name and Email" />
+        </div>
+        <div class="user_serch_btn">
+          <button type="submit" class="btn btn-primary pl-4 pr-4" i18n="@@Search" (click)="searchDriver()">
+            Search
+          </button>
+          <button type="reset" i18n="@@Reset" class="btn btn-primary pl-4 pr-4 ml-2" (click)="reset()">
+            Reset
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body table-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th i18n="@@Image">Image</th>
+              <th i18n="@@Name">Name</th>
+              <th i18n="@@Email">Email</th>
+              <th i18n="@@Phone_Number" style="min-width: 8rem">
+                Phone Number
+              </th>
+              <th i18n="@@E_Phone_Number" style="min-width: 10rem">
+                E-Phone Number
+              </th>
+              <th i18n="@@Document_status" style="min-width: 8rem">
+                Document Status
+              </th>
+              <th i18n="@@Driver_type" style="min-width: 8rem">Driver Type</th>
+              <th i18n="@@Vehicle_Name" style="min-width: 8rem">
+                Vehicle Name
+              </th>
+              <th i18n="@@Vehical_Number" style="min-width: 8rem">
+                Vehicle Number
+              </th>
+              <th i18n="@@Status" style="min-width: 6rem">Status</th>
+              <th i18n="@@Rating">Rating</th>
+              <th i18n="@@Action" style="min-width: 10rem">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of driverList | paginate: config; let i = index">
+              <td>{{ (currentPage - 1) * 25 + i + 1 }}</td>
+              <td>
+                <ng-container *ngIf="item.profilePic; else noImage">
+                  <img src="{{ imageUrl }}{{ item.profilePic }}" width="70px" height="70px" />
+                </ng-container>
+                <ng-template #noImage>
+                  <img src="assets/img/default-user.png" width="70px" height="70px" />
+                </ng-template>
+              </td>
+              <td>{{ item.firstName }} {{ item.lastName }}</td>
+              <td>{{ item.email }}</td>
+              <td>{{ item.countryCode }} {{ item.phone }}</td>
+              <ng-container *ngIf="item.emergencyPhone; else noNumber">
+                <td>
+                  {{ item.emergencyPhone.countryCode }}
+                  {{ item.emergencyPhone.phone }}
+                </td>
+              </ng-container>
+              <ng-template #noNumber>
+                <td>-</td>
+              </ng-template>
+              <td *ngIf="item.profileStatus == 0">Disapproved</td>
+              <td *ngIf="item.profileStatus == 1">Approved</td>
+              <td *ngIf="item.verticalType == 1">Delivery</td>
+              <td *ngIf="item.verticalType == 2">Taxi</td>
+              <td *ngIf="item.verticalType == 3">Shuttle</td>
+
+              <td>{{ item.vehicleName }}</td>
+              <td>{{ item.vehicleNumber }}</td>
+              <td>
+                <ui-switch labelOn="ON" switchColor="#4e73df" id="status" name="status" [(ngModel)]="item.status"
+                  (ngModelChange)="updateStatus(item)" labelOff="OFF">
+                </ui-switch>
+              </td>
+              <td>
+                <div class="cont">
+                  <div class="stars">
+                    <ngx-star-rating [(ngModel)]="item.rating" [id]="'rating'" [disabled]="true"></ngx-star-rating>
+                  </div>
+                </div>
+                <!-- <star-rating-comp [starType]="'icon'" [rating]="5"></star-rating-comp> -->
+              </td>
+
+              <td>
+                <div class="product_action">
+                  <button class="btn btn-warning mr-1" title="View Driver" (click)="onViewDriver(item)" title="View">
+                    <span class="fas fa-fw fa-eye"></span>
+                  </button>
+                  <button class="btn btn-success mr-1" title="Edit Driver" (click)="onEditDriver(item)" title="Edit">
+                    <span class="fas fa-fw fa-edit"></span>
+                  </button>
+                  <button class="btn btn-primary mr-1" title="Driver Documents" (click)="onViewDocument(item)">
+                    <span class="fas fa-fw fa-file"></span>
+                  </button>
+                  <button class="btn btn-danger mr-1" title="Delete Driver" (click)="deleteDriver(item)">
+                    <span class="fas fa-fw fa-trash"></span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="loader" class="loader"></div>
+        <h4 *ngIf="driverList && driverList.length == 0 && !loader" class="text-center">
+          No records found.
+        </h4>
+      </div>
+      <div *ngIf="driverList.length != 0 && !loader" class="pagination_ui">
+        <pagination-controls (pageChange)="pageChange($event)" id="page" class="my-pagination">
+        </pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

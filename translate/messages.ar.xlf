@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+
+      <trans-unit id="User" datatype="html">
+        <source>User</source>
+        <target> المستعمل </target>
+      </trans-unit>
+
+      <trans-unit id="Driver" datatype="html">
+        <source>Driver</source>
+        <target> سائق </target>
+      </trans-unit>
+
+      <trans-unit id="Restaurant" datatype="html">
+        <source>Restaurant</source>
+        <target>مطعم </target>
+      </trans-unit>
+
+      <trans-unit id="add_restaurant" datatype="html">
+        <source>Add Restaurant</source>
+        <target>  إضافة مطعم</target>
+      </trans-unit>
+
+      <trans-unit id="Store" datatype="html">
+        <source>Store</source>
+        <target> متجر </target>
+      </trans-unit>
+      <trans-unit id="Vehical_Type" datatype="html">
+        <source>Vehical Type</source>
+        <target> نوع السيارة </target>
+      </trans-unit>
+
+
+      <trans-unit id="logout" datatype="html">
+        <source>Logout</source>
+        <target> تسجيل خروج </target>
+      </trans-unit>
+
+      <trans-unit id="Dashboard" datatype="html">
+        <source>Dashboard</source>
+        <target> لوحة القيادة </target>
+
+      </trans-unit>
+
+      <trans-unit id="Users" datatype="html">
+        <source>Users</source>
+        <target> المستخدمين </target>
+
+      </trans-unit>
+
+      <trans-unit id="Drivers" datatype="html">
+        <source>Drivers</source>
+        <target> السائقين </target>
+
+      </trans-unit>
+
+       <trans-unit id="Restaurants" datatype="html">
+        <source>Restaurants</source>
+        <target> مطاعم </target>
+
+      </trans-unit>
+
+       <trans-unit id="Stores" datatype="html">
+        <source>Stores</source>
+        <target> مخازن </target>
+
+      </trans-unit>
+
+       <trans-unit id="Restaurant_Revenue" datatype="html">
+        <source>Restaurant Revenue</source>
+        <target> ايرادات المطاعم </target>
+
+      </trans-unit>
+
+       <trans-unit id="Store_Revenue" datatype="html">
+        <source>Store Revenue</source>
+        <target> ايرادات المتاجر </target>
+      </trans-unit>
+
+      <!-- User Module Start -->
+
+      <trans-unit id="Search" datatype="html">
+        <source>Search</source>
+        <target> بحث </target>
+      </trans-unit>
+
+      <trans-unit id="Reset" datatype="html">
+        <source>Reset</source>
+        <target>إعادة تعيين </target>
+      </trans-unit>
+
+      <trans-unit id="Image" datatype="html">
+        <source>Image</source>
+        <target> بحث </target>
+      </trans-unit>
+
+       <trans-unit id="Name" datatype="html">
+        <source>Name</source>
+        <target> اسم</target>
+      </trans-unit>
+
+      <trans-unit id="Email" datatype="html">
+        <source>Email</source>
+        <target> البريد الإلكتروني  </target>
+      </trans-unit>
+
+        <trans-unit id="Phone_Number" datatype="html">
+        <source>Phone Number</source>
+        <target> رقم الهاتف  </target>
+      </trans-unit>
+
+        <trans-unit id="E_Phone_Number" datatype="html">
+        <source>E-Phone Number</source>
+        <target>  E-رقم الهاتف </target>
+      </trans-unit>
+
+        <trans-unit id="Status" datatype="html">
+        <source>Status</source>
+        <target>  الحالة </target>
+      </trans-unit>
+
+      <trans-unit id="Action" datatype="html">
+        <source>Action</source>
+        <target> عمل  </target>
+      </trans-unit>
+
+      <trans-unit id="no_records" datatype="html">
+        <source>No records found.</source>
+        <target>  لا توجد سجلات </target>
+      </trans-unit>
+
+
+      <!-- User Module End -->
+
+
+      <!-- Driver Module Start -->
+
+
+      <trans-unit id="Add_Driver" datatype="html">
+        <source>Add Driver</source>
+        <target>  إضافة سائقين </target>
+      </trans-unit>
+       <trans-unit id="Edit_Driver" datatype="html">
+        <source>Edit Driver</source>
+        <target>  تحرير برامج التشغيل </target>
+      </trans-unit>
+
+       <trans-unit id="Back" datatype="html">
+        <source>Back</source>
+        <target>  عودة </target>
+      </trans-unit>
+
+       <trans-unit id="First_Name" datatype="html">
+        <source>First Name</source>
+        <target> الاسم الاول  </target>
+      </trans-unit>
+
+       <trans-unit id="First_Name_Required" datatype="html">
+        <source>First Name is required</source>
+        <target> الإسم الأول مطلوب  </target>
+      </trans-unit>
+
+      <trans-unit id="Name_Required" datatype="html">
+        <source>Name is required</source>
+        <target> مطلوب اسم  </target>
+      </trans-unit>
+
+       <trans-unit id="name_not_valid" datatype="html">
+        <source>Name is not valid</source>
+        <target> اسم غير صالح </target>
+      </trans-unit>
+
+      <trans-unit id="name_max_20" datatype="html">
+        <source>Name can be max 20 characters long</source>
+        <target> اسم يمكن أن يكون الحد الأقصى 20 حرفا </target>
+      </trans-unit>
+
+       <trans-unit id="First_Name_3_chars" datatype="html">
+       <source> First Name must be at least 3 characters long. </source>
+        <target> يجب أن يكون الاسم الأول لا يقل عن 3 أحرف. </target>
+      </trans-unit>
+
+       <trans-unit id="First_Name_max_16_chars" datatype="html">
+        <source> First Name can be max 16 characters long. </source>
+        <target>الاسم الأول يمكن أن يكون الحد الأقصى 16 حرفا.</target>
+      </trans-unit>
+
+       <trans-unit id="Invalid_chars" datatype="html">
+        <source>Invalid character.</source>
+        <target> حرف غير صالح.   </target>
+      </trans-unit>
+
+       <trans-unit id="Last_Name" datatype="html">
+        <source>Last Name</source>
+        <target>  الكنية  </target>
+      </trans-unit>
+
+       <trans-unit id="Last_Name_Required" datatype="html">
+        <source>Last Name is required</source>
+        <target>  إسم العائلة مطلوب </target>
+      </trans-unit>
+
+       <trans-unit id="Last_Name_3_chars" datatype="html">
+        <source>Last Name must be at least 3 characters long.</source>
+        <target>   يجب أن يكون اسم آخر لا يقل عن 3 أحرف.  </target>
+      </trans-unit>
+
+       <trans-unit id="Last_Name_max_16" datatype="html">
+        <source> Last Name can be max 16 characters long.</source>
+        <target>  اسم العائلة يمكن أن يكون الحد الأقصى 16 حرفا. </target>
+      </trans-unit>
+
+       <!-- <trans-unit id="Invalid_chars" datatype="html">
+        <source>   Invalid character. </source>
+        <target>  حرف غير صالح. </target>
+       </trans-unit> -->
+<!--
+       <trans-unit id="Email" datatype="html">
+        <source>  Email</source>
+        <target>  البريد الإلكتروني </target>
+      </trans-unit> -->
+
+       <trans-unit id="Email_required" datatype="html">
+        <source>  Email is required.  </source>
+        <target> البريد الالكتروني مطلوب  </target>
+      </trans-unit>
+
+       <trans-unit id="Email_not_valid" datatype="html">
+        <source>Email is not valid</source>
+        <target>  البريد الإلكتروني غير صالح </target>
+      </trans-unit>
+
+      <trans-unit id="Password" datatype="html">
+        <source>  Password  </source>
+        <target>  كلمه السر </target>
+      </trans-unit>
+
+      <trans-unit id="Password_required" datatype="html">
+        <source> Password is required </source>
+        <target> كلمة المرور مطلوبة  </target>
+      </trans-unit>
+
+      <trans-unit id="Password_min_8" datatype="html">
+        <source>  Password must be atleast 8 characters </source>
+        <target>  البريد الإلكتروني غير صالح </target>
+      </trans-unit>
+
+      <trans-unit id="Address_Required" datatype="html">
+        <source>  Address is required </source>
+        <target>  العنوان مطلوب </target>
+      </trans-unit>
+
+
+      <trans-unit id="Street" datatype="html">
+        <source>  Street  </source>
+        <target>     شارع  </target>
+      </trans-unit>
+
+       <trans-unit id="Street_Required" datatype="html">
+        <source>  Street is required  </source>
+        <target>  مطلوب الشارع     </target>
+      </trans-unit>
+
+       <trans-unit id="Zip_Code" datatype="html">
+        <source>  Zip Code  </source>
+        <target>     الرمز البريدي  </target>
+      </trans-unit>
+
+       <trans-unit id="Zip_Code_Required" datatype="html">
+        <source>  Zip Code is required  </source>
+        <target>    مطلوب الرمز البريدي   </target>
+      </trans-unit>
+
+       <!-- <trans-unit id="Phone_Number" datatype="html">
+        <source>  Phone Number  </source>
+        <target>  رقم الهاتف   </target>
+      </trans-unit> -->
+
+       <trans-unit id="Phone_Number_Required" datatype="html">
+        <source>  Phone Number is required  </source>
+        <target>   مطلوب رقم الهاتف    </target>
+      </trans-unit>
+
+       <trans-unit id="Phone_number_min_7" datatype="html">
+        <source>  Phone Number must be at least 7 characters long.  </source>
+        <target>     يجب أن يكون رقم الهاتف لا يقل عن 7 أحرف.  </target>
+      </trans-unit>
+
+       <trans-unit id="phone_number_max_15" datatype="html">
+        <source>  Phone Number can be max 15 characters long.  </source>
+        <target>   العنوان مطلوب </target>
+      </trans-unit>
+
+
+       <trans-unit id="phone_not_valid" datatype="html">
+        <source>   Phone Number is not valid.  </source>
+        <target>    رقم الهاتف غير صالح.   </target>
+      </trans-unit>
+
+
+       <trans-unit id="user_type" datatype="html">
+        <source>   User Type  </source>
+        <target>
+نوع المستخدم  </target>
+      </trans-unit>
+
+       <trans-unit id="choose_here" datatype="html">
+        <source>  Choose here  </source>
+        <target>    اختر هنا   </target>
+      </trans-unit>
+
+        <trans-unit id="type_required" datatype="html">
+        <source>  Type Required.  </source>
+        <target>    اكتب المطلوبة.   </target>
+      </trans-unit>
+
+   <trans-unit id="Vehical_type" datatype="html">
+        <source>  Vehical Type  </source>
+        <target>    نوع السيارة   </target>
+      </trans-unit>
+
+      <trans-unit id="vehical_type_required" datatype="html">
+        <source>  Vehicle Type is required  </source>
+        <target>    مطلوب نوع السيارة   </target>
+      </trans-unit>
+
+
+      <trans-unit id="vehical_name" datatype="html">
+        <source>  Vehicle Name  </source>
+        <target>    اسم السيارة   </target>
+      </trans-unit>
+
+    <trans-unit id="vehical_name_required" datatype="html">
+        <source>  Vehicle Name is required  </source>
+        <target>   مطلوب اسم السيارة    </target>
+      </trans-unit>
+
+      <trans-unit id="vehical_number" datatype="html">
+        <source>  Vehicle Number  </source>
+        <target>    عدد المركبات   </target>
+      </trans-unit>
+
+      <trans-unit id="image_required" datatype="html">
+        <source>  Image is required  </source>
+        <target>   مطلوب صورة    </target>
+      </trans-unit>
+
+        <trans-unit id="Add" datatype="html">
+        <source>  Add  </source>
+        <target>    إضافة
+   </target>
+      </trans-unit>
+
+      <trans-unit id="Update" datatype="html">
+        <source>  Update  </source>
+        <target>     تحديث  </target>
+      </trans-unit>
+
+       <trans-unit id="vehical_no_required" datatype="html">
+        <source>  Vehicle Number is required  </source>
+        <target>    مطلوب عدد المركبات   </target>
+      </trans-unit>
+
+      <trans-unit id="copyright" datatype="html">
+        <source>  Copyright   </source>
+        <target>    حقوق الطبع والنشر والنسخ. بارد داش 2020 </target>
+      </trans-unit>
+
+      <!-- Driver Start -->
+
+      <trans-unit id="drivers" datatype="html">
+        <source>  Drivers  </source>
+        <target>   السائقين    </target>
+      </trans-unit>
+
+       <trans-unit id="add_driver" datatype="html">
+        <source>  Add Driver  </source>
+        <target>   إضافة سائق    </target>
+      </trans-unit>
+
+      <trans-unit id="Document_status" datatype="html">
+        <source>  Document Status  </source>
+        <target>  حالة المستند </target>
+      </trans-unit>
+
+       <trans-unit id="Driver_type" datatype="html">
+        <source>  Driver Type  </source>
+        <target>  نوع سائق     </target>
+      </trans-unit>
+
+        <trans-unit id="Vehicle_Name" datatype="html">
+        <source>  Vehicle Name  </source>
+        <target>  اسم السيارة     </target>
+      </trans-unit>
+
+
+      <trans-unit id="Vehical_Number" datatype="html">
+        <source>  Vehicle Number  </source>
+        <target>    عدد المركبات   </target>
+      </trans-unit>
+<!--
+      <trans-unit id="Status" datatype="html">
+        <source>  Status  </source>
+        <target>    الحالة   </target>
+      </trans-unit> -->
+
+      <!-- <trans-unit id="Address_Required" datatype="html">
+        <source>  Address  </source>
+        <target>       </target>
+      </trans-unit> -->
+
+      <trans-unit id="Rating" datatype="html">
+        <source>  Rating  </source>
+        <target>    تقييم   </target>
+      </trans-unit>
+
+      <!-- <trans-unit id="Action" datatype="html">
+        <source>  Action  </source>
+        <target>   عمل    </target>
+      </trans-unit> -->
+
+
+       <!-- <trans-unit id="search_firstname" datatype="html">
+        <source>  Search First Name and Email  </source>
+        <target>   بحث الاسم والبريد الإلكتروني    </target>
+      </trans-unit> -->
+
+       <!-- <trans-unit id="Address_Required" datatype="html">
+        <source>  Address  </source>
+        <target>       </target>
+      </trans-unit>
+
+       <trans-unit id="Address_Required" datatype="html">
+        <source>  Address  </source>
+        <target>       </target>
+      </trans-unit> -->
+
+      <!-- Driver End -->
+
+
+
+<!--
+       <trans-unit id="Address_Required" datatype="html">
+        <source>  Address  </source>
+        <target>       </target>
+      </trans-unit>
+
+       <trans-unit id="Address_Required" datatype="html">
+        <source>  Address  </source>
+        <target>       </target>
+      </trans-unit>
+
+       <trans-unit id="Address_Required" datatype="html">
+        <source>  Address  </source>
+        <target>       </target>
+      </trans-unit> -->
+
+
+
+
+
+      <!-- Driver Module End -->
+
+      <!-- Restaurant Start -->
+
+      <trans-unit id="Categories" datatype="html">
+        <source>  Categories  </source>
+        <target>   التصنيفات    </target>
+      </trans-unit>
+
+      <trans-unit id="add_category" datatype="html">
+        <source>  Add Category  </source>
+        <target>  إضافة فئة     </target>
+      </trans-unit>
+
+       <trans-unit id="close" datatype="html">
+        <source>  Close </source>
+        <target>  قريب    </target>
+      </trans-unit>
+
+      <trans-unit id="edit_category" datatype="html">
+        <source>  Edit Category  </source>
+        <target>  تحرير الفئة    </target>
+      </trans-unit>
+
+      <trans-unit id="Created_Date" datatype="html">
+        <source>  Created Date  </source>
+        <target>   تاريخ الإنشاء    </target>
+      </trans-unit>
+
+      <trans-unit id="category_name" datatype="html">
+        <source>  Category Name  </source>
+        <target>   اسم التصنيف    </target>
+      </trans-unit>
+
+<trans-unit id="type_of_food" datatype="html">
+        <source>  Type of Food  </source>
+        <target>   نوع الطعام    </target>
+      </trans-unit>
+
+      <trans-unit id="discount" datatype="html">
+        <source>  Discount  </source>
+        <target>    خصم   </target>
+      </trans-unit>
+
+
+
+      <trans-unit id="Is_Recommended" datatype="html">
+        <source>  Is Recommended  </source>
+        <target>  موصى به     </target>
+      </trans-unit>
+
+
+     =
+
+
+    </body>
+  </file>
+</xliff>

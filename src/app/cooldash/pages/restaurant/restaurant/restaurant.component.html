@@ -1,0 +1,144 @@
+<div class="container-fluid">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <div class="tittle_outer">
+        <div class="user_title">
+          <div class="user_title_inner">
+            <h6 i18n="@@Restaurant" class="m-0 text-black">Restaurant</h6>
+          </div>
+          <div class="user_add_button">
+            <button i18n="@@add_restaurant" class="btn btn-primary" (click)="addRestaurant()">
+              <span class="fas fa-plus"></span> Add Restaurant
+            </button>
+            <button i18n="@@add_restaurant" class="btn btn-primary ml-3" (click)="downloadCsv()">
+              <span class="fas fa-download"></span> Download CSV
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="filters_outer">
+        <div class="user_filter">
+          <input type="text" class="form-control" name="searchText" [(ngModel)]="searchText"
+            placeholder="Search Restaurant" />
+        </div>
+        <div class="user_filter user_selectfilter">
+          <select class="form-control" *ngIf="foodType" (change)="onChange($event)" [(ngModel)]="type">
+            <!-- <option value="" selected disabled hidden>Choose here</option> -->
+            <option *ngFor="let type of foodType" [value]="type.value">
+              {{ type.name }}
+            </option>
+          </select>
+        </div>
+        <div class="user_serch_btn">
+          <button type="submit" i18n="@@Search" class="btn btn-primary pl-2 pr-2" (click)="searchRestaurant()">
+            Search
+          </button>
+          <button type="reset" i18n="@@Reset" class="btn btn-primary pl-3 pr-3 ml-2" (click)="reset()">
+            Reset
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body table-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th i18n="@@Image">Image</th>
+              <th i18n="@@Name">Name</th>
+              <!-- <th>Description</th> -->
+              <th i18n="@@type_of_food" style="min-width: 150px">
+                Type of Food
+              </th>
+              <th i18n="@@discount">Discount</th>
+              <!-- <th>Is Featured</th> -->
+              <th i18n="@@Status">Status</th>
+              <th i18n="@@Is_Recommended" style="min-width: 130px">
+                Is Recommended
+              </th>
+              <th i18n="@@Created_Date" style="min-width: 150px">
+                Created Date
+              </th>
+              <th i18n="@@Action">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="
+                let item of restaurantList | paginate: config;
+                let i = index
+              ">
+              <td>{{ (currentPage - 1) * 25 + i + 1 }}</td>
+              <td>
+                <img src="{{ imageUrl }}{{ item.image }}" width="70px" height="70px" />
+              </td>
+              <td>{{ item.name }}</td>
+              <!-- <td>
+                {{
+                  item.description == null
+                    ? ""
+                    : item.description.length < 18
+                    ? item.description
+                    : item.description.slice(0, 16) + "...."
+                }}
+              </td> -->
+              <td *ngIf="item.foodType == 0">Veg.</td>
+              <td *ngIf="item.foodType == 1">Non-Veg.</td>
+              <td *ngIf="item.foodType == 2">Veg. & Non-Veg.</td>
+
+              <td>
+                {{ item.discount }}
+              </td>
+              <!-- <td>
+                <ui-switch labelOn="ON" switchColor="#4e73df" id="featured" name="isFavourite"
+                  [(ngModel)]="item.isFavourite" (ngModelChange)="updateFavRes(item)" labelOff="OFF"></ui-switch>
+              </td> -->
+              <td>
+                <ui-switch labelOn="ON" switchColor="#4e73df" id="status" name="status" [(ngModel)]="item.status"
+                  (ngModelChange)="updateStatus(item)" labelOff="OFF"></ui-switch>
+              </td>
+              <td>
+                <ui-switch labelOn="ON" switchColor="#4e73df" id="recommend" name="isRecommended"
+                  [(ngModel)]="item.isRecommended" (ngModelChange)="updateRecoRes(item)" labelOff="OFF"></ui-switch>
+              </td>
+              <td>
+                {{ item.createdAt | date: "yyyy-MM-dd" }}
+              </td>
+
+              <td>
+                <div class="product_action">
+                  <button class="btn btn-warning mr-1" (click)="onViewItem(item)" title="View">
+                    <span class="fas fa-fw fa-eye"></span>
+                  </button>
+                  <button class="btn btn-success mr-1" (click)="onEditSelect(item)" title="Edit">
+                    <span class="fas fa-fw fa-edit"></span>
+                  </button>
+                  <button class="btn btn-info mr-1" (click)="getOutlet(item)" title="Outlet">
+                    <span class="fa fa-map-marker"></span>
+                  </button>
+                  <button class="btn btn_item mr-1" (click)="getFoodType(item)" title="Food Category">
+                    <span class="fa fa-sitemap"></span>
+                  </button>
+                  <button class="btn btn-primary mr-1" (click)="getFoodItem(item)" title="Food Item">
+                    <span class="fa fa-th"></span>
+                  </button>
+                  <button class="btn btn-danger mr-1" (click)="deleteRestaurant(item)">
+                    <span class="fas fa-fw fa-trash"></span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="loader" class="loader"></div>
+        <h4 *ngIf="restaurantList.length == 0 && !loader" class="text-center">
+          No records found.
+        </h4>
+      </div>
+      <div *ngIf="restaurantList && restaurantList.length != 0 && !loader" class="pagination_ui">
+        <pagination-controls (pageChange)="pageChange($event)" id="page" class="my-pagination">
+        </pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

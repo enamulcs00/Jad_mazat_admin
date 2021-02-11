@@ -1,0 +1,70 @@
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Store</th>
+                            <th *ngIf="showorder">Description</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Packing Time</th>
+                            <th>Created Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of foodItem; let i = index">
+                            <td>{{ i + serialNumber + 1 }}</td>
+                            <td>
+                                <img src="{{ imageUrl }}{{ item.image }}" width="70px" height="70px" />
+                            </td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.storeName }}</td>
+                            <td *ngIf="showorder">
+                                {{ item.description == null
+                                    ? ""
+                                    : item.description.length < 18
+                                    ? item.description
+                                    : item.description.slice(0, 16) + "...."
+                                }}
+                            </td>
+                            <!-- {{item.price || item.totalAmount}} -->
+                            <td>
+                                <input type="number" min="0" style="width: 40%;" [(ngModel)]="item.price" (input)="updateData(item.price,item._id,'price')">
+                            </td>
+                            <!-- {{item.quantity}} -->
+                            <td>
+                                <input type="number" min="0" style="width: 40%;" [(ngModel)]="item.quantity" (input)="updateData(item.quantity,item._id,'quantity')">
+                            </td>
+                            <td>{{item.packingTime}}</td>
+                            <td>
+                                {{ item.createdAt | date: "yyyy-MM-dd" }}
+                            </td>
+                            <td>
+                                <div class="product_action">
+                                    <button class="btn btn-success mr-1" (click)="onEditSelect(item)">
+                                        <span class="fas fa-fw fa-edit"></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="loader" class="loader"></div>
+                <h4 *ngIf="foodItem && foodItem.length == 0 && !loader" class="text-center">
+                    No records found.
+                </h4>
+            </div>
+            <!-- <pagination
+          *ngIf="categoryList.length != 0 && !loader"
+          [totalItems]="totalItems"
+          [boundaryLinks]="true"
+          [maxSize]="5"
+          [(ngModel)]="currentPage"
+          (pageChanged)="pageChange($event)"
+        ></pagination> -->
+        </div>

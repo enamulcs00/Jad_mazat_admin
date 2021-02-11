@@ -1,0 +1,73 @@
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+
+
+        <div class="card-header py-3">
+            <div class="tittle_outer">
+                <div class=" user_title">
+                   <div class="user_title_inner">
+                    <h6 class="m-0 text-black">
+                        View User
+                    </h6>
+                </div>
+                   <div class="user_add_button"> 
+                    <button class="btn btn-primary" (click)="history.back()">
+                        <span class="fas fa-arrow-left"></span> Back
+                    </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card-body" *ngIf="userDetail">
+            <div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>User Name</label>
+                            <input type="text" name="Name" value="{{userDetail.firstName}} {{userDetail.lastName}}"
+                                class="form-control" disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" name="Email" value="{{userDetail.email}}" class="form-control"
+                                disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="text" name="Email" value="{{userDetail.countryCode}} {{userDetail.phone}}"
+                                class="form-control" disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="userDetail.emergencyPhone">
+                        <div class="form-group">
+                            <label>Emergency Phone Number</label>
+                            <input type="text" name="Email"
+                                value="{{userDetail.emergencyPhone.countryCode}} {{userDetail.emergencyPhone.phone}}"
+                                class="form-control" disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Image</label>
+                            <div>
+                                <ng-container *ngIf="userDetail.profilePic; else noImage">
+                                    <img [src]="comm.imageUrl + userDetail.profilePic"
+                                        style="height: 150px; width: 150px;" />
+                                </ng-container>
+                                 <ng-template #noImage>
+                                    <img src="assets/img/default-user.png"  style="height: 150px; width: 150px;"/>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-md-12 user_title">
+                    <h6 class="m-0 font-weight-bold text-primary">Overview</h6>
+                </div>
+                <!-- <div class="col-md-2 user_filter">
+                  <input type="text" class="form-control" name="searchText" [(ngModel)]="searchText"
+                    placeholder="Search Name">
+                </div> -->
+                <div class="col-md-6 col-lg-4 col-8 user_filter">
+                    <input class="form_control dtpcker" matInput [matDatepicker]="startdate" [formControl]="date1" (dateInput)="getStartDate($event)" placeholder="Select Date" readonly>
+                    <mat-datepicker-toggle [for]="startdate"></mat-datepicker-toggle>
+                    <mat-datepicker #startdate></mat-datepicker>
+                </div>
+                <div class="col-md-3 col-lg-3 col-4 user_serch_btn">
+                    <button type="submit" class="btn btn-primary pl-2 pr-2" (click)="search()">Search</button>
+                    <!-- <button type="reset" class="btn btn-primary pl-3 pr-3 ml-2" (click)="reset()">Reset</button> -->
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th style="min-width: 8rem;">Shuttle Name</th>
+                            <th style="min-width: 8rem;">Route Name</th>
+                            <th style="min-width: 7rem;">Total Seats</th>
+                            <th style="min-width: 7rem;">Booked Seats</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="list && list.length > 0">
+                        <tr *ngFor="let item of list | paginate: config; let i = index">
+                            <td>{{ (currentPage - 1) * 25 + i +1 }}</td>
+                            <td>{{ item.shuttleName }}</td>
+                            <td>{{ item.routeName }}</td>
+                            <td>{{ item.totalSeats }}</td>
+                            <td>{{ item.bookedseats }}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="loader" class="loader"></div>
+                <h4 *ngIf="list && list.length == 0 && !loader" class="text-center">
+                    No records found.
+                </h4>
+            </div>
+            <div *ngIf="list && list.length !=0 && !loader" class="pagination_ui">
+                <pagination-controls (pageChange)="pageChange($event)" id="page" class="my-pagination">
+                </pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>

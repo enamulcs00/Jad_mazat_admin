@@ -1,0 +1,113 @@
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-md-6 user_title">
+                    <h6 class="m-0 font-weight-bold text-primary">Taxi Bookings</h6>
+                </div>
+                <div class="col-md-6 text-right add_btn">
+                    <button class="btn btn-primary" (click)="addTaxiBookings()">
+            <span class="fas fa-plus"></span> Create Booking
+          </button>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6 col-lg-6 col-xl-3  user_filter">
+                    <input type="text" class="form-control" name="searchText" [(ngModel)]="searchText" placeholder="Search Name">
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-3 user_filter">
+                    <input class="form_control filter_inputf dtpcker" #startdate matInput [matDatepicker]="startdate" (dateInput)="getStartDate($event)" placeholder="Start date" readonly>
+                    <mat-datepicker-toggle [for]="startdate"></mat-datepicker-toggle>
+                    <mat-datepicker #startdate></mat-datepicker>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-3 user_filter mt20">
+                    <input class="form_control filter_inputf dtpcker" #enddate matInput [matDatepicker]="enddate" (dateInput)="getEndDate($event)" placeholder="End date" readonly>
+                    <mat-datepicker-toggle [for]="enddate"></mat-datepicker-toggle>
+                    <mat-datepicker #enddate></mat-datepicker>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-3 user_serch_btn mt20">
+                    <button type="submit" class="btn btn-primary pl-2 pr-2" (click)="searchBookings()">Search</button>
+                    <button type="reset" class="btn btn-primary pl-3 pr-3 ml-2" (click)="reset()">Reset</button>
+                </div>
+
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th style="min-width: 5rem;">Order No.</th>
+                            <th style="min-width: 6rem;">User Name</th>
+                            <th style="min-width: 6rem;">Driver Name</th>
+                            <th style="min-width: 13rem;">Source Address</th>
+                            <th style="min-width: 13rem;">Destination Address</th>
+                            <th>Distance</th>
+                            <th>Total Amount</th>
+                            <th style="min-width: 9rem;">Booking Start Date</th>
+                            <th style="min-width: 8rem;">Booking End Date</th>
+                            <th style="min-width: 8rem;">Booked By</th>
+                            <th>Status</th>
+                            <th>Phone Number</th>
+                            <th>
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of bookingList | paginate: config  ; let i = index">
+                            <td>{{ (currentPage - 1) * 25 + i +1 }}</td>
+                            <td>{{ item.taxiOrderNo }}</td>
+                            <td>{{ item.userFirstName }} {{ item.userLastName }}</td>
+                            <td>{{ item.driver.firstName }} {{ item.driver.lastName }}</td>
+                            <td>
+                                {{ item.source.address.length
+                                < 20 ? item.source.address : item.source.address.slice(0, 20) + "...." }} </td>
+                                    <td>{{ item.destination.address.length
+                                        < 20 ? item.destination.address : item.destination.address.slice(0, 20) + "...." }} </td>
+                                            <td>{{item.distance}}</td>
+                                            <td>{{item.totalAmount}}</td>
+                                            <td>
+                                                {{ item.bookingStartDate | date: "yyyy-MM-dd" }}
+                                            </td>
+                                            <td>
+                                                {{ item.bookingEndDate | date: "yyyy-MM-dd" }}
+                                            </td>
+
+                                            <td *ngIf="item.bookingType == 0">User</td>
+                                            <td *ngIf="item.bookingType == 1">Driver</td>
+                                            <td *ngIf="item.bookingType == 2">Admin</td>
+
+                                            <td *ngIf="item.status == 0">On the way</td>
+                                            <td *ngIf="item.status == 1">Reached</td>
+                                            <td *ngIf="item.status == 2">Start</td>
+                                            <td *ngIf="item.status == 3">Completed</td>
+                                            <td *ngIf="item.status == 4">Paid</td>
+                                            <td *ngIf="item.status == 5">Rate</td>
+                                            <td *ngIf="item.status == 6">Skip</td>
+                                            <td *ngIf="item.status == 11">Cancel by user</td>
+                                            <td *ngIf="item.status == 12">Cancel by driver</td>
+                                            <td>{{item.countryCode}}-{{item.phone}}</td>
+                                            <td>
+                                                <div class="product_action">
+                                                    <button class="btn btn-warning mr-1" (click)="onViewItem(item)" title="View">
+                    <span class="fas fa-fw fa-eye"></span>
+                  </button>
+                                                </div>
+                                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="loader" class="loader"></div>
+                <h4 *ngIf="bookingList.length == 0 && !loader" class="text-center">
+                    No records found.
+                </h4>
+            </div>
+            <div *ngIf="bookingList && bookingList.length !=0 && !loader" class="pagination_ui">
+                <pagination-controls (pageChange)="pageChange($event)" id="page" class="my-pagination">
+                </pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>

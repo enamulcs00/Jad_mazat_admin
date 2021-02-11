@@ -1,0 +1,231 @@
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="m-0 font-weight-bold text-primary">
+                                Taxi Booking
+                            </h6>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <button class="btn btn-primary" (click)="history.back()">
+                                <span class="fas fa-arrow-left"></span> Back
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body add_driver_outer">
+            <form [formGroup]="taxiForm">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="title">First Name</label>
+                        <div class="input-group">
+                            <input type="text" id="name" class="form-control" formControlName="firstName" placeholder="" />
+                        </div>
+                        <div *ngIf="submitted && taxiForm.controls.firstName.errors" class="invalid-feedback">
+                            <div *ngIf="taxiForm.controls.firstName.errors.required">
+                                First Name is required
+                            </div>
+                            <div *ngIf="taxiForm.controls.firstName.errors.minlength">
+                                First Name must be at least 3 characters long.
+                            </div>
+                            <div *ngIf="taxiForm.controls.firstName.errors.maxlength">
+                                First Name can be max 16 characters long.
+                            </div>
+                            <div *ngIf="taxiForm.controls.firstName.errors.pattern">
+                                Invalid character.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="title">Last Name</label>
+                        <div class="input-group">
+                            <input type="text" id="name" class="form-control" formControlName="lastName" placeholder="" />
+                        </div>
+                        <div *ngIf="submitted && taxiForm.controls.lastName.errors" class="invalid-feedback">
+                            <div *ngIf="taxiForm.controls.lastName.errors.required">
+                                Last Name is required
+                            </div>
+                            <div *ngIf="taxiForm.controls.lastName.errors.minlength">
+                                Last Name must be at least 3 characters long.
+                            </div>
+                            <div *ngIf="taxiForm.controls.lastName.errors.maxlength">
+                                Last Name can be max 16 characters long.
+                            </div>
+                            <div *ngIf="taxiForm.controls.lastName.errors.pattern">
+                                Invalid character.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="category">Phone Number</label>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="login_email country_code_div">
+                                    <div class="loginmail_input" *ngIf="countryCodes && countryCodes.length>0">
+                                        <ngx-select-dropdown (change)="selectionChanged1($event)" formControlName="countryCode" [config]="config1" [options]="countryCodes">
+                                        </ngx-select-dropdown>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <div class="input-group">
+                                    <input type="text" id="name" class="form-control" formControlName="phone" placeholder="" />
+                                </div>
+                                <div *ngIf="submitted && taxiForm.controls.phone.errors" class="invalid-feedback">
+                                    <div *ngIf="taxiForm.controls.phone.errors.required">
+                                        Phone Number is required
+                                    </div>
+                                    <div *ngIf="taxiForm.controls.phone.errors.minlength">
+                                        Phone Number must be at least 7 characters long.
+                                    </div>
+                                    <div *ngIf="taxiForm.controls.phone.errors.maxlength">
+                                        Phone Number can be max 15 characters long.
+                                    </div>
+                                    <div *ngIf="taxiForm.controls.phone.errors.pattern">
+                                        Phone Number not valid.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="title">Email</label>
+                        <div class="input-group">
+                            <input type="text" id="name" class="form-control" formControlName="email" placeholder="" />
+                        </div>
+                        <div *ngIf="submitted && taxiForm.controls.email.errors" class="invalid-feedback">
+                            <div *ngIf="taxiForm.controls.email.errors.required">
+                                Email is required
+                            </div>
+                            <div *ngIf="taxiForm.controls.email.errors.pattern">
+                                Email is not valid
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-5 main_map_Page">
+                        <div class="mapnew">
+                            <div class="row ">
+                                <div class="form-group col-md-12" formGroupName="source">
+                                    <label for="category">Source Address</label>
+                                    <div class="input-group">
+                                        <input class="form-control" [attr.disabled]="directionStatus ? '' : null" type="text" name="name" formControlName="address" placeholder="" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddress($event)" />
+                                    </div>
+                                    <div *ngIf="submitted && taxiForm.controls['source'].get('address').errors" class="invalid-feedback">
+                                        <div *ngIf="taxiForm.controls['source'].get('address').errors.required">
+                                            Address is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12" formGroupName="destination">
+                                    <label for="category">Destination Address</label>
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" name="name" formControlName="address" placeholder="" [attr.disabled]="directionStatus ? '' : null" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleDestinationAddress($event)" />
+                                    </div>
+                                    <div *ngIf="submitted && taxiForm.controls['destination'].get('address').errors" class="invalid-feedback">
+                                        <div *ngIf="taxiForm.controls['destination'].get('address').errors.required">
+                                            Address is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="book-now-reset add-booking-button" *ngIf="longitude && longitude1">
+                                <span>
+                                <input *ngIf="!showbtn" (click)="getDirections()" type="submit" class="save btn-info button-submit"
+                                    name="button" value="Confirmed direction" />
+                                <input *ngIf="showbtn" (click)="editDirection()" type="submit" class="save btn-info button-submit"
+                                    name="button" value="Edit direction" />
+                            </span>
+                            </div>
+                            <div class="main_map_Page2">
+                                <label>Note :</label>
+                                <textarea class="form-control" name="note" formControlName="note" value="" placeholder="Message">
+                            </textarea>
+                                <div *ngIf="submitted && taxiForm.controls.email.errors" class="invalid-feedback">
+                                    <div *ngIf="taxiForm.controls.email.errors.required">
+                                        Note is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-7 map_page_3">
+                        <div class="form-group">
+                            <label for="types">Vehicle Type</label>
+                            <div class="input-group" *ngIf="vehicleTypes">
+                                <select [attr.disabled]="showSelectVehicle ? '' : null" class="form-control" formControlName="vehicleTypeId" (change)="onChange($event.target.value)">
+                                    <option value="" selected disabled hidden>Choose here</option>
+                                    <option *ngFor="let type of vehicleTypes" [value]="type._id">
+                                        {{ type.name }}
+                                    </option>
+                                </select>
+                                <div *ngIf="submitted && taxiForm.controls.vehicleTypeId.errors" class="invalid-feedback">
+                                    <div *ngIf="taxiForm.controls.vehicleTypeId.errors.required">
+                                        Vehicle Type is required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <agm-map [latitude]="latitude" [longitude]="longitude">
+                            <div *ngIf="!show">
+                                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true" (dragEnd)="markerDragEndSource($event)"></agm-marker>
+                                <agm-marker [latitude]="latitude1" [longitude]="longitude1" [markerDraggable]="true" (dragEnd)="markerDragEndDestination($event)"></agm-marker>
+                            </div>
+                            <div *ngIf="show">
+                                <agm-direction [origin]="dir.search" [destination]="dir.destination"></agm-direction>
+                            </div>
+                        </agm-map>
+                        <div class="total-price total-price1">
+                            <b>Fare Estimation</b>
+                            <hr />
+                            <ul class="list-inline">
+                                <li id="MinFare">
+                                    <b>Fare</b> : <em id="minimum_fare_price" name="fare">{{ fare }}</em>
+                                </li>
+                                <li id="BaseFare">
+                                    <!-- $ -->
+                                    <b>Base Fare</b> : <em id="base_fare_price" name="fare">{{ baseFare }}</em>
+                                </li>
+                                <li id="FixFare" style="display:none">
+                                    <b>Fix Fare</b> : <em id="fix_fare_price"></em>
+                                </li>
+                                <li id="DistanceFare">
+                                    <b>Distance <em id="dist_fare"></em>
+                                    <em id="change_eUnit"></em></b>:
+                                    <em id="dist_fare_price">{{ kmDistance }}</em>
+                                </li>
+                                <li id="TimeFare">
+                                    <b>Time<em id="dist_fare"></em> </b> :
+                                    <em id="time_fare_price"> </em>
+                                    <em id="dist_fare_price">{{ timetaken }}</em>
+                                </li>
+                            </ul>
+                            <span>Total Fare<b> : 
+                                <em id="total_fare_price"> {{ fare }}</em>
+                                </b></span>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group form-actions add_e">
+                    <button type="submit" class="btn btn-sm btn-success mr-4" [disabled]="isTaxiRequested" (click)="submit()">
+                        Book Now
+                    </button>
+                    <button type="submit" class="btn btn-sm btn-success" (click)="reset()">
+                        Reset
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

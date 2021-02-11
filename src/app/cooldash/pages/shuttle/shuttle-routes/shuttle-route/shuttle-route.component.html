@@ -1,0 +1,87 @@
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <h6 class="m-0 font-weight-bold text-primary">Shuttle Routes</h6>
+                </div>
+                <div class="col-md-6 text-right">
+                    <button class="btn btn-primary" (click)="addShuttleRoute()">
+                        <span class="fas fa-plus"></span> Add Shuttle Route
+                    </button>
+                    <!-- <button class="btn btn-primary" (click)="history.back()">
+                        <span class="fas fa-arrow-left"></span> Back
+                    </button> -->
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th style="min-width: 8rem;">Vender Name</th>
+                            <th style="min-width: 15rem;">Start Point</th>
+                            <!-- <th>Stop Point</th> -->
+                            <th style="min-width: 15rem;">End Point</th>
+                            <th style="min-width: 5rem;">Status</th>
+                            <th style="min-width: 8rem;">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="shuttleRoute && shuttleRoute.length > 0">
+                        <tr *ngFor="let item of shuttleRoute | paginate: config; let i = index">
+                            <td>{{ (currentPage - 1) * 25 + i +1 }}</td>
+                            <td>{{ item.name }}</td>
+                            <td><span *ngIf="item.venderId">{{ item.venderId.firstName }}
+                                    {{ item.venderId.lastName }}</span></td>
+                            <td *ngIf="item.startPoint && item.startPoint.length>0">{{ item.startPoint[0].address }}
+                            </td>
+                            <!-- <td *ngIf="item.stopPoints && item.stopPoints.length>0">
+                                {{ item.stopPoints[0].coordinates.address }}
+                            </td> -->
+                            <td *ngIf="item.endPoint && item.endPoint.length>0">{{ item.endPoint[0].address }}</td>
+                            <td>
+                                <ui-switch labelOn="ON" switchColor="#4e73df" id="status" name="status" [(ngModel)]="item.status" (ngModelChange)="updateStatus(item)" labelOff="OFF">
+                                </ui-switch>
+                            </td>
+                            <td>
+                                <div class="product_action">
+                                    <button class="btn btn-warning mr-1" title="View Shuttle Route" (click)="viewShuttleRoute(item)" title="View">
+                                        <span class="fas fa-fw fa-eye"></span>
+                                    </button>
+                                    <button class="btn btn-primary mr-1" (click)="editShuttleRoute(item)" title="Edit Shuttle Route">
+                                        <span class="fas fa-fw fa-edit"></span>
+                                    </button>
+                                    <button class="btn btn-danger" (click)="deleteShuttleRoute(item)" title="Delete">
+                                        <span class="fas fa-fw fa-trash"></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="loader" class="loader"></div>
+                <h4 *ngIf="shuttleRoute && shuttleRoute.length == 0 && !loader" class="text-center">
+                    No records found.
+                </h4>
+            </div>
+            <div *ngIf="shuttleRoute && shuttleRoute.length !=0 && !loader" class="pagination_ui">
+                <pagination-controls (pageChange)="pageChange($event)" id="page" class="my-pagination">
+                </pagination-controls>
+            </div>
+            <!-- <pagination
+            *ngIf="categoryList.length != 0 && !loader"
+            [totalItems]="totalItems"
+            [boundaryLinks]="true"
+            [maxSize]="5"
+            [(ngModel)]="currentPage"
+            (pageChanged)="pageChange($event)"
+          ></pagination> -->
+        </div>
+    </div>
+</div>

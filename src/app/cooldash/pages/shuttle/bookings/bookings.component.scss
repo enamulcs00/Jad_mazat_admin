@@ -1,0 +1,23 @@
+select {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border: 1px solid #d4d6dc;
+    color: #868484;
+}
+
+.user_filter select {
+    border-radius: 5px;
+}
+
+@media (max-width:967px) {
+    .user_serch_btn {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width:767px) {
+    .user_filter select {
+        height: 40px;
+    }
+}

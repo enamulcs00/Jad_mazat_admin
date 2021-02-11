@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <div class="row">
+        <div class="col-md-12 user_title">
+          <h6 class="m-0 font-weight-bold text-primary">Admin Settings</h6>
+        </div>
+      </div>
+      <div class="row"></div>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <form [formGroup]="adminForm">
+          <div class="col-md-12 user_filter">
+            <label> Sender Id </label>
+            <input
+              type="text"
+              class="form-control mt-2"
+              [(ngModel)]="senderId"
+              formControlName="senderId"
+              name="searchText"
+              placeholder="Enter Sender Id"
+            />
+            <!-- <div
+              class="mt-3 text-danger"
+              *ngIf="adminForm.controls.senderId.errors"
+            >
+              Sender Id must be of 3 characters atleast.
+            </div> -->
+          </div>
+          <div class="col-md-12 mt-3 user_serch_btn">
+            <button
+              type="submit"
+              class="btn btn-primary pl-4 pr-4"
+              (click)="updateAdminSettings()"
+              [disabled]="!adminForm.valid"
+            >
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+<div class="container-fluid">
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <div class="row">
+        <div class="col-md-6">
+          <h6 class="m-0 font-weight-bold text-primary">Venders</h6>
+        </div>
+        <div class="col-md-6 text-right">
+          <button class="btn btn-primary" (click)="addVender()">
+            <span class="fas fa-plus"></span> Add Vender
+          </button>
+          <!-- <button class="btn btn-primary" (click)="history.back()">
+                        <span class="fas fa-arrow-left"></span> Back
+                    </button> -->
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th style="min-width: 8rem">Name</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th style="min-width: 20rem">Address</th>
+              <th style="min-width: 5rem">Status</th>
+              <th style="min-width: 6rem">Action</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="!loader && rows.length > 0">
+            <tr *ngFor="let item of rows | paginate: config; let i = index">
+              <td>{{ (currentPage - 1) * 25 + i + 1 }}</td>
+              <td>{{ item.firstName }} {{ item.lastName }}</td>
+              <td>{{ item.email }}</td>
+              <td>{{ item.countryCode }}{{ item.phone }}</td>
+              <td>{{ item.address }}</td>
+              <td>
+                <ui-switch
+                  labelOn="ON"
+                  switchColor="#4e73df"
+                  id="status"
+                  name="status"
+                  [(ngModel)]="item.status"
+                  (ngModelChange)="updateStatus(item)"
+                  labelOff="OFF"
+                >
+                </ui-switch>
+              </td>
+              <td>
+                <div class="product_action">
+                  <button
+                    class="btn btn-primary mr-1"
+                    title="Edit"
+                    (click)="editVender(item._id)"
+                  >
+                    <span class="fas fa-fw fa-edit"></span>
+                  </button>
+                  <button
+                    class="btn btn-danger"
+                    title="Delete"
+                    (click)="deleteVender(item)"
+                  >
+                    <span class="fas fa-fw fa-trash"></span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="loader" class="loader"></div>
+        <h4 *ngIf="rows && rows.length == 0 && !loader" class="text-center">
+          No records found.
+        </h4>
+      </div>
+      <div *ngIf="rows && rows.length != 0 && !loader" class="pagination_ui">
+        <pagination-controls
+          (pageChange)="pageChange($event)"
+          id="page"
+          class="my-pagination"
+        >
+        </pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

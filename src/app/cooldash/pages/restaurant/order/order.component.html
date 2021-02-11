@@ -1,0 +1,212 @@
+<div class="container-fluid">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <div class="tittle_outer">
+        <div class="user_title">
+          <div class="user_title_inner">
+            <h6 class="m-0 text-black">Order</h6>
+          </div>
+          <div class="user_add_button">
+            <select [(ngModel)]="totalmatch" class="form-control" (change)="changeMatchWebsite($event)">
+              <option value="undefined">All</option>
+              <option value="0">Pending</option>
+              <option value="1">Current/Ongoing</option>
+              <option value="11">undelivered/returned</option>
+              <option value="4">Delivered/Skip</option>
+              <option value="7">Payment received</option>
+          </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body table-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th style="min-width: 5rem">Order No.</th>
+              <th style="min-width: 11rem">Address</th>
+              <th style="min-width: 7rem">Total Amount</th>
+              <th style="min-width: 7rem">Notes</th>
+              <th style="min-width: 7rem">Driver Name</th>
+              <th *ngIf="show" style="min-width: 6rem;" >AssignDriver</th>
+              <th style="min-width: 7rem">User Name</th>
+              <th style="min-width: 8rem">Restaurant Name</th>
+              <th>Items</th>
+              <th>Manual</th>
+              <th style="min-width: 10rem">Status</th>
+              <th style="min-width: 8rem">Order Type</th>
+              <th style="min-width: 7rem">Delivery Date</th>
+              <th style="min-width: 11rem">Order Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              [ngClass]="{ error1: item.mins >= 0 && item.status == 1 }"
+              *ngFor="let item of orderList | paginate: config; let i = index">
+              <td>{{ (currentPage - 1) * 25 + i + 1 }}</td>
+              <td>
+                {{ item.orderNo }}
+              </td>
+              <!-- <td>
+                <ng-container *ngIf="item.address">{{
+                  item.address.address
+                }}</ng-container>
+              </td> -->
+              <td>
+                <ng-container *ngIf="item.address">
+                  {{
+                    item.address.address.length < 20
+                      ? item.address.address
+                      : item.address.address.slice(0, 20) + "...."
+                  }}</ng-container
+                >
+              </td>
+              <td>
+                {{ item.totalAmount | number: "1.2-2" }}
+              </td>
+              <td>
+                {{ item.note || '-' }}
+              </td>
+              <td>
+                <ng-container
+                  *ngIf="item.driver && item.driver.length > 0; else noDriver"
+                >
+                  {{ item.driver[0].firstName }} {{ item.driver[0].lastName }}
+                </ng-container>
+                <ng-template #noDriver>
+                  N/A
+                  <!-- <span *ngIf="!item.status || item.orderType">N/A</span> -->
+                  <!-- <button *ngIf="!item.orderType && item.status == 1 && item.driver && !item.driver.length"
+                    class="btn btn-primary" (click)="assignDriver(item)">Assign</button> -->
+                </ng-template>
+              </td>
+              <td *ngIf="item.status == 0 && show">
+                <div >
+               <button *ngIf="item._id != assignId &&  item.isManual" (click)="findDriver(item.address.latitude,item.address.longitude,item._id)">Assign Driver</button>
+               <div *ngIf="item._id == assignId ">
+                <select (change)="DriverAssign($event,item._id)">
+                    <option disabled>Assign Driver</option>
+                    <option *ngFor="let item of driver" [value]="item._id">{{item.firstName}}</option>
+                   </select>
+                </div>
+                </div>
+            </td>
+              <td>
+                <ng-container *ngIf="item.user">
+                  {{ item.user.firstName }} {{ item.user.lastName }}
+                </ng-container>
+              </td>
+        
+              <td>
+                <ng-container *ngIf="item.restaurantId">
+                  {{ item.restaurantId.name }}
+                </ng-container>
+              </td>
+            
+              <td>
+                <span (click)="viewOrder(item)" style="cursor: pointer">
+                  <u>
+                    {{
+                      item.items && item.items.length ? item.items.length : 0
+                    }}
+                  </u>
+                </span>
+                <!-- <button class="btn btn-primary" (click)="itemsList(item.items)">
+                  Items
+                </button> -->
+              </td>
+              <td>
+                <ui-switch labelOn="ON" switchColor="#4e73df" id="Active" name="status"
+                [(ngModel)]="item.isManual" (change)="updateActiveStatus(item._id , $event)" labelOff="OFF">
+            </ui-switch>
+            </td>
+              <td *ngIf="item.status == 0">Pending</td>
+              <td *ngIf="item.status == 1">Accepted</td>
+              <td *ngIf="item.status == 2">
+                {{ item.orderType ? "Prepared" : "Reached" }}
+              </td>
+              <td *ngIf="item.status == 3">Pick Up</td>
+              <td
+                *ngIf="item.status == 4 || item.status == 5 || item.status == 6"
+              >
+                Delivered
+              </td>
+              <td *ngIf="item.status == 11">Cancel By User</td>
+              <td *ngIf="item.status == 12">Cancel By Restaurant</td>
+              <td>
+                {{ item.orderType ? "Take away" : "Delivery" }}
+              </td>
+              <td>
+                <ng-container
+                  *ngIf="item.deliveryDate != 0; else noDeliveryDate"
+                >
+                  {{ item.deliveryDate | date: "yyyy-MM-dd hh:mm a" }}
+                </ng-container>
+                <ng-template #noDeliveryDate> - </ng-template>
+              </td>
+              <td>
+                {{ item.date | date: "yyyy-MM-dd hh:mm a" }}
+              </td>
+
+              <td>
+                <div class="product_action">
+                  <button
+                    class="btn btn-primary mr-1"
+                    (click)="viewOrder(item)"
+                  >
+                    <span class="fas fa-eye"></span>
+                  </button>
+
+                  <button 
+                    class="btn btn-primary mr-1"
+                    *ngIf="item.status == 0"
+                    (click)="orderAccept(item)"
+                  >
+                    <span class="fas fa-user-check"></span>
+                  </button>
+
+                  <button
+                    class="btn btn-primary mr-1"
+                    *ngIf="
+                      (item.status != 0 && item.status < 4 && item.orderType) ||
+                      (item.status < 4 && item.driver && item.driver.length)
+                    " (click)="changeStatus(item)">
+                    {{ checkStatus(item.status, item.orderType) }}
+                  </button>
+                  <button
+                    class="btn btn-danger mr-1"
+                    *ngIf="item.status > 0 && item.status < 3"
+                    (click)="orderCancel(item)"
+                  >
+                    <i class="fa fa-remove"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="loader" class="loader"></div>
+        <h4
+          *ngIf="orderList && orderList.length == 0 && !loader"
+          class="text-center"
+        >
+          No records found.
+        </h4>
+      </div>
+      <div
+        *ngIf="orderList && orderList.length != 0 && !loader"
+        class="pagination_ui"
+      >
+        <pagination-controls
+          (pageChange)="pageChange($event)"
+          id="page"
+          class="my-pagination"
+        >
+        </pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

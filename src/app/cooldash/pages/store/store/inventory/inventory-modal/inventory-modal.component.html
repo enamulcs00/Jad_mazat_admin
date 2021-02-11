@@ -1,0 +1,38 @@
+<form [formGroup]="categoryForm">
+<div class="col-12">
+    <div class="row">
+      <div class="col-6">
+        <div class="usr_profile_biodata">
+          <label>Quantity</label>
+          <div class="input-group">
+            <input class="form-control" type="text" name="name" formControlName="quantity" />
+          </div>
+          <div *ngIf="submitted && categoryForm.controls.quantity.errors" class="invalid-feedback">
+            <div *ngIf="categoryForm.controls.name.errors.required">
+                Quantity is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="usr_profile_biodata">
+            <label>Price</label>
+            <div class="input-group">
+              <input class="form-control" type="text" name="name" formControlName="price" />
+            </div>
+            <div *ngIf="submitted && categoryForm.controls.price.errors" class="invalid-feedback">
+              <div *ngIf="categoryForm.controls.name.errors.required">
+                Price is required.
+              </div>
+            </div>
+          </div>
+      </div>
+
+    </div>
+  </div>
+
+  <mat-dialog-actions>
+    <button class="btn btn-primary mr-3" (click)="updateInvent()">
+      Update
+    </button>
+  </mat-dialog-actions>
+</form>

@@ -1,0 +1,413 @@
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800" i18n="@@Dashboard">Dashboard</h1>
+    <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
+  </div>
+
+  <!-- Content Row -->
+  <!-- <div class="grid_name">
+        <div class=" comman_name_grid hvrcursor" routerLink="/b2b/users" title="View Users">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Users
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{DashboarddData?.user}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-fw fa-user fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=" comman_name_grid hvrcursor" routerLink="/b2b/categories" title="View Categories">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Category
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{DashboarddData?.category}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-fw fa-list fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=" comman_name_grid hvrcursor" routerLink="/b2b/order" title="View Orders">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Orders
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{DashboarddData?.order}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa fa-shopping-cart fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=" comman_name_grid hvrcursor"  routerLink="/b2b/products" title="View Products">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Products
+                            </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{DashboarddData?.product}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fa fa-list-alt fa-2x text-gray-300 "></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+  <div class="flex card_flex justify-content-between" *ngIf="statsData">
+    <div class="mb-4 hvrcursor" routerLink="/user/user" title="View Users">
+      <div class="card">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col-card">
+              <i class="far fa-user fa-2x"></i>
+            </div>
+            <div class="col ml-4">
+              <div class="h5">{{ statsData?.users }}</div>
+              <div i18n="@@Users" class="mt-1 h4">Users</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mb-4 hvrcursor"
+      routerLink="/driver/driver"
+      title="View Drivers">
+      <div class="card">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col-card">
+              <i class="far fa-address-card fa-2x"></i>
+            </div>
+            <div class="col ml-4">
+              <div class="h5">{{ statsData?.drivers }}</div>
+              <div i18n="@@Drivers" class="mt-1 h4">Drivers</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mb-4 hvrcursor"
+      routerLink="/restaurant/restaurant"
+      title="View Restaurants"
+    >
+      <div class="card">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col-card">
+              <i class="fa fa-shopping-cart fa-2x"></i>
+            </div>
+            <div class="col ml-4">
+              <div class="h5">{{ statsData?.restaurants }}</div>
+              <div i18n="@@Restaurants" class="mt-1 h4">Restaurants</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mb-4 hvrcursor" routerLink="/store/store" title="View Stores">
+      <div class="card">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col-card">
+              <i class="fa fa-list-alt fa-2x"></i>
+            </div>
+            <div class="col ml-4">
+              <div class="h5">{{ statsData?.stores }}</div>
+              <div i18n="@@Stores" class="mt-1 h4">Stores</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class=" mb-4 hvrcursor"  (click)="checkRoute()" title="View Shuttles">
+      <div class="card">
+          <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                  <div class="col-card">
+                      <i class="fa fa-bus fa-2x"></i>
+                  </div>
+                  <div class="col ml-4">
+                      <div class="h5 ">{{statsData?.foodItems}}</div>
+                      <div class="mt-1 h4">FoodItems</div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  
+  <div class=" mb-4 hvrcursor" (click)="checkStoreR()" title="View Shuttles">
+    <div class="card">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col-card">
+                    <i class="fa fa-bus fa-2x"></i>
+                </div>
+                <div class="col ml-4">
+                    <div class="h5 ">{{statsData?.storeItems}}</div>
+                    <div class="mt-1 h4">StoreItems</div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div> 
+  </div>
+<!-- <div  class="flex card_flex justify-content-between">
+
+</div> -->
+  <!-- Content Row -->
+  <div class="row">
+    <div class="col-xl-6 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <!-- <h6 i18n="@@Restaurant_Revenue" class="m-0 text-black">
+            Restaurant Revenue
+          </h6> -->
+          <div class="card-header outter_filter">
+            <h6 class="m-0 text-black">Total Restaurant orders</h6>
+            <select [(ngModel)]="totalResomatch" class="form-control" (change)="checkResorder($event)">
+              <option value="3" selected>Weekly</option>
+              <option value="4">Monthly</option>
+          </select>
+        </div>
+        </div>
+        <div class="card-body">
+          <canvas baseChart
+                [datasets]="barChartDataRes"
+                [labels]="barChartLabelsResorder"
+                [options]="barChartOptions"
+                [plugins]="barChartPlugins"
+                [legend]="barChartLegend"
+                [chartType]="barChartType">
+              </canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-6 col-lg-6">
+      <div class="card">
+        <div
+          class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+        >
+          <!-- <h6 i18n="@@Store_Revenue" class="m-0 text-black">Total Restaurant Order</h6> -->
+          <div class="card-header outter_filter">
+            <h6 class="m-0 text-black">Restaurant Revenue</h6>
+            <select [(ngModel)]="totalResrevmatch" class="form-control" (change)="checkRevRes($event)">
+              <option value="1" selected>Weekly</option>
+              <option value="2">Monthly</option>
+          </select>
+        </div>
+        </div>
+        <div class="card-body">
+          <canvas baseChart
+                [datasets]="barChartDatarev"
+                [labels]="barChartLabelsRrev"
+                [options]="barChartOptions"
+                [plugins]="barChartPlugins"
+                [legend]="barChartLegend"
+                [chartType]="barChartType">
+              </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top:15px">
+        <div class="col-xl-6 col-lg-6">
+          <div class="card">
+              <div class="card-header outter_filter">
+                  <h6 class="m-0 text-black">Total Store orders</h6>
+                  <select [(ngModel)]="totalmatch" class="form-control" (change)="checkGraph($event)">
+                    <option value="weekly" selected>Weekly</option>
+                    <option value="monthly">Monthly</option>
+                </select>
+              </div>
+     
+              <div class="card-body">
+                <!-- <canvas baseChart [datasets]="barChartDataSale" [labels]="barChartLabelSale" [options]="chartOptions" [plugins]="barChartPluginsSale" [legend]="barChartLegendSale" [chartType]="barChartTypeSale"></canvas> -->
+                <canvas baseChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [plugins]="barChartPlugins"
+                [legend]="barChartLegend"
+                [chartType]="barChartType">
+              </canvas>
+                <!-- <fusioncharts
+                [type]="type2"
+                [width]="width"
+                [height]="height"
+                [dataSource]="dataSource4">  
+              </fusioncharts> -->
+          </div>
+      </div>
+  </div>
+        <div class="col-xl-6 col-lg-6">
+            <div class="card">
+                <div class="card-header outter_filter">
+                    <h6 class="m-0 text-black">Store Revenue</h6>
+                    <select [(ngModel)]="revenuematch" class="form-control" (change)="checkrevenue($event)">
+                      <option value="w" selected>Weekly</option>
+                      <option value="m">Monthly</option>
+                  </select>
+                </div>
+                <div class="card-body">
+                  <!-- <canvas baseChart [datasets]="barChartDataSale" [labels]="barChartLabelSale" [options]="chartOptions" [plugins]="barChartPluginsSale" [legend]="barChartLegendSale" [chartType]="barChartTypeSale"></canvas> -->
+                  <canvas baseChart
+                  [datasets]="barChartorder"
+                  [labels]="barChartLabelsorder"
+                  [options]="barChartOptions"
+                  [plugins]="barChartPlugins"
+                  [legend]="barChartLegend"
+                  [chartType]="barChartType">
+                </canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<mat-tab-group disableRipple >
+  <mat-tab label="Store Orders"> 
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Image</th>
+              <th>Name</th>
+              <!-- <th>Type of Food</th> -->
+              <th>Food Name</th>
+              <th>Price</th>
+              <th>Notes</th>
+              <th>Preparation Time</th>
+              <th>Created Date</th>
+              <th *ngIf="showfood">Status</th>
+              <th *ngIf="showfood">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of foodItem; let i = index">
+              <td>{{ i + serialNumber + 1 }}</td>
+              <td>
+                <img  src="{{ imageUrl }}{{ item.image }}" width="70px" height="70px" />
+                <!-- <img *ngIf="!showfood" src="{{ imageUrl }}{{ item.restaurantId?.image }}" width="70px" height="70px" /> -->
+              </td>
+              <td>{{ item.name }}</td>
+              <!-- <td *ngIf="!showfood">{{ item.restaurantId?.name }}</td> -->
+              <td *ngIf="item.type == 0">Veg.</td>
+              <td *ngIf="item.type == 1">Non-Veg.</td>
+              <td *ngIf="item.type == 2">Veg. & Non-Veg.</td>
+              <!-- <td>
+                {{ item.description == null ? "" : item.description.length
+                                < 18 ? item.description : item.description.slice(0, 16) + "...." }} </td> -->
+              <td>{{item.itemName[0]}}</td>
+                                <td>{{item.price || item.totalAmount}}</td>
+              <td>{{item.note || '-'}}</td>
+              <td>{{item.preprationTime}}</td>
+              <td>
+                {{ item.createdAt | date: "yyyy-MM-dd" }}
+              </td>
+              <td *ngIf="showfood">
+                <ui-switch labelOn="ON" switchColor="#4e73df" id="Active" name="status" [(ngModel)]="item.status"
+                  (ngModelChange)="updateActiveStatus(item)" labelOff="OFF">
+                </ui-switch>
+              </td>
+              <td  *ngIf="showfood">
+                <div class="product_action" >
+                  <!-- <button class="btn btn-success mr-1" (click)="onEditSelect(item)">
+                                        <span class="fas fa-fw fa-edit"></span>
+                                    </button> -->
+                  <button class="btn btn-danger" (click)="deleteCategory(item)">
+                    <span class="fas fa-fw fa-trash"></span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="loader" class="loader"></div>
+        <h4 *ngIf="foodItem && foodItem.length == 0 && !loader" class="text-center">
+          No records found.
+        </h4>
+      </div>
+      <!-- <div *ngIf="foodItem && foodItem.length !=0 && !loader" class="pagination_ui">
+        <pagination-controls (pageChange)="pageChange($event)" id="page" class="my-pagination">
+        </pagination-controls>
+    </div> -->
+    </div>
+  </mat-tab>
+  <mat-tab label="Food Orders">
+    <div class="card-body">
+      <div class="table-responsive">
+          <table class="table table-bordered" width="100%" cellspacing="0">
+              <thead>
+                  <tr>
+                      <th>#</th>
+                      <th>Image</th>
+                      <th>Name</th>
+                      <th>Price</th>
+                      <th>Food Name</th>
+                      <th>Notes</th>
+                      <!-- <th>Packing Time</th> -->
+                      <th>Created Date</th>
+                    
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let item of storeItem; let i = index">
+                      <td>{{ i + serialNumber + 1 }}</td>
+                      <td>
+                          <img src="{{ imageUrl }}{{ item.image }}" width="70px" height="70px" />
+                      </td>
+                      <td>{{ item.name }}</td>
+                      <!-- <td *ngIf="showorder">
+                          {{
+                            item.description == null
+                              ? ""
+                              : item.description.length < 18
+                              ? item.description
+                              : item.description.slice(0, 16) + "...."
+                          }}
+                      </td> -->
+                      <td>{{item.price || item.totalAmount}}</td>
+                      <td>{{item.itemName[0]}}</td>
+                      <td>{{item.note || '-'}}</td>
+                      <td>
+                          {{ item.createdAt | date: "yyyy-MM-dd" }}
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+          <div *ngIf="loader" class="loader"></div>
+          <h4 *ngIf="foodItem && foodItem.length == 0 && !loader" class="text-center">
+              No records found.
+          </h4>
+      </div>
+      <!-- <div *ngIf="foodItem && foodItem.length !=0 && !loader" class="pagination_ui">
+        <pagination-controls (pageChange)="pageChange($event)" id="page" class="my-pagination">
+        </pagination-controls>
+    </div> -->
+    </div>
+  </mat-tab>
+</mat-tab-group>

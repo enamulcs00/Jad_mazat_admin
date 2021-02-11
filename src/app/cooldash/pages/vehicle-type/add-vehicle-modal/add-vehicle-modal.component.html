@@ -1,0 +1,143 @@
+<h2 mat-dialog-title *ngIf="item">Edit Vehicle Type</h2>
+<h2 mat-dialog-title *ngIf="!item">Add Vehicle Type</h2>
+<mat-dialog-content>
+  <form [formGroup]="vehicleForm">
+    <div class="usr_profile_inrmain">
+      <div class="row">
+        <div class="form-group col-md-12">
+          <div class="usr_profile_biodata">
+            <label>Name</label>
+            <div class="input-group">
+              <input class="form-control" type="text" name="name" formControlName="name" />
+            </div>
+            <div *ngIf="submitted && vehicleForm.controls.name.errors" class="invalid-feedback">
+              <div *ngIf="vehicleForm.controls.name.errors.required">
+                Name is required.
+              </div>
+              <div *ngIf="vehicleForm.controls.name.errors.pattern">
+                Name is not valid.
+              </div>
+              <div *ngIf="vehicleForm.controls.name.errors.maxlength">
+                Name can be max 20 characters long.
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="form-group col-md-6">
+                    <label for="types">User Type</label>
+                    <div class="input-group">
+                        <select class="form-control" formControlName="verticalType" *ngIf="type">
+                            <option value="" selected disabled hidden>Choose here</option>
+                            <option *ngFor="let data of type" [value]="data.value">
+                                {{ data.name }}
+                            </option>
+                        </select>
+                        <div *ngIf="
+                      submitted && vehicleForm.controls.verticalType.errors
+                    " class="invalid-feedback">
+                            <div *ngIf="vehicleForm.controls.verticalType.errors.required">
+                                Type is required
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="fare">Min Fare</label>
+          <div class="input-group">
+            <input type="number" min="0" appNumberOnly id="discount" class="form-control" formControlName="basefare"
+              placeholder="" />
+            <div *ngIf="submitted && vehicleForm.controls.basefare.errors" class="invalid-feedback">
+              <div *ngIf="vehicleForm.controls.basefare.errors.required">
+                Base Fare is required
+              </div>
+              <div *ngIf="vehicleForm.controls.basefare.errors.pattern">
+                Base Fare is not valid
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="price">Fare</label>
+          <div class="input-group">
+            <input type="number" min="0" appNumberOnly id="fare" class="form-control" formControlName="fare"
+              placeholder="" />
+            <div *ngIf="submitted && vehicleForm.controls.fare.errors" class="invalid-feedback">
+              <div *ngIf="vehicleForm.controls.fare.errors.required">
+                Fare is required
+              </div>
+              <div *ngIf="vehicleForm.controls.fare.errors.pattern">
+                Fare is not valid
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="price">Seats</label>
+          <div class="input-group">
+            <input type="number" min="0" appNumberOnly id="seats" class="form-control" formControlName="seats"
+              placeholder="" />
+            <div *ngIf="submitted && vehicleForm.controls.seats.errors" class="invalid-feedback">
+              <div *ngIf="vehicleForm.controls.seats.errors.required">
+                Seats is required
+              </div>
+              <div *ngIf="vehicleForm.controls.seats.errors.pattern">
+                Seats is not valid
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="form-group col-md-8">
+                    <label for="types">Seat Type</label>
+                    <div class="input-group">
+                        <select class="form-control" formControlName="seatType" *ngIf="seatType">
+                            <option value="" selected disabled hidden>Choose here</option>
+                            <option *ngFor="let data of seatType;let i = index" [value]="i">
+                                {{ data }}
+                            </option>
+                        </select>
+                        <div *ngIf="
+                      submitted && vehicleForm.controls.seatType.errors
+                    " class="invalid-feedback">
+                            <div *ngIf="vehicleForm.controls.seatType.errors.required">
+                                Seat Type is required
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+        <div class="form-group col-md-6">
+          <div class="usr_profile_img">
+            <div class="usr_profile_imgbx">
+              <label>Image</label>
+
+            </div>
+            <div class="user_profile_edit">
+              <input type="file" accept="image/*" (change)="profilePic($event)" />
+            </div>
+            <div *ngIf="submitted && !vehicleImage" class="invalid-feedback">
+              Image is required.
+            </div>
+            <div class="user_img">
+              <figure *ngIf="vehicleImage">
+                <img style="height: 50px;width: 50px" [src]="vehicleImage" />
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="btn btn-primary mr-3" *ngIf="!item" (click)="onSubmit()">
+    Add Vehicle Type
+  </button>
+  <button class="btn btn-primary mr-3" *ngIf="item" (click)="onUpdate()">
+    Update Vehicle Type
+  </button>
+  <button class="btn btn-danger" (click)="close()">Close</button>
+</mat-dialog-actions>

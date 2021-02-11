@@ -1,0 +1,166 @@
+<div class="container-fluid" *ngIf="orderDetail">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="m-0 font-weight-bold text-primary">View Booking</h6>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <button class="btn btn-primary" (click)="history.back()">
+                                <span class="fas fa-arrow-left"></span> Back
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div *ngIf="orderDetail">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Booking Number</label>
+                            <input type="text" name="Name" value="{{orderDetail.shuttleOrderNo}}" class="form-control" disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>User Name</label>
+                            <input *ngIf="orderDetail.userId" type="text" name="Name" [value]="orderDetail.userId.firstName +' '+ orderDetail.userId.lastName" class="form-control" disabled />
+                            <input *ngIf="!orderDetail.userId" type="text" name="Name" [value]="orderDetail.userFirstName +' '+ orderDetail.userLastName" class="form-control" disabled />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Source</label>
+                            <textarea type="text" name="Name" class="form-control" disabled>{{ orderDetail.source.address}}
+                                </textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Destination</label>
+                            <textarea type="text" name="Name" class="form-control" disabled>{{ orderDetail.destination.address}}
+                                </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Driver Name</label>
+                            <input type="text" name="name" [value]="orderDetail.driverId.firstName+' '+orderDetail.driverId.lastName" class="form-control" disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Shuttle Name</label>
+                            <input type="text" name="discount" [value]="orderDetail.shuttleId.name" class="form-control" disabled />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Route Name</label>
+                            <input type="text" name="charge" [value]="orderDetail.shuttleRouteId.name" class="form-control" disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Trip Time</label>
+                            <input type="text" name="discount" [value]="orderDetail.tripTime" class="form-control" disabled />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Booking Start Time</label>
+                            <input type="text" name="charge" [value]="orderDetail.startTime" class="form-control" disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Booking End Time</label>
+                            <input type="text" name="discount" [value]="orderDetail.endTime" class="form-control" disabled />
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="orderDetail.couponCode && orderDetail.couponDiscount ">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Coupon Code</label>
+                            <input type="text" name="charge" [value]="orderDetail.startTime" class="form-control" disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Coupon Discount</label>
+                            <input type="text" name="discount" [value]="orderDetail.endTime" class="form-control" disabled />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Sub Total Amount</label>
+                            <input type="text" name="subtotal" [value]="orderDetail.subTotalAmount" class="form-control" disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Total Amount</label>
+                            <input type="text" name="totalamount" [value]="orderDetail.totalAmount" class="form-control" disabled />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Payment Mode</label>
+                            <input type="text" name="mode" [value]="orderDetail.paymentMode" class="form-control" disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Order Date</label>
+                            <input type="text" name="date" [value]="orderDetail.bookingDate" class="form-control" disabled />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Vehicle Numbers</label>
+                            <input type="text" name="type" [value]="orderDetail.driverId.vehicleNumber" class="form-control" disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Shuttle Type</label>
+                            <input type="text" name="type" [value]="orderDetail.shuttleType == 'ac' ? 'AC' : 'Non-Ac'" class="form-control" disabled />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Booked Seat Numbers</label>
+                            <ul class="list-inline">
+                                <li *ngFor="let seat of orderDetail.seatNumber">
+                                    {{ seat}}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

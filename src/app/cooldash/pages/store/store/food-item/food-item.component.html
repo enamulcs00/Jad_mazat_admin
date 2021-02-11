@@ -1,0 +1,99 @@
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+
+
+        <div class="card-header py-3">
+            <div class="tittle_outer">
+                <div class=" user_title">
+                   <div class="user_title_inner">
+                    <h6 class="m-0 text-black">
+                        Store Item
+                    </h6>
+                </div>
+                   <div class="user_add_button"> 
+                    <button *ngIf="showorder" class="btn btn-primary mr-4" (click)="addCategory()">
+                        <span class="fas fa-plus"></span> Add Item
+                    </button>
+                    <button class="btn btn-primary btn-primary_border" (click)="history.back()">
+                        <span class="fas fa-arrow-left"></span> Back
+                    </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th *ngIf="showorder">Description</th>
+                            <th>Price</th>
+                            <th>Store Name</th>
+                            <th>Packing Time</th>
+                            <th>Created Date</th>
+                            <th *ngIf="showorder">Status</th>
+                            <th *ngIf="showorder">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of foodItem; let i = index">
+                            <td>{{ i + serialNumber + 1 }}</td>
+                            <td>
+                                <img src="{{ imageUrl }}{{ item.image }}" width="70px" height="70px" />
+                            </td>
+                            <td>{{ item.name }}</td>
+                            <td *ngIf="showorder">
+                                {{
+                                  item.description == null
+                                    ? ""
+                                    : item.description.length < 18
+                                    ? item.description
+                                    : item.description.slice(0, 16) + "...."
+                                }}
+                            </td>
+                            <td>{{item.price || item.totalAmount}}</td>
+                            <td>{{item.storeName}}</td>
+                            <td>{{item.packingTime}}</td>
+                            <td>
+                                {{ item.createdAt | date: "yyyy-MM-dd" }}
+                            </td>
+                            <td *ngIf="showorder">
+                                <ui-switch labelOn="ON" switchColor="#4e73df" id="Active" name="status"
+                                    [(ngModel)]="item.status" (ngModelChange)="updateActiveStatus(item)" labelOff="OFF">
+                                </ui-switch>
+                            </td>
+                            <td *ngIf="showorder">
+                                <div class="product_action">
+                                    <button class="btn btn-success mr-1" (click)="onEditSelect(item)">
+                                        <span class="fas fa-fw fa-edit"></span>
+                                    </button>
+                                    <button class="btn btn-danger" (click)="deleteCategory(item)">
+                                        <span class="fas fa-fw fa-trash"></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="loader" class="loader"></div>
+                <h4 *ngIf="foodItem && foodItem.length == 0 && !loader" class="text-center">
+                    No records found.
+                </h4>
+            </div>
+            <!-- <pagination
+          *ngIf="categoryList.length != 0 && !loader"
+          [totalItems]="totalItems"
+          [boundaryLinks]="true"
+          [maxSize]="5"
+          [(ngModel)]="currentPage"
+          (pageChanged)="pageChange($event)"
+        ></pagination> -->
+        </div>
+    </div>
+</div>

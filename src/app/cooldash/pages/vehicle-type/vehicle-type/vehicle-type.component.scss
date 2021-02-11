@@ -1,0 +1,17 @@
+@media (max-width: 967px) {
+    .user_filter,
+    .user_serch_btn {
+        margin-bottom: 10px;
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 767px) {
+    .user_filter,
+    .user_serch_btn {
+        justify-content: center;
+    }
+    .text-right.add_btn {
+        text-align: center !important;
+    }
+}

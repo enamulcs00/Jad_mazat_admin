@@ -1,0 +1,123 @@
+<div class="container-fluid">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <div class="tittle_outer">
+        <div class="user_title">
+          <div class="user_title_inner">
+            <h6 class="m-0 text-black">Manage Store</h6>
+          </div>
+          <div class="user_add_button">
+            <button class="btn btn-primary" (click)="addRestaurant()">
+              <span class="fas fa-plus"></span> Add Store
+            </button>
+            <button class="btn btn-primary ml-3" (click)="downloadCsv()">
+              <span class="fas fa-download"></span> Download CSV
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="filters_outer">
+        <div class="user_filter">
+          <input type="text" class="form-control" name="searchText" [(ngModel)]="searchText"
+            placeholder="Search Store" />
+        </div>
+        <div class="user_serch_btn">
+          <button type="submit" class="btn btn-primary pl-4 pr-4" (click)="searchStore()">
+            Search
+          </button>
+          <button type="reset" class="btn btn-primary pl-4 pr-4 ml-2" (click)="reset()">
+            Reset
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body table-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Image</th>
+              <th>Name</th>
+              <!-- <th>Description</th> -->
+              <th>Discount</th>
+              <!-- <th>Is Featured</th> -->
+              <th>Status</th>
+              <th>Is Recommended</th>
+              <th>Created Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of storeList | paginate: config; let i = index">
+              <td>{{ i + serialNumber + 1 }}</td>
+              <td>
+                <img src="{{ imageUrl }}{{ item.image }}" width="70px" height="70px" />
+              </td>
+              <td>{{ item.name }}</td>
+              <!-- <td>
+                {{
+                  item.description == null
+                    ? ""
+                    : item.description.length < 18
+                    ? item.description
+                    : item.description.slice(0, 16) + "...."
+                }}
+              </td> -->
+              <td>
+                {{ item.discount }}
+              </td>
+              <!-- <td>
+                <ui-switch labelOn="ON" switchColor="#4e73df" id="featured" name="isFavourite"
+                  [(ngModel)]="item.isFavourite" (ngModelChange)="updateFavRes(item)" labelOff="OFF"></ui-switch>
+              </td> -->
+              <td>
+                <ui-switch labelOn="ON" switchColor="#4e73df" id="status" name="status" [(ngModel)]="item.status"
+                  (ngModelChange)="updateStatus(item)" labelOff="OFF"></ui-switch>
+              </td>
+              <td>
+                <ui-switch labelOn="ON" switchColor="#4e73df" id="recommend" name="isRecommended"
+                  [(ngModel)]="item.isRecommended" (ngModelChange)="updateRecoRes(item)" labelOff="OFF"></ui-switch>
+              </td>
+              <td>
+                {{ item.createdAt | date: "yyyy-MM-dd" }}
+              </td>
+
+              <td>
+                <div class="product_action">
+                  <button class="btn btn-warning mr-1" (click)="onViewItem(item)" title="View">
+                    <span class="fas fa-fw fa-eye"></span>
+                  </button>
+                  <button class="btn btn-success mr-1" (click)="onEditSelect(item)" title="Edit">
+                    <span class="fas fa-fw fa-edit"></span>
+                  </button>
+                  <button class="btn btn-info mr-1" (click)="getOutlet(item)" title="Outlet">
+                    <span class="fa fa-map-marker"></span>
+                  </button>
+                  <button class="btn btn_item mr-1" (click)="getFoodType(item)" title="Store Type">
+                    <span class="fa fa-sitemap"></span>
+                  </button>
+                  <button class="btn btn-primary mr-1" (click)="getFoodItem(item)" title="Store Item">
+                    <span class="fa fa-th"></span>
+                  </button>
+                  <button class="btn btn-danger mr-1" (click)="deleteStore(item)">
+                    <span class="fas fa-fw fa-trash"></span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="loader" class="loader"></div>
+        <h4 *ngIf="storeList.length == 0 && !loader" class="text-center">
+          No records found.
+        </h4>
+      </div>
+      <div *ngIf="storeList && storeList.length != 0 && !loader" class="pagination_ui">
+        <pagination-controls (pageChange)="pageChange($event)" id="page" class="my-pagination">
+        </pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,132 @@
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="tittle_outer">
+                <div class=" user_title">
+                   <div class="user_title_inner"> <h6 class="m-0 text-black">Coupons</h6></div>
+                   <div class="user_add_button"> 
+                    <button class="btn btn-primary" (click)="addCoupon()">
+                        <span class="fas fa-plus"></span> Add Coupon
+                    </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 user_filter">
+                    <input type="text" class="form-control" name="searchText" [(ngModel)]="searchText" placeholder="Search Coupon By Name">
+                </div>
+                <div class="col-md-6 user_serch_btn">
+                    <button type="submit" class="btn btn-primary pl-4 pr-4" (click)="searchCoupon()">Search</button>
+                    <button type="reset" class="btn btn-primary pl-4 pr-4 ml-2" (click)="reset()">Reset</button>
+                </div>
+                <!-- <div class="col-md-3 text-right add_btn">
+                </div> -->
+            </div>
+            <!-- <div class="row">
+                <div class="col-md-3 user_filter">
+                    <input type="text" class="form-control" name="searchText" [(ngModel)]="searchText"
+                    placeholder="Search Coupon">
+                </div>
+                <div class="user_serch_btn">
+                    <button type="submit" class="btn btn-primary pl-4 pr-4" (click)="searchCoupon()">Search</button>
+                    <button type="reset" class="btn btn-primary pl-4 pr-4 ml-2" (click)="reset()">Reset</button>
+                </div>
+            </div> -->
+        </div>
+
+
+
+        <div class="card-body table-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <!-- <th>Image</th> -->
+                            <th style="min-width: 7rem;">Name</th>
+                            <th style="min-width: 6rem;">Code</th>
+                            <th style="min-width: 8rem;">Descrition</th>
+                            <th>Type</th>
+                            <th style="min-width: 6rem;">Discount (%)</th>
+                            <th style="min-width: 10rem;">Max. Discount (Flat)</th>
+                            <!-- <th>Limit</th> -->
+                            <!-- <th>Max Amount</th> -->
+                            <th style="min-width: 7rem;">Start Date</th>
+                            <th style="min-width: 7rem;">End Date</th>
+                            <!-- <th>Per Day Limit</th> -->
+                            <th style="min-width: 7rem;">Module Type</th>
+                            <th style="min-width: 5rem;"> Status</th>
+                            <th style="min-width: 8rem;">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of couponList; let i = index">
+                            <td>{{ i + serialNumber + 1 }}</td>
+                            <!-- <td>
+                                <img src="{{ imageUrl }}{{ item.profilePic }}" width="70px" height="70px" />
+                            </td> -->
+                            <td>{{ item.name }}</td>
+                            <td>{{item.code}}</td>
+                            <td>
+                                {{ item.description == null ? "" : item.description.length
+                                < 18 ? item.description : item.description.slice(0, 16) + "...." }} </td>
+                                    <td *ngIf="item.type== 0">Percentage</td>
+                                    <td *ngIf="item.type== 1">Flat</td>
+                                    <td *ngIf="item.type== 2">Percentage & Flat</td>
+                                    <td>{{item.discount}}
+                                    </td>
+                                    <td>{{item.maxDiscount}}
+                                    </td>
+                                    <!-- <td>{{item.useLimit}} -->
+                                    <!-- </td> -->
+                                    <!-- <td>{{item.minAmountToApply}} -->
+                                    <!-- </td> -->
+                                    <td>
+                                        {{ item.startDate| date: "yyyy-MM-dd"}}
+                                    </td>
+                                    <td>
+                                        {{ item.endDate| date: "yyyy-MM-dd"}}
+                                    </td>
+                                    <!-- <td>
+                                {{item.perDayLimit}}
+                            </td> -->
+
+                                    <td *ngIf="item.verticalType ==0">Restaurant</td>
+                                    <td *ngIf="item.verticalType ==1">Store</td>
+                                    <td *ngIf="item.verticalType ==2">Taxi</td>
+                                    <td *ngIf="item.verticalType ==3">Shuttle</td>
+
+                                    <td>
+                                        <ui-switch labelOn="ON" switchColor="#4e73df" id="status" name="status" [(ngModel)]="item.status" (ngModelChange)="updateStatus(item)" labelOff="OFF">
+                                        </ui-switch>
+                                    </td>
+                                    <td>
+                                        <div class="product_action">
+                                            <button class="btn btn-warning mr-1" title="View Coupon" (click)="onViewCoupon(item)" title="View">
+                                        <span class="fas fa-fw fa-eye"></span>
+                                    </button>
+                                            <button class="btn btn-success mr-1" title="Edit Coupon" (click)="onEditCoupon(item)" title="Edit">
+                                        <span class="fas fa-fw fa-edit"></span>
+                                    </button>
+                                            <button class="btn btn-danger mr-1" title="Delete Coupon" (click)="deleteCoupon(item)">
+                                        <span class="fas fa-fw fa-trash"></span>
+                                    </button>
+                                        </div>
+                                    </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="loader" class="loader"></div>
+                <h4 *ngIf="couponList && couponList.length == 0 && !loader" class="text-center">
+                    No records found.
+                </h4>
+            </div>
+            <!-- <div *ngIf="couponList.length !=0 && !loader" class="pagination_ui">
+                <pagination-controls (pageChange)="pageChange($event)" id="page" class="my-pagination">
+                </pagination-controls>
+            </div> -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+@media (max-width: 967px) {
+    .adddriver {
+        margin-top: 10px;
+    }
+    .user_serch_btn {
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 767px) {
+    .adddriver {
+        margin-top: 0px;
+    }
+    .user_filter,
+    .user_serch_btn {
+        justify-content: center;
+    }
+    .text-right.adddriver {
+        text-align: center !important;
+    }
+}

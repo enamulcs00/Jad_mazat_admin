@@ -1,0 +1,14 @@
+.cont1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+::ng-deep .cont1 label.star {
+    padding: 0 5px !important;
+    width: inherit;
+}
+
+.cont1 .stars {
+    width: inherit;
+}

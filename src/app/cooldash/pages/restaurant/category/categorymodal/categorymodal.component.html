@@ -1,0 +1,91 @@
+<h2 mat-dialog-title i18n="@@edit_category" *ngIf="item">Edit Category</h2>
+<h2 mat-dialog-title i18n="@@add_category" *ngIf="!item">Add Category</h2>
+<mat-dialog-content>
+  <form [formGroup]="categoryForm">
+    <div class="usr_profile_inrmain">
+      <div class="row">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-6">
+              <div class="usr_profile_biodata">
+                <label i18n="@@category_name">Category Name</label>
+                <div class="input-group">
+                  <input class="form-control" type="text" name="name" formControlName="name" />
+                </div>
+                <div *ngIf="submitted && categoryForm.controls.name.errors" class="invalid-feedback">
+                  <div i18n="@@Name_Required" *ngIf="categoryForm.controls.name.errors.required">
+                    Name is required.
+                  </div>
+                  <div i18n="@@name_not_valid" *ngIf="categoryForm.controls.name.errors.pattern">
+                    Name is not valid.
+                  </div>
+                  <div i18n="@@name_max_20" *ngIf="categoryForm.controls.name.errors.maxlength">
+                    Name can be max 20 characters long.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="col-6">
+              <div class="usr_profile_biodata">
+                <label i18n="@@category_name">اسم التصنيف</label>
+                <div class="input-group">
+                  <input class="form-control" type="text" name="name" formControlName="name_ar" />
+                </div>
+                <div *ngIf="submitted && categoryForm.controls.name_ar.errors" class="invalid-feedback">
+                   <div
+                    i18n="@@Name_Required"
+                    *ngIf="categoryForm.controls.name_ar.required"
+                  >
+                    Name is required.
+                  </div> 
+                  <div i18n="@@name_not_valid" *ngIf="categoryForm.controls.name_ar.errors.pattern">
+                    Name is not valid.
+                  </div>
+                  <div i18n="@@name_max_20" *ngIf="categoryForm.controls.name_ar.errors.maxlength">
+                    Name can be max 20 characters long.
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="usr_profile_img">
+            <div class="usr_profile_imgbx">
+              <label i18n="@@Image">Image</label>
+            </div>
+            <div class="user_profile_edit">
+              <input type="file" accept="image/*" (change)="profilePic($event)" />
+            </div>
+            <div i18n="@@image_required" *ngIf="submitted && !categoryImage" class="invalid-feedback">
+              Image is required.
+            </div>
+            <div class="usr_profile_imgbx">
+              <div class="user_img">
+                <figure *ngIf="categoryImage">
+                  <img style="height: 50px; width: 50px" [src]="categoryImage" />
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<div class="botton_right_buttons">
+  <mat-dialog-actions>
+    <button i18n="@@add_category" class="btn btn-primary mr-3" *ngIf="!item" (click)="onSubmit()">
+      Add Category
+    </button>
+    <button i18n="@@edit_category" class="btn btn-primary mr-3" *ngIf="item" (click)="onUpdate()">
+      Edit Category
+    </button>
+    <button i18n="@@close" class="btn btn-danger" (click)="close()">
+      Close
+    </button>
+  </mat-dialog-actions>
+</div>

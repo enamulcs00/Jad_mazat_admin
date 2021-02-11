@@ -1,0 +1,565 @@
+<div class="container-fluid">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <div class="tittle_outer">
+        <div class="user_title">
+          <div class="user_title_inner">
+            <h6 i18n="@@Add_Driver" class="m-0 text-black" *ngIf="!id">
+              Add Driver
+            </h6>
+            <h6 i18n="@@Edit_Driver" class="m-0 text-black" *ngIf="id">
+              Edit Driver
+            </h6>
+          </div>
+          <div class="user_add_button">
+            <button class="btn btn-primary" (click)="history.back()">
+              <span i18n="@@Back" class="fas fa-arrow-left"></span> Back
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body add_driver_outer">
+      <form [formGroup]="driverForm">
+        <div class="row">
+          <div class="form-group col-md-6">
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label i18n="@@First_Name" for="title">First Name</label>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    id="name"
+                    class="form-control"
+                    formControlName="firstName"
+                    placeholder=""
+                  />
+                </div>
+                <div
+                  *ngIf="submitted && driverForm.controls.firstName.errors"
+                  class="invalid-feedback"
+                >
+                  <div
+                    i18n="@@First_Name_Required"
+                    *ngIf="driverForm.controls.firstName.errors.required"
+                  >
+                    First Name is required
+                  </div>
+                  <div
+                    i18n="@@First_Name_3_chars"
+                    *ngIf="driverForm.controls.firstName.errors.minlength"
+                  >
+                    First Name must be at least 3 characters long.
+                  </div>
+                  <div
+                    i18n="@@First_Name_max_16_chars"
+                    *ngIf="driverForm.controls.firstName.errors.maxlength"
+                  >
+                    First Name can be max 16 characters long.
+                  </div>
+                  <div
+                    i18n="@@Invalid_chars"
+                    *ngIf="driverForm.controls.firstName.errors.pattern"
+                  >
+                    Invalid character.
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <label i18n="@@Last_Name" for="title">Last Name</label>
+                <div class="input-group">
+                  <input
+                    type="text"
+                    id="name"
+                    class="form-control"
+                    formControlName="lastName"
+                    placeholder=""
+                  />
+                </div>
+                <div
+                  *ngIf="submitted && driverForm.controls.lastName.errors"
+                  class="invalid-feedback"
+                >
+                  <div
+                    i18n="@@Last_Name_Required"
+                    *ngIf="driverForm.controls.lastName.errors.required"
+                  >
+                    Last Name is required
+                  </div>
+                  <div
+                    i18n="@@Last_Name_3_chars"
+                    *ngIf="driverForm.controls.lastName.errors.minlength"
+                  >
+                    Last Name must be at least 3 characters long.
+                  </div>
+                  <div
+                    i18n="@@Last_Name_max_16"
+                    *ngIf="driverForm.controls.lastName.errors.maxlength"
+                  >
+                    Last Name can be max 16 characters long.
+                  </div>
+                  <div
+                    i18n="@@Invalid_chars"
+                    *ngIf="driverForm.controls.lastName.errors.pattern"
+                  >
+                    Invalid character.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label i18n="@@Email" for="title">Email</label>
+            <div class="input-group">
+              <input
+                type="text"
+                id="name"
+                class="form-control"
+                formControlName="email"
+                placeholder=""
+              />
+            </div>
+            <div
+              *ngIf="submitted && driverForm.controls.email.errors"
+              class="invalid-feedback"
+            >
+              <div
+                i18n="@@Email_required"
+                *ngIf="driverForm.controls.email.errors.required"
+              >
+                Email is required
+              </div>
+              <div
+                i18n="@@Email_not_valid"
+                *ngIf="driverForm.controls.email.errors.pattern"
+              >
+                Email is not valid
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6" *ngIf="!id">
+            <label i18n="@@Password" for="category">Password</label>
+            <div class="input-group">
+              <input
+                type="password"
+                id="name"
+                class="form-control"
+                formControlName="password"
+                placeholder=""
+              />
+            </div>
+            <div
+              *ngIf="submitted && driverForm.controls.password.errors"
+              class="invalid-feedback"
+            >
+              <div
+                i18n="@@Password_required"
+                *ngIf="driverForm.controls.password.errors.required"
+              >
+                Password is required
+              </div>
+              <div
+                i18n="@@Password_min_8"
+                *ngIf="driverForm.controls.password.errors.minlength"
+              >
+                Password must be atleast 8 characters
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6" formGroupName="address">
+            <label for="category" i18n="@@Invalid_chars">Address</label>
+            <div class="input-group">
+              <input
+                class="form-control"
+                type="text"
+                name="name"
+                formControlName="location"
+                placeholder=""
+                ngx-google-places-autocomplete
+                #placesRef="ngx-places"
+                (onAddressChange)="handleAddress($event)"
+              />
+            </div>
+            <div
+              *ngIf="
+                submitted &&
+                driverForm.controls['address'].get('location').errors
+              "
+              class="invalid-feedback"
+            >
+              <div
+                i18n="@@Address_Required"
+                *ngIf="
+                  driverForm.controls['address'].get('location').errors.required
+                "
+              >
+                Address is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" formGroupName="address">
+          <div class="form-group col-md-6">
+            <label i18n="@@Street" for="category">Street</label>
+            <div class="input-group">
+              <input
+                type="text"
+                id="name"
+                class="form-control"
+                formControlName="address"
+                placeholder=""
+              />
+            </div>
+            <div
+              *ngIf="
+                submitted &&
+                driverForm.controls['address'].get('address').errors
+              "
+              class="invalid-feedback"
+            >
+              <div
+                i18n="@@Street_Required"
+                *ngIf="
+                  driverForm.controls['address'].get('address').errors.required
+                "
+              >
+                Street is required
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label i18n="@@Zip_Code" for="category">Zip Code</label>
+            <div class="input-group">
+              <input
+                class="form-control"
+                type="text"
+                name="name"
+                formControlName="zipcode"
+                placeholder=""
+              />
+            </div>
+            <div
+              *ngIf="
+                submitted &&
+                driverForm.controls['address'].get('zipcode').errors
+              "
+              class="invalid-feedback"
+            >
+              <div
+                i18n="@@Zip_Code_Required"
+                *ngIf="
+                  driverForm.controls['address'].get('zipcode').errors.required
+                "
+              >
+                Zip Code is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label i18n="@@Phone_Number" for="category">Phone Number</label>
+            <div class="row">
+              <div class="col-4">
+                <div class="login_email country_code_div">
+                  <div
+                    class="loginmail_input"
+                    *ngIf="countryCodes && countryCodes.length > 0"
+                  >
+                    <ngx-select-dropdown
+                      (change)="selectionChanged1($event)"
+                      formControlName="countryCode"
+                      [config]="config1"
+                      [options]="countryCodes"
+                    >
+                    </ngx-select-dropdown>
+                  </div>
+                </div>
+              </div>
+              <div class="col-8">
+                <div class="input-group">
+                  <input
+                    type="text"
+                    id="name"
+                    class="form-control"
+                    formControlName="phone"
+                    placeholder=""
+                  />
+                </div>
+                <div
+                  *ngIf="submitted && driverForm.controls.phone.errors"
+                  class="invalid-feedback"
+                >
+                  <div
+                    i18n="@@Phone_Number_Required"
+                    *ngIf="driverForm.controls.phone.errors.required"
+                  >
+                    Phone Number is required
+                  </div>
+                  <div
+                    i18n="@@Phone_number_min_7"
+                    *ngIf="driverForm.controls.phone.errors.minlength"
+                  >
+                    Phone Number must be at least 7 characters long.
+                  </div>
+                  <div
+                    i18n="@@phone_number_max_15"
+                    *ngIf="driverForm.controls.phone.errors.maxlength"
+                  >
+                    Phone Number can be max 15 characters long.
+                  </div>
+                  <div
+                    i18n="@@phone_not_valid"
+                    *ngIf="driverForm.controls.phone.errors.pattern"
+                  >
+                    Phone Number is not valid.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6" formGroupName="emergencyPhone">
+            <label i18n="@@Invalid_chars" for="category"
+              >Emergency Phone Number</label
+            >
+            <div class="row">
+              <div class="col-4">
+                <div class="login_email country_code_div">
+                  <div
+                    class="loginmail_input"
+                    *ngIf="countryCodes && countryCodes.length > 0"
+                  >
+                    <ngx-select-dropdown
+                      (change)="selectionChanged2($event)"
+                      formControlName="countryCode"
+                      [config]="config2"
+                      [options]="countryCodes"
+                    >
+                    </ngx-select-dropdown>
+                  </div>
+                </div>
+              </div>
+              <div class="col-8">
+                <div class="input-group">
+                  <input
+                    type="text"
+                    id="name"
+                    class="form-control"
+                    formControlName="phone"
+                    placeholder=""
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    submitted &&
+                    driverForm.controls['emergencyPhone'].get('phone').errors
+                  "
+                  class="invalid-feedback"
+                >
+                  <div
+                    i18n="@@Phone_Number_Required"
+                    *ngIf="
+                      driverForm.controls['emergencyPhone'].get('phone').errors
+                        .required
+                    "
+                  >
+                    Phone Number is required
+                  </div>
+                  <div
+                    i18n="@@Phone_number_min_7"
+                    *ngIf="
+                      driverForm.controls['emergencyPhone'].get('phone').errors
+                        .minlength
+                    "
+                  >
+                    Phone Number must be at least 7 characters long.
+                  </div>
+                  <div
+                    i18n="@@phone_number_max_15"
+                    *ngIf="
+                      driverForm.controls['emergencyPhone'].get('phone').errors
+                        .maxlength
+                    "
+                  >
+                    Phone Number can be max 15 characters long.
+                  </div>
+                  <div
+                    i18n="@@phone_not_valid"
+                    *ngIf="
+                      driverForm.controls['emergencyPhone'].get('phone').errors
+                        .pattern
+                    "
+                  >
+                    Phone Number not valid.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label i18n="@@user_type" for="types">User Type</label>
+            <div class="input-group">
+              <select
+                [(ngModel)]="byDefaultType"
+                class="form-control"
+                formControlName="verticalType"
+                *ngIf="type"
+                (change)="onChange($event)"
+              >
+                <option i18n="@@choose_here" value="" selected disabled hidden>
+                  Choose here
+                </option>
+                <option *ngFor="let data of type" [value]="data.value">
+                  {{ data.name }}
+                </option>
+              </select>
+              <div
+                *ngIf="submitted && driverForm.controls.verticalType.errors"
+                class="invalid-feedback"
+              >
+                <div
+                  i18n="@@type_required"
+                  *ngIf="driverForm.controls.verticalType.errors.required"
+                >
+                  Type is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label i18n="@@Vehical_type" for="types">Vehicle Type</label>
+            <div class="input-group">
+              <select
+                class="form-control"
+                formControlName="vehicleTypeId"
+                *ngIf="vehicleTypes"
+              >
+                <option i18n="@@choose_here" value="" selected disabled hidden>
+                  Choose here
+                </option>
+                <option *ngFor="let type of vehicleTypes" [value]="type.id">
+                  {{ type.name }}
+                </option>
+              </select>
+              <div
+                *ngIf="submitted && driverForm.controls.vehicleTypeId.errors"
+                class="invalid-feedback"
+              >
+                <div
+                  i18n="@@vehical_type_required"
+                  *ngIf="driverForm.controls.vehicleTypeId.errors.required"
+                >
+                  Vehicle Type is required
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label i18n="@@vehical_name" for="price">Vehicle Name</label>
+            <div class="input-group">
+              <input
+                type="text"
+                id="vehicleName"
+                class="form-control"
+                formControlName="vehicleName"
+                placeholder=""
+              />
+              <div
+                *ngIf="submitted && driverForm.controls.vehicleName.errors"
+                class="invalid-feedback"
+              >
+                <div
+                  i18n="@@vehical_name_required"
+                  *ngIf="driverForm.controls.vehicleName.errors.required"
+                >
+                  Vehicle Name is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label i18n="@@vehical_number" for="price">Vehicle Number</label>
+            <div class="input-group">
+              <input
+                type="text"
+                id="vehicleNumber"
+                class="form-control"
+                formControlName="vehicleNumber"
+                placeholder=""
+              />
+              <div
+                *ngIf="submitted && driverForm.controls.vehicleNumber.errors"
+                class="invalid-feedback"
+              >
+                <div
+                  i18n="@@vehical_no_required"
+                  *ngIf="driverForm.controls.vehicleNumber.errors.required"
+                >
+                  Vehicle Number is required
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label i18n="@@Image" for="types">Image</label>
+            <div class="usr_profile_img">
+              <div class="usr_profile_imgbx">
+                <div class="user_img">
+                  <figure *ngIf="driverImage">
+                    <img
+                      style="height: 150px; width: 150px"
+                      [src]="driverImage"
+                    />
+                  </figure>
+                </div>
+              </div>
+              <div class="user_profile_edit">
+                <input
+                  type="file"
+                  accept="image/*"
+                  (change)="profilePic($event)"
+                />
+              </div>
+              <div
+                i18n="@@image_required"
+                *ngIf="submitted && !driverImage"
+                class="invalid-feedback"
+              >
+                Image is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-actions add_edit">
+          <button
+            i18n="@@Add"
+            type="submit"
+            class="btn btn-sm btn-success"
+            *ngIf="!id"
+            (click)="submit()"
+          >
+            Add
+          </button>
+          <button
+            i18n="@@Update"
+            type="submit"
+            class="btn btn-sm btn-success"
+            *ngIf="id"
+            (click)="update()"
+          >
+            Update
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

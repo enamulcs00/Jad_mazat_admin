@@ -1,0 +1,29 @@
+.card-body {
+    padding: 0.875rem 0.875rem;
+}
+
+@media (max-width: 1280px) {
+    .card-body {
+        padding: 0.575rem;
+    }
+}
+
+@media (max-width: 997px) {
+    .grid_name {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .comman_name_grid {
+        width: 48%;
+        margin: 0 0 15px 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .card-body {
+        padding: 0.475rem;
+    }
+    .comman_name_grid .text-xs {
+        font-size: .5rem;
+    }
+}

@@ -1,0 +1,125 @@
+<div class="container-fluid">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <div class="tittle_outer">
+        <div class="user_title">
+          <div class="user_title_inner">
+            <h6 i18n="@@Categories" class="m-0 text-black">Categories</h6>
+          </div>
+          <div class="user_add_button">
+            <button
+              i18n="@@add_category"
+              class="btn btn-primary"
+              (click)="addCategory()"
+            >
+              <span class="fas fa-plus"></span> Add Category
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="filters_outer">
+        <div class="user_filter">
+          <input
+            type="text"
+            class="form-control"
+            name="searchText"
+            [(ngModel)]="searchText"
+            placeholder="Search Category"
+          />
+        </div>
+        <div class="user_serch_btn">
+          <button
+            type="submit"
+            i18n="@@Search"
+            class="btn btn-primary pl-4 pr-4"
+            (click)="searchRestaurant()"
+          >
+            Search
+          </button>
+          <button
+            type="reset"
+            i18n="@@Reset"
+            class="btn btn-primary pl-4 pr-4 ml-2"
+            (click)="reset()"
+          >
+            Reset
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card-body table-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th i18n="@@Image">Image</th>
+              <th i18n="@@Name">Name</th>
+              <th i18n="@@Created_Date" style="min-width: 6rem">
+                Created Date
+              </th>
+              <th i18n="@@Status">Status</th>
+              <th i18n="@@Action">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of categoryList; let i = index">
+              <td>{{ i + serialNumber + 1 }}</td>
+              <td>
+                <img
+                  src="{{ imageUrl }}{{ item.image }}"
+                  width="70px"
+                  height="70px"
+                />
+              </td>
+              <td>{{ item.name }}</td>
+              <td>
+                {{ item.createdAt | date: "yyyy-MM-dd" }}
+              </td>
+              <td>
+                <ui-switch
+                  labelOn="ON"
+                  switchColor="#4e73df"
+                  id="Active"
+                  name="status"
+                  [(ngModel)]="item.status"
+                  (ngModelChange)="updateActiveStatus(item)"
+                  labelOff="OFF"
+                ></ui-switch>
+              </td>
+              <td>
+                <div class="product_action">
+                  <button
+                    class="btn btn-success mr-1"
+                    (click)="onEditSelect(item)"
+                  >
+                    <span class="fas fa-fw fa-edit"></span>
+                  </button>
+                  <button class="btn btn-danger" (click)="deleteCategory(item)">
+                    <span class="fas fa-fw fa-trash"></span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="loader" class="loader"></div>
+        <h4
+          i18n="@@no_records"
+          *ngIf="categoryList.length == 0 && !loader"
+          class="text-center"
+        >
+          No records found.
+        </h4>
+      </div>
+      <!-- <pagination
+        *ngIf="categoryList.length != 0 && !loader"
+        [totalItems]="totalItems"
+        [boundaryLinks]="true"
+        [maxSize]="5"
+        [(ngModel)]="currentPage"
+        (pageChanged)="pageChange($event)"
+      ></pagination> -->
+    </div>
+  </div>
+</div>

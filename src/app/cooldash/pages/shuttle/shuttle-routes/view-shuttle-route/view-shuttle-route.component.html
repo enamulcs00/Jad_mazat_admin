@@ -1,0 +1,93 @@
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="m-0 font-weight-bold text-primary">View Shuttle Route</h6>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <button class="btn btn-primary" (click)="history.back()">
+                                <span class="fas fa-arrow-left"></span> Back
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body" *ngIf="shuttleDetail">
+            <div *ngIf="shuttleDetail">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" name="Name" value="{{shuttleDetail.name}}" class="form-control"
+                                disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group" *ngIf="shuttleDetail.startPoint && shuttleDetail.startPoint.length>0">
+                            <label>Start Point</label>
+                            <input type="text" name="point" value="{{shuttleDetail.startPoint[0].address}}"
+                                class="form-control" disabled />
+                        </div>
+                    </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Start Time</label>
+                                <input type="text" name="Name" value="{{shuttleDetail.startTime}}" class="form-control"
+                                    disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>End Time</label>
+                                <input type="text" name="Name" value="{{shuttleDetail.endTime}}" class="form-control"
+                                    disabled />
+                            </div>
+                        </div>
+                        <ng-container *ngIf="shuttleDetail.stopPoints && shuttleDetail.stopPoints.length>0">
+                            <ng-container *ngFor="let data of shuttleDetail.stopPoints">
+                                <div class="col-md-7" *ngIf="data.coordinates">
+                                    <div class="form-group">
+                                        <label>Stop Point</label>
+                                        <input type="text" name="Email" value="{{data.coordinates.address}}"
+                                            class="form-control" disabled />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Fare</label>
+                                        <input type="text" name="Name" value="{{data.fare}}" class="form-control"
+                                            disabled />
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Time</label>
+                                        <input type="text" name="Name" value="{{data.time}}" class="form-control"
+                                            disabled />
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                        <div class="col-md-8" *ngIf="shuttleDetail.endPoint && shuttleDetail.endPoint.length>0">
+                            <div class="form-group">
+                                <label>End Point</label>
+                                <input type="text" name="Email" value="{{shuttleDetail.endPoint[0].address}}"
+                                    class="form-control" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Total Fare</label>
+                                <input type="text" name="Name" value="{{shuttleDetail.totalFare}}" class="form-control"
+                                    disabled />
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
