@@ -55,7 +55,7 @@ export class FoodItemComponent implements OnInit {
 
   getStoreItem()
   {
-    this.api.getStoreItem().subscribe((res:any)=>
+    this.api.getStoreItem('').subscribe((res:any)=>
     {
       this.showorder = false;
       if (res["response"]["success"]) {

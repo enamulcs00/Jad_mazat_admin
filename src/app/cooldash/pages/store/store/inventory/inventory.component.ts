@@ -15,18 +15,29 @@ export class InventoryComponent implements OnInit {
   loader: boolean;
   imageUrl: any;
   totalamount:any;
+  storelist: any;
   
   constructor( public api: ApiService, public comm: CommonService, private dialogService: PopupService) { }
 
   ngOnInit() {
     this.imageUrl = this.comm.imageUrl;
-    this.getStoreItem();
+    this.getStoreItem('');
+    this.getStorelist()
   }
 
 
-  getStoreItem()
+  getStorelist()
   {
-    this.api.getStoreItem().subscribe((res:any)=>
+    this.api.getAdminsforFilter().subscribe((res:any)=>
+    {
+      this.storelist = res.data.list
+    })
+  }
+
+  getStoreItem(id)
+  {
+    console.log(id)
+    this.api.getStoreItem(id).subscribe((res:any)=>
     {
       this.showorder = false;
       if (res["response"]["success"]) {
@@ -43,7 +54,7 @@ export class InventoryComponent implements OnInit {
   onEditSelect(item) {
     console.log('item',item._id);
     this.dialogService.editShuttleRoute(item._id).subscribe(res => {
-     this.getStoreItem()
+     this.getStoreItem('')
     });
   }
 
@@ -58,7 +69,7 @@ export class InventoryComponent implements OnInit {
       }
        this.api.addInventory(data).subscribe((res:any)=>
        {
-        this.getStoreItem()
+        this.getStoreItem('')
        }) 
     }
     if(key == 'quantity')
@@ -70,9 +81,10 @@ export class InventoryComponent implements OnInit {
       }
        this.api.addInventory(data).subscribe((res:any)=>
        {
-        this.getStoreItem()
+        this.getStoreItem('')
        }) 
     }
   }
+
 
 }

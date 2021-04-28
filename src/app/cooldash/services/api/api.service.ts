@@ -136,6 +136,11 @@ export class ApiService {
     );
   }
 
+  getAdminsforFilter()
+  {
+    return this.http.get(`${this.comm.baseUrl}/admin/store`)
+  }
+
   getOutletById(id) {
     return this.http.get(
       this.comm.baseUrl + "/admin/food/restaurant/outlet/" + id
@@ -314,9 +319,9 @@ export class ApiService {
     return this.http.get(this.comm.baseUrl + "/admin/store/item/" + id);
   }
 
-  getStoreItem()
+  getStoreItem(id)
   {
-    return this.http.get(this.comm.baseUrl + '/admin/store/item')
+    return this.http.get(this.comm.baseUrl + `/admin/store/item?page=1&store=${id}`)
   }
 
   getStorerevApi(value)
