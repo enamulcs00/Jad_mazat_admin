@@ -6,6 +6,9 @@
           <div class="user_title_inner">
             <h6 class="m-0 text-black">Order</h6>
           </div>
+          <button i18n="@@add_restaurant" class="btn btn-primary ml-3" (click)="getresturantOrder()">
+            <span class="fas fa-download"></span> Download CSV
+          </button>
           <div class="user_add_button">
             <select [(ngModel)]="totalmatch" class="form-control" (change)="changeMatchWebsite($event)">
               <option value="undefined">All</option>

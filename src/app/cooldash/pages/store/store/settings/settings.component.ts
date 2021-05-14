@@ -71,7 +71,6 @@ export class SettingsComponent implements OnInit {
     this.api.getStoreSettings().subscribe(res => {
       if (res["response"]["success"]) {
         this.settings = res["data"];
-        console.log(this.settings);
         this.setValues(this.settings);
       }
     })

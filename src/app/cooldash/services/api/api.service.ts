@@ -6,13 +6,13 @@ import { map } from "rxjs/operators";
 import { CommonService } from "../common/common.service";
 import { idLocale } from "ngx-bootstrap";
 import { Observable } from "rxjs";
+import { stringify } from "@angular/compiler/src/util";
 
 @Injectable({
   providedIn: "root",
 })
 export class ApiService {
   countryCode: any;
-
   constructor(
     private http: HttpClient,
     private url: UrlService,
@@ -126,6 +126,24 @@ export class ApiService {
     return this.http.post<any>(this.comm.baseUrl + "/admin/getEncryptedUrl", body)
   }
 
+  resturantCsv()
+  {
+    const authorization = JSON.parse(localStorage.getItem('token'));
+    const httpOptions = {
+        headers: new HttpHeaders({ 'authorization': authorization })
+    }
+    return this.http.get<any>(this.comm.baseUrl + "/admin/food/getOrderCsvEncryptedUrl?status=4",httpOptions)
+  }
+
+  storesCsv()
+  {
+    const authorization = JSON.parse(localStorage.getItem('token'));
+    const httpOptions = {
+        headers: new HttpHeaders({ 'authorization': authorization })
+    }
+    return this.http.get<any>(this.comm.baseUrl + "/admin/store/getOrderCsvEncryptedUrl?status=4",httpOptions)
+  }
+
   getPendingOrders(status, page) {
     return this.http.get(
       this.comm.baseUrl +
@@ -159,8 +177,7 @@ export class ApiService {
   addRestaurantOutlet(body) {
     return this.http.post(
       this.comm.baseUrl + "/admin/food/restaurant/outlet",
-      body
-    );
+      body);
   }
 
   editRestaurantOutlet(body) {

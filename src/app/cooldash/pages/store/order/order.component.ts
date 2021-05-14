@@ -7,6 +7,7 @@ import { OrderService } from "../../../services/order.service";
 import { ToastrManager } from "ng6-toastr-notifications";
 import * as moment from "moment";
 import Swal from "sweetalert2";
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: "app-order",
@@ -333,6 +334,17 @@ export class OrderComponent implements OnInit {
         });
       }
     });
+  }
+
+
+   
+  getresturantOrder()
+  {
+    this.api.storesCsv().subscribe((res:any)=>
+    {
+      saveAs(res.url, "Storesorder.csv");
+      
+    })
   }
 
   assignDriver(item: any) {

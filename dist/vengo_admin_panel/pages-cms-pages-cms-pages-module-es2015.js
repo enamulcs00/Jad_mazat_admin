@@ -1521,7 +1521,7 @@ class Watchdog {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\">\n    <div class=\"card shadow mb-4\">\n        <div class=\"card-header py-3\">\n            <div class=\"row\">\n                <div class=\"col-md-12 user_title\">\n                    <h6 class=\"m-0 font-weight-bold text-primary\">Privacy Policy</h6>\n                </div>\n            </div>\n        </div>\n        <div class=\"card-body\">\n            <ckeditor [editor]=\"Editor\" [(ngModel)]=\"data\"></ckeditor>\n        </div>\n    </div>\n    <div class=\"form-group form-actions\">\n        <button type=\"submit\" class=\"btn btn-sm btn-success\" (click)=\"savePrivacyPolicy()\">\n            Save\n        </button>\n    </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\">\r\n    <div class=\"card shadow mb-4\">\r\n        <div class=\"card-header py-3\">\r\n            <div class=\"row\">\r\n                <div class=\"col-md-12 user_title\">\r\n                    <h6 class=\"m-0 font-weight-bold text-primary\">Privacy Policy</h6>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"card-body\">\r\n            <ckeditor [editor]=\"Editor\" [(ngModel)]=\"data\"></ckeditor>\r\n        </div>\r\n    </div>\r\n    <div class=\"form-group form-actions\">\r\n        <button type=\"submit\" class=\"btn btn-sm btn-success\" (click)=\"savePrivacyPolicy()\">\r\n            Save\r\n        </button>\r\n    </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -1534,7 +1534,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\">\n    <div class=\"card shadow mb-4\">\n        <div class=\"card-header py-3\">\n            <div class=\"row\">\n                <div class=\"col-md-12 user_title\">\n                    <h6 class=\"m-0 font-weight-bold text-primary\">Terms and Conditions</h6>\n                </div>\n            </div>\n        </div>\n        <div class=\"card-body\">\n            <ckeditor [editor]=\"Editor\" [(ngModel)]=\"data\"></ckeditor>\n        </div>\n    </div>\n    <div class=\"form-group form-actions\">\n        <button type=\"submit\" class=\"btn btn-sm btn-success\" (click)=\"saveTermsandConditions()\">\n            Save\n        </button>\n    </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\">\r\n    <div class=\"card shadow mb-4\">\r\n        <div class=\"card-header py-3\">\r\n            <div class=\"row\">\r\n                <div class=\"col-md-12 user_title\">\r\n                    <h6 class=\"m-0 font-weight-bold text-primary\">Terms and Conditions</h6>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"card-body\">\r\n            <ckeditor [editor]=\"Editor\" [(ngModel)]=\"data\"></ckeditor>\r\n        </div>\r\n    </div>\r\n    <div class=\"form-group form-actions\">\r\n        <button type=\"submit\" class=\"btn btn-sm btn-success\" (click)=\"saveTermsandConditions()\">\r\n            Save\r\n        </button>\r\n    </div>\r\n</div>\r\n");
 
 /***/ }),
 
