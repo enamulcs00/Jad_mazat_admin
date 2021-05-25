@@ -41,6 +41,7 @@
                             <th  *ngIf="show" style="min-width: 6rem;" >AssignDriver</th>
                             <th style="min-width: 7rem;">User Name</th>
                             <th style="min-width: 7rem;">Store Name</th>
+                            <th style="min-width: 7rem">Delivery Instruction</th>
                             <th >Items</th>
                             <th>Manual</th>
                             <th style="min-width: 7rem;">Status</th>
@@ -99,6 +100,7 @@
                                     {{ item.storeId.name }}
                                 </ng-container>
                             </td>
+                            <td>{{item.deliveryInstructions}}</td>
                             <td>
                                 <ng-container *ngIf="item.items && item.items.length > 0">{{ item.items.length }}
                                 </ng-container>
