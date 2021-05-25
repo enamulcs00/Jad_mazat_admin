@@ -72,7 +72,7 @@
                 {{ item.totalAmount | number: "1.2-2" }}
               </td>
               <td>
-                {{ item.note || '-' }}
+                {{ item.deliveryInstructions || '-' }}
               </td>
               <td>
                 <ng-container
@@ -106,10 +106,10 @@
         
               <td>
                 <ng-container *ngIf="item.restaurantId">
-                  {{ item.restaurantId.name }}
+                  {{ item.restaurantId.name || "--"}}
                 </ng-container>
               </td>
-              <td>{{item.deliveryInstructions}}</td>
+              <td>{{item.note || "--"}}</td>
               <td>
                 <span (click)="viewOrder(item)" style="cursor: pointer">
                   <u>

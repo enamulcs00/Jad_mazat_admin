@@ -8,6 +8,7 @@ import { ToastrManager } from "ng6-toastr-notifications";
 import * as moment from "moment";
 import Swal from "sweetalert2";
 import { saveAs } from 'file-saver';
+import { LocalStorageService } from "angular-web-storage";
 
 @Component({
   selector: "app-order",
@@ -36,7 +37,7 @@ export class OrderComponent implements OnInit {
   showdrop: boolean = true;
   show: boolean;
   adminid: string;
-  constructor(
+  constructor(private localStorage: LocalStorageService,
     private api: ApiService,
     private comm: CommonService,
     private dialogService: PopupService,
@@ -342,10 +343,20 @@ export class OrderComponent implements OnInit {
   {
     this.api.storesCsv().subscribe((res:any)=>
     {
-      saveAs(res.url, "Storesorder.csv");
       
+      if(res.sucess==true){
+        saveAs(res.url, "Storesorder.csv");
+      }else{
+        this.toastr.errorToastr('Something went wrong')
+      }
+    },err=>{
+      this.toastr.errorToastr('Token is invalid please relogin')
+      this.localStorage.clear();
+    localStorage.clear();
+    this.router.navigateByUrl("/login");
+    
     })
-  }
+}
 
   assignDriver(item: any) {
     // console.log(item)

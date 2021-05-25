@@ -77,7 +77,7 @@ export class DriverComponent implements OnInit {
   getDriver() {
     var page = this.currentPage;
     this.api.getDriverList(page, this.searchText).subscribe(response => {
-      console.log(response);
+      console.log('driverList',response);
       if (response["data"]) {
         this.driverList = response["data"]["drivers"];
         for (var data of this.driverList) {

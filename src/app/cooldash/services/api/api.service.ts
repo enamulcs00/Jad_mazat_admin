@@ -132,7 +132,7 @@ export class ApiService {
     const httpOptions = {
         headers: new HttpHeaders({ 'authorization': authorization })
     }
-    return this.http.get<any>(this.comm.baseUrl + "/admin/food/getOrderCsvEncryptedUrl?status=4",httpOptions)
+    return this.http.get<any>(this.comm.baseUrl+"/admin/food/getOrderCsvEncryptedUrl?status=4",httpOptions)
   }
 
   storesCsv()

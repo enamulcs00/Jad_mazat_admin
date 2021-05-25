@@ -13,7 +13,6 @@ import "hammerjs";
 import { MaterialModule } from "./cooldash/pages/material/material.module";
 import { CategorymodalComponent } from "./cooldash/pages/restaurant/category/categorymodal/categorymodal.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ToastrModule } from "ng6-toastr-notifications";

@@ -8,6 +8,7 @@ import { ToastrManager } from "ng6-toastr-notifications";
 import * as moment from "moment";
 import Swal from "sweetalert2";
 import { saveAs } from 'file-saver';
+import { LocalStorageService } from "angular-web-storage";
 
 @Component({
   selector: "app-order",
@@ -37,7 +38,7 @@ export class OrderComponent implements OnInit {
   driver: any;
   adminid: string;
   show: boolean;
-  constructor(
+  constructor(private localStorage: LocalStorageService,
     private api: ApiService,
     private comm: CommonService,
     private dialogService: PopupService,
@@ -398,10 +399,21 @@ export class OrderComponent implements OnInit {
   
   getresturantOrder()
   {
+    //window.open(this.acceptOrder)
     this.api.resturantCsv().subscribe((res:any)=>
     {
-      saveAs(res.url, "Resturantorder.csv");
-      
+   if(res.sucess==true){
+     saveAs(res.url, "Resturantorder.csv");
+      }else{
+        this.toastr.errorToastr('Something went wrong')
+      }
+    },err=>{
+      this.toastr.errorToastr('Token is invalid please relogin')
+      this.localStorage.clear();
+    localStorage.clear();
+    this.router.navigateByUrl("/login");
+    console.log('Err',err);
+    
     })
   }
 

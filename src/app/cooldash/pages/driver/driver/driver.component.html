@@ -45,7 +45,7 @@
               <th i18n="@@E_Phone_Number" style="min-width: 10rem">
                 E-Phone Number
               </th>
-              <th i18n="@@Document_status" style="min-width: 8rem">
+              <th i18n="@@Document_status" style="min-width: 8rem" class="text-nowrap">
                 Document Status
               </th>
               <th i18n="@@Driver_type" style="min-width: 8rem">Driver Type</th>
@@ -65,19 +65,18 @@
               <td>{{ (currentPage - 1) * 25 + i + 1 }}</td>
               <td>
                 <ng-container *ngIf="item.profilePic; else noImage">
-                  <img src="{{ imageUrl }}{{ item.profilePic }}" width="70px" height="70px" />
+                  <img src="{{imageUrl+item.profilePic}}" width="70px" height="70px" />
                 </ng-container>
                 <ng-template #noImage>
                   <img src="assets/img/default-user.png" width="70px" height="70px" />
                 </ng-template>
               </td>
-              <td>{{ item.firstName }} {{ item.lastName }}</td>
-              <td>{{ item.email }}</td>
-              <td>{{ item.countryCode }} {{ item.phone }}</td>
+              <td class="text-nowrap">{{ item.firstName + " "+ item.lastName || "--"}}</td>
+              <td class="text-nowrap">{{ item.email || "--"}}</td>
+              <td class="text-nowrap">{{ item.countryCode+"-"+item.phone || "--"}}</td>
               <ng-container *ngIf="item.emergencyPhone; else noNumber">
-                <td>
-                  {{ item.emergencyPhone.countryCode }}
-                  {{ item.emergencyPhone.phone }}
+                <td class="text-nowrap">
+                  {{ item.emergencyPhone.countryCode+"-"+item.emergencyPhone.phone || "--"}}
                 </td>
               </ng-container>
               <ng-template #noNumber>
@@ -88,9 +87,8 @@
               <td *ngIf="item.verticalType == 1">Delivery</td>
               <td *ngIf="item.verticalType == 2">Taxi</td>
               <td *ngIf="item.verticalType == 3">Shuttle</td>
-
-              <td>{{ item.vehicleName }}</td>
-              <td>{{ item.vehicleNumber }}</td>
+               <td class="text-nowrap">{{ item.vehicleName|| "--"}}</td>
+              <td class="text-nowrap">{{ item.vehicleNumber||"--"}}</td>
               <td>
                 <ui-switch labelOn="ON" switchColor="#4e73df" id="status" name="status" [(ngModel)]="item.status"
                   (ngModelChange)="updateStatus(item)" labelOff="OFF">
