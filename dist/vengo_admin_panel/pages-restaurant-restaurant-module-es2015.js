@@ -699,13 +699,22 @@ let OrderComponent = class OrderComponent {
         });
     }
     getresturantOrder() {
-        //window.open(this.acceptOrder)
+        console.log("token", this.api.tok);
         this.api.resturantCsv().subscribe((res) => {
             if (res.sucess == true) {
                 Object(file_saver__WEBPACK_IMPORTED_MODULE_10__["saveAs"])(res.url, "Resturantorder.csv");
             }
             else {
-                this.toastr.errorToastr('Something went wrong');
+                if (res.response.message == "Authorization missing") {
+                    this.localStorage.clear();
+                    localStorage.clear();
+                    this.router.navigateByUrl("/login");
+                    this.toastr.errorToastr(res.response.message + ", " + 'Login again!');
+                }
+                else {
+                    this.toastr.errorToastr(res.response.message);
+                    console.log('Err', res.response.message, res);
+                }
             }
         }, err => {
             this.toastr.errorToastr('Token is invalid please relogin');

@@ -2942,6 +2942,7 @@ let ApiService = class ApiService {
         this.http = http;
         this.url = url;
         this.comm = comm;
+        this.tok = JSON.parse(localStorage.getItem('token'));
         this.getCountryCode();
     }
     getCountryCode() {
@@ -3019,6 +3020,7 @@ let ApiService = class ApiService {
         return this.http.post(this.comm.baseUrl + "/admin/getEncryptedUrl", body);
     }
     resturantCsv() {
+        console.log('From Service', JSON.parse(localStorage.getItem('token')));
         const authorization = JSON.parse(localStorage.getItem('token'));
         const httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'authorization': authorization })

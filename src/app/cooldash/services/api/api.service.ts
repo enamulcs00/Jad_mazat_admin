@@ -12,6 +12,7 @@ import { stringify } from "@angular/compiler/src/util";
   providedIn: "root",
 })
 export class ApiService {
+  public tok = JSON.parse(localStorage.getItem('token'));
   countryCode: any;
   constructor(
     private http: HttpClient,
@@ -128,11 +129,12 @@ export class ApiService {
 
   resturantCsv()
   {
+    console.log('From Service',JSON.parse(localStorage.getItem('token')));
     const authorization = JSON.parse(localStorage.getItem('token'));
     const httpOptions = {
         headers: new HttpHeaders({ 'authorization': authorization })
     }
-    return this.http.get<any>(this.comm.baseUrl+"/admin/food/getOrderCsvEncryptedUrl?status=4",httpOptions)
+    return this.http.get<any>(this.comm.baseUrl + "/admin/food/getOrderCsvEncryptedUrl?status=4",httpOptions)
   }
 
   storesCsv()
