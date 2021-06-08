@@ -151,6 +151,8 @@ export class OrderComponent implements OnInit {
     {
       this.showdrop = false;
       this.driver = res.data.drivers
+      console.log(res.data.drivers,'Driver');
+      
     })
   }
 

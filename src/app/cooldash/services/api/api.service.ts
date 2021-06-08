@@ -364,7 +364,7 @@ export class ApiService {
 
 getDrivers(lan,lon,id)
 {
-  return this.http.get(this.comm.baseUrl+`/admin/store/getNearbyDrivers?latitude=${lan}&longitude=${lon}&id=${id}`)
+  return this.http.get(this.comm.baseUrl+`/admin/food/getNearbyDrivers?latitude=${lan}&longitude=${lon}&id=${id}`)
 }
   
   getResturantrevApi(value)

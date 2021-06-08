@@ -480,6 +480,7 @@ let OrderComponent = class OrderComponent {
         this.api.getDrivers(lan, lon, id).subscribe((res) => {
             this.showdrop = false;
             this.driver = res.data.drivers;
+            console.log(res.data.drivers, 'Driver');
         });
     }
     DriverAssign(event, id) {

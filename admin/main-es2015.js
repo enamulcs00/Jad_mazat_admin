@@ -3237,7 +3237,7 @@ let ApiService = class ApiService {
         return this.http.post(this.comm.baseUrl + '/admin/order/store/graph', body);
     }
     getDrivers(lan, lon, id) {
-        return this.http.get(this.comm.baseUrl + `/admin/store/getNearbyDrivers?latitude=${lan}&longitude=${lon}&id=${id}`);
+        return this.http.get(this.comm.baseUrl + `/admin/food/getNearbyDrivers?latitude=${lan}&longitude=${lon}&id=${id}`);
     }
     getResturantrevApi(value) {
         const body = { "type": value };
