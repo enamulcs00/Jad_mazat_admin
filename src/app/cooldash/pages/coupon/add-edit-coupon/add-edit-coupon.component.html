@@ -133,7 +133,7 @@
                     <div class="form-group col-md-6">
                         <label for="price">Discount (%)</label>
                         <div class="input-group">
-                            <input type="number" min="0" appNumberOnly id="discount" class="form-control" formControlName="discount" placeholder="" />
+                            <input type="number" min="0" appNumberOnly id="discount" class="form-control" formControlName="discount" [readonly]="IsFlat" />
                             <div *ngIf="submitted && couponForm.controls.discount.errors" class="invalid-feedback">
                                 <div *ngIf="couponForm.controls.discount.errors.required">
                                     Discount is required
@@ -144,7 +144,7 @@
                     <div class="form-group col-md-6">
                         <label for="price">Max Discount (Flat)</label>
                         <div class="input-group">
-                            <input type="number" appNumberOnly min="0" id="maxDiscount" class="form-control" formControlName="maxDiscount" placeholder="" />
+                            <input type="number" appNumberOnly min="0" id="maxDiscount" class="form-control" formControlName="maxDiscount" placeholder="" [readonly]="IsPercentage"/>
                             <div *ngIf="submitted && couponForm.controls.maxDiscount.errors" class="invalid-feedback">
                                 <div *ngIf="couponForm.controls.maxDiscount.errors.required">
                                     Max Discount is required
@@ -172,7 +172,7 @@
                     <div class="form-group col-md-6">
                         <label for="types">Discount Type</label>
                         <div class="input-group">
-                            <select class="form-control" formControlName="type" *ngIf="discountType">
+                            <select class="form-control" formControlName="type" *ngIf="discountType" (change)="onChangeDiscType($event.target.value)">
                                 <option value="" selected disabled hidden>Choose here</option>
                                 <option *ngFor="let type of discountType" [value]="type.value">
                                     {{ type.name }}

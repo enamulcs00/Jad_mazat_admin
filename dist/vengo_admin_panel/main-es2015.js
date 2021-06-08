@@ -895,6 +895,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angular_star_rating__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! angular-star-rating */ "./node_modules/angular-star-rating/esm2015/angular-star-rating.js");
 /* harmony import */ var _cooldash_pages_store_store_inventory_inventory_modal_inventory_modal_component__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./cooldash/pages/store/store/inventory/inventory-modal/inventory-modal.component */ "./src/app/cooldash/pages/store/store/inventory/inventory-modal/inventory-modal.component.ts");
 /* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ng2-charts */ "./node_modules/ng2-charts/fesm2015/ng2-charts.js");
+/* harmony import */ var _commonservice_error_interceptor__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./commonservice/error.interceptor */ "./src/app/commonservice/error.interceptor.ts");
 
 
 
@@ -902,6 +903,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // import { ChartsModule } from 'ng2-charts';
+
 
 
 
@@ -976,7 +978,9 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
                 libraries: ["geometry", "places", "drawing"],
             }),
         ],
-        providers: [_commonservice_auth_guard__WEBPACK_IMPORTED_MODULE_16__["AuthGuard"], _commonservice_authguard_guard_guard__WEBPACK_IMPORTED_MODULE_17__["AuthguardGuardGuard"], _cooldash_services_order_service__WEBPACK_IMPORTED_MODULE_18__["OrderService"], ng2_charts__WEBPACK_IMPORTED_MODULE_36__["ThemeService"]],
+        providers: [_commonservice_auth_guard__WEBPACK_IMPORTED_MODULE_16__["AuthGuard"], _commonservice_authguard_guard_guard__WEBPACK_IMPORTED_MODULE_17__["AuthguardGuardGuard"], _cooldash_services_order_service__WEBPACK_IMPORTED_MODULE_18__["OrderService"], ng2_charts__WEBPACK_IMPORTED_MODULE_36__["ThemeService"],
+            { provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HTTP_INTERCEPTORS"], useClass: _commonservice_error_interceptor__WEBPACK_IMPORTED_MODULE_37__["ErrorInterceptor"], multi: true }
+        ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_11__["AppComponent"]],
         entryComponents: [
             _cooldash_pages_restaurant_category_categorymodal_categorymodal_component__WEBPACK_IMPORTED_MODULE_8__["CategorymodalComponent"],
@@ -1025,7 +1029,7 @@ let AuthGuard = class AuthGuard {
         this.myRoute = myRoute;
     }
     canActivate(next, state) {
-        if (this.auth.isLoggedIn()) {
+        if (localStorage.getItem('token')) {
             return true;
         }
         else {
@@ -1088,6 +1092,61 @@ AuthguardGuardGuard = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         providedIn: "root"
     })
 ], AuthguardGuardGuard);
+
+
+
+/***/ }),
+
+/***/ "./src/app/commonservice/error.interceptor.ts":
+/*!****************************************************!*\
+  !*** ./src/app/commonservice/error.interceptor.ts ***!
+  \****************************************************/
+/*! exports provided: ErrorInterceptor */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ErrorInterceptor", function() { return ErrorInterceptor; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var _cooldash_services_api_api_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../cooldash/services/api/api.service */ "./src/app/cooldash/services/api/api.service.ts");
+/* harmony import */ var ng6_toastr_notifications__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ng6-toastr-notifications */ "./node_modules/ng6-toastr-notifications/fesm2015/ng6-toastr-notifications.js");
+
+
+
+
+
+
+let ErrorInterceptor = class ErrorInterceptor {
+    constructor(accountService, toastr) {
+        this.accountService = accountService;
+        this.toastr = toastr;
+    }
+    intercept(request, next) {
+        return next.handle(request).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])((evt) => {
+            if (evt instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpResponse"]) {
+                if ([401, 403].includes(evt.status)) {
+                    this.toastr.errorToastr('Please login', 'Session expired', {
+                        timeOut: 3000,
+                    });
+                    this.accountService.logout();
+                }
+                else if (![401, 403, 200].includes(evt.status)) {
+                    this.toastr.errorToastr(evt.body.message || evt.statusText);
+                }
+            }
+        }));
+    }
+};
+ErrorInterceptor.ctorParameters = () => [
+    { type: _cooldash_services_api_api_service__WEBPACK_IMPORTED_MODULE_4__["ApiService"] },
+    { type: ng6_toastr_notifications__WEBPACK_IMPORTED_MODULE_5__["ToastrManager"] }
+];
+ErrorInterceptor = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
+], ErrorInterceptor);
 
 
 
@@ -2931,6 +2990,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _url_url_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../url/url.service */ "./src/app/cooldash/services/url/url.service.ts");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
 /* harmony import */ var _common_common_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../common/common.service */ "./src/app/cooldash/services/common/common.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
 
 
 
@@ -2938,11 +2999,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ApiService = class ApiService {
-    constructor(http, url, comm) {
+    constructor(router, http, url, comm) {
+        this.router = router;
         this.http = http;
         this.url = url;
         this.comm = comm;
-        this.tok = JSON.parse(localStorage.getItem('token'));
         this.getCountryCode();
     }
     getCountryCode() {
@@ -2970,6 +3031,11 @@ let ApiService = class ApiService {
     }
     isLoggedIn() {
         return this.getToken() !== null;
+    }
+    logout() {
+        localStorage.clear();
+        document.getElementById("closeLogoutModal").click();
+        this.router.navigateByUrl("/login");
     }
     getAllRestaurantCategories() {
         return this.http.get(this.comm.baseUrl + "/admin/food/category");
@@ -3170,8 +3236,8 @@ let ApiService = class ApiService {
         const body = { "type": value };
         return this.http.post(this.comm.baseUrl + '/admin/order/store/graph', body);
     }
-    getDrivers(lan, lon) {
-        return this.http.get(this.comm.baseUrl + `/admin/store/getNearbyDrivers?latitude=${lan}&longitude=${lon}`);
+    getDrivers(lan, lon, id) {
+        return this.http.get(this.comm.baseUrl + `/admin/store/getNearbyDrivers?latitude=${lan}&longitude=${lon}&id=${id}`);
     }
     getResturantrevApi(value) {
         const body = { "type": value };
@@ -3410,6 +3476,7 @@ let ApiService = class ApiService {
     }
 };
 ApiService.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"] },
     { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
     { type: _url_url_service__WEBPACK_IMPORTED_MODULE_3__["UrlService"] },
     { type: _common_common_service__WEBPACK_IMPORTED_MODULE_5__["CommonService"] }

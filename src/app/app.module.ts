@@ -5,7 +5,7 @@ import {
   CUSTOM_ELEMENTS_SCHEMA,
   NO_ERRORS_SCHEMA,
 } from "@angular/core";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgxSpinnerModule } from "ngx-spinner";
 
 // import { ChartsModule } from 'ng2-charts';
@@ -40,6 +40,7 @@ import { NgxStarRatingModule } from "ngx-star-rating";
 import { StarRatingModule } from "angular-star-rating";
 import { InventoryModalComponent } from "./cooldash/pages/store/store/inventory/inventory-modal/inventory-modal.component";
 import { ThemeService } from "ng2-charts";
+import { ErrorInterceptor } from "./commonservice/error.interceptor";
 
 @NgModule({
   declarations: [
@@ -81,7 +82,9 @@ import { ThemeService } from "ng2-charts";
       libraries: ["geometry", "places", "drawing"],
     }),
   ],
-  providers: [AuthGuard, AuthguardGuardGuard, OrderService,ThemeService],
+  providers: [AuthGuard, AuthguardGuardGuard, OrderService,ThemeService,
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     CategorymodalComponent,

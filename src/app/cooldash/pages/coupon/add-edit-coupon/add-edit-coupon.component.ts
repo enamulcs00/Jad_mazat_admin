@@ -19,6 +19,8 @@ import * as moment from 'moment';
 
 export class AddEditCouponComponent implements OnInit {
   couponForm: FormGroup;
+  IsFlat:boolean = false
+  IsPercentage:boolean = false
   history = window.history;
   submitted: boolean = false;
   id: any;
@@ -164,5 +166,32 @@ export class AddEditCouponComponent implements OnInit {
 
   emitValue(e) {
     this.endMinDate = moment(e.value).subtract(1, 'd').format('YYYY-MM-DD')
+  }
+  onChangeDiscType(e){
+    console.log('Type',e);
+    if(e==0){
+      this.IsFlat = false
+      this.IsPercentage = true
+      this.couponForm.controls['maxDiscount'].reset()
+      this.couponForm.controls['maxDiscount'].clearValidators()
+      this.couponForm.controls['maxDiscount'].updateValueAndValidity();
+      this.couponForm.controls['discount'].setValidators(Validators.required)
+      this.couponForm.controls['discount'].updateValueAndValidity();
+    }else if(e==1){
+      this.IsFlat = true
+      this.IsPercentage = false
+      this.couponForm.controls['discount'].reset()
+      this.couponForm.controls['discount'].clearValidators()
+      this.couponForm.controls['discount'].updateValueAndValidity();
+      this.couponForm.controls['maxDiscount'].setValidators(Validators.required)
+      this.couponForm.controls['maxDiscount'].updateValueAndValidity();
+    }else if(e==2){
+      this.IsFlat = false
+      this.IsPercentage = false
+      this.couponForm.controls['maxDiscount'].setValidators(Validators.required)
+      this.couponForm.controls['maxDiscount'].updateValueAndValidity();
+      this.couponForm.controls['discount'].setValidators(Validators.required)
+      this.couponForm.controls['discount'].updateValueAndValidity();
+    }
   }
 } 

@@ -7,14 +7,15 @@ import { CommonService } from "../common/common.service";
 import { idLocale } from "ngx-bootstrap";
 import { Observable } from "rxjs";
 import { stringify } from "@angular/compiler/src/util";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: "root",
 })
 export class ApiService {
-  public tok = JSON.parse(localStorage.getItem('token'));
+ // public tok = JSON.parse(localStorage.getItem('token'));
   countryCode: any;
-  constructor(
+  constructor(private router:Router,
     private http: HttpClient,
     private url: UrlService,
     private comm: CommonService
@@ -54,7 +55,12 @@ export class ApiService {
   isLoggedIn() {
     return this.getToken() !== null;
   }
-
+  logout() {
+    
+    localStorage.clear();
+    document.getElementById("closeLogoutModal").click();
+    this.router.navigateByUrl("/login");
+  }
   getAllRestaurantCategories() {
     return this.http.get(this.comm.baseUrl + "/admin/food/category");
   }
@@ -356,9 +362,9 @@ export class ApiService {
     return this.http.post(this.comm.baseUrl+'/admin/order/store/graph',body);
   }
 
-getDrivers(lan,lon)
+getDrivers(lan,lon,id)
 {
-  return this.http.get(this.comm.baseUrl+`/admin/store/getNearbyDrivers?latitude=${lan}&longitude=${lon}`)
+  return this.http.get(this.comm.baseUrl+`/admin/store/getNearbyDrivers?latitude=${lan}&longitude=${lon}&id=${id}`)
 }
   
   getResturantrevApi(value)

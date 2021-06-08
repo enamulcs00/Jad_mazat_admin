@@ -287,6 +287,7 @@ let LoginComponent = class LoginComponent {
     ngOnInit() {
         if (localStorage.getItem("token")) {
             this.router.navigateByUrl("/dashboard");
+            console.log('Toek', JSON.parse(localStorage.getItem('token')));
         }
     }
     login() {

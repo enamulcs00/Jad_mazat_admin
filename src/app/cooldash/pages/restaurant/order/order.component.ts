@@ -147,7 +147,7 @@ export class OrderComponent implements OnInit {
   {
     this.showdrop = true;
     this.assignId = id;
-    this.api.getDrivers(lan,lon).subscribe((res:any)=>
+    this.api.getDrivers(lan,lon,id).subscribe((res:any)=>
     {
       this.showdrop = false;
       this.driver = res.data.drivers
@@ -399,10 +399,7 @@ export class OrderComponent implements OnInit {
   
   getresturantOrder()
   {
-
-    console.log("token",this.api.tok);
-    
-    this.api.resturantCsv().subscribe((res:any)=>
+this.api.resturantCsv().subscribe((res:any)=>
     {
    if(res.sucess==true){
      saveAs(res.url,"Resturantorder.csv");
