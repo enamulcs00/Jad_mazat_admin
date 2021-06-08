@@ -100,7 +100,8 @@ export class AddEditCouponComponent implements OnInit {
       if (res["response"]["success"]) {
         this.couponDetail = res["data"];
         this.setValues(this.couponDetail);
-      }
+        
+    }
     });
   }
 
@@ -121,30 +122,54 @@ export class AddEditCouponComponent implements OnInit {
         verticalType: data.verticalType
       });
     }
+    if(data.discount && data.maxDiscount){
+      this.couponForm.controls['type'].setValue(2)
+    }else if(data.discount && !data.maxDiscount){
+      this.IsPercentage = true
+      this.couponForm.controls['maxDiscount'].reset()
+      this.couponForm.controls['maxDiscount'].clearValidators()
+      this.couponForm.controls['maxDiscount'].updateValueAndValidity();
+      this.couponForm.controls['type'].setValue(0)
+    }else if(!data.discount && data.maxDiscount){
+      this.IsFlat = true
+      this.couponForm.controls['discount'].clearValidators()
+      this.couponForm.controls['discount'].updateValueAndValidity();
+      this.couponForm.controls['type'].setValue(1)
+    }
   };
 
   update() {
     this.submitted = true;
-    console.log(this.couponForm, this.couponForm.value);
+    console.log(this.couponForm, this.couponForm.value,'Valid',this.couponForm.valid);
     if (this.couponForm.valid) {
       this.couponForm.controls['endDate'].setValue((new Date(this.couponForm.controls['endDate'].value).getTime()))
       this.couponForm.controls['startDate'].setValue(new Date(this.couponForm.controls['startDate'].value).getTime())
       var data = this.couponForm.value;
       data['updateId'] = this.id;
-      this.api.updatePromoCode(data).subscribe(res => {
-        if (res["response"]["success"]) {
-          this.toastr.successToastr(res["response"]["message"]);
-          this.router.navigate(["/coupon/coupon"]);
-        } else {
-          this.toastr.errorToastr(res["response"]["message"]);
-        }
-      });
-    }
-  }
-
+      
+        this.api.updatePromoCode(data).subscribe(res => {
+          if (res["response"]["success"]) {
+            this.toastr.successToastr(res["response"]["message"]);
+            this.router.navigate(["/coupon/coupon"]);
+          } else {
+            this.submitted = false
+            this.toastr.errorToastr(res["response"]["message"]);
+          }
+        });
+      }else{
+        this.couponForm.controls['endDate'].reset()
+        this.couponForm.controls['startDate'].reset()
+      }
+      }
+      dateForm(e){
+        console.log("date form",e.target.value,e);
+        
+      }
   submit() {
+
     this.submitted = true;
-    if (this.submitted && this.couponForm.valid) {
+    console.log('Form status',this.couponForm.valid,'submit frm',this.couponForm.value);
+    if ( this.couponForm.valid) {
       // const date1 = new Date(this.couponForm.controls['startDate'].value);
       // const date2 = new Date(this.couponForm.controls['endDate'].value);
       // if (date1.getTime() == date2.getTime()) return this.toastr.errorToastr('Please select valid Date')
@@ -156,8 +181,12 @@ export class AddEditCouponComponent implements OnInit {
           this.router.navigate(["/coupon/coupon"]);
         } else {
           this.toastr.errorToastr(res["response"]["message"]);
+          this.submitted = false
         }
       });
+    }else{
+      this.couponForm.controls['endDate'].reset()
+      this.couponForm.controls['startDate'].reset()
     }
   }
   afterPickerOpen() {

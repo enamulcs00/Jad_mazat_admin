@@ -116,7 +116,7 @@
                     <div class="form-group col-md-6">
                         <label for="title">End Date</label>
                         <div class="input-group">
-                            <input class="form-control" readonly [min]="endMinDate" formControlName="endDate" [owlDateTime]="dt2" placeholder="Date">
+                            <input class="form-control" readonly [min]="endMinDate" formControlName="endDate" [owlDateTime]="dt2" placeholder="Date" (change)="dateForm($event)">
                             <div class="input-group-append">
                                 <span class="input-group-text trigger" pickerType="calendar" [owlDateTimeTrigger]="dt2"><i class="fa fa-calendar"></i></span>
                             </div>
