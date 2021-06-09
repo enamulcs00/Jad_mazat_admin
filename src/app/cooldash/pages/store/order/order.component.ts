@@ -94,7 +94,7 @@ export class OrderComponent implements OnInit {
   {
     this.showdrop = true;
     this.assignId = id;
-    this.api.getDrivers(lan,lon,id).subscribe((res:any)=>
+    this.api.getDriversStore(lan,lon,id).subscribe((res:any)=>
     {
       this.showdrop = false;
       this.driver = res.data.drivers

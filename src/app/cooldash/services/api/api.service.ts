@@ -366,7 +366,10 @@ getDrivers(lan,lon,id)
 {
   return this.http.get(this.comm.baseUrl+`/admin/food/getNearbyDrivers?latitude=${lan}&longitude=${lon}&id=${id}`)
 }
-  
+getDriversStore(lan,lon,id)
+{
+  return this.http.get(this.comm.baseUrl+`/admin/store/getNearbyDrivers?latitude=${lan}&longitude=${lon}&id=${id}`)
+}
   getResturantrevApi(value)
   {
     const body={"type":value}
