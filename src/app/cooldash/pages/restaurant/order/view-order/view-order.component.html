@@ -118,13 +118,13 @@
                             <input type="text" name="date" [value]="orderDetail.date | date: 'yyyy-MM-dd'" class="form-control" disabled />
                         </div>
                     </div>
-                    <!-- <div class="col-md-6">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label>Tax</label>
-                            <input type="text" name="open-time" [value]="orderDetail.tax" class="form-control"
+                            <label>Service fee</label>
+                            <input type="text" name="open-time" [value]="orderDetail?.serviceFee" class="form-control"
                                 disabled />
                         </div>
-                    </div> -->
+                    </div>
                 </div>
                 <div class="row" *ngIf="orderDetail?.deliveryDate">
                     <div class="col-md-6">
