@@ -539,7 +539,279 @@
             </div>
           </div>
         </div>
-        <div class="form-group form-actions add_edit">
+        <div class="row">
+          <div class="col-md-12">
+            <h4>Opening days</h4>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Monday -->
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-6"><label>Monday</label></div>
+        <div class="col-md-6">
+          <ui-switch labelOn="Open" switchColor="#4e73df" id="status" [ngModelOptions]="{ standalone: true }"
+           name="status" [(ngModel)]="IsMon" (change)="monday($event)" labelOff="Closed">
+            </ui-switch>
+          <!-- <mat-slide-toggle class="" (change)="monday($event)" [(ngModel)]="IsMon"
+            [ngModelOptions]="{ standalone: true }" color="primary">
+            {{ IsMon == true ? "Open" : "Closed" }}</mat-slide-toggle> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div *ngIf="IsMon">
+        <div class="row">
+          <div class="col-md-5">
+            <input type="time" [(ngModel)]="startTimeMonday" (change)="checkMonday($event)"
+              formControlName="mondayStart" class="form-control">
+            <small
+              *ngIf=" driverForm.controls['mondayStart'].touched && driverForm.controls['mondayStart'].invalid || submitted && errorHandling('mondayStart', 'required')"
+              class="text-danger d-inline-block pt-1">
+              *Start time is required
+            </small>
+          </div>
+          <div class="col-md-5">
+            <input type="time" [(ngModel)]="endTimeMonday" (change)="checkMonday($event)" formControlName="mondayEnd"
+              class="form-control">
+            <small
+              *ngIf=" driverForm.controls['mondayEnd'].touched && driverForm.controls['mondayEnd'].invalid || submitted && errorHandling('mondayEnd', 'required')"
+              class="text-danger d-inline-block pt-1">
+              *End time is required
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tuesday -->
+    <div class="col-md-4 mt-3">
+      <div class="row">
+        <div class="col-md-6"><label>Tuesday</label></div>
+        <div class="col-md-6">
+          <ui-switch labelOn="Open" switchColor="#4e73df" id="status" [ngModelOptions]="{ standalone: true }"
+           name="status" [(ngModel)]="IsTue" (change)="tuesday($event)" labelOff="Closed">
+            </ui-switch>
+          <!-- <mat-slide-toggle (change)="tuesday($event)" class="" [(ngModel)]="IsTue" [ngModelOptions]="{ standalone: true }" color="primary">
+            {{ IsTue == true ? "Open" : "Closed" }}</mat-slide-toggle> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 mt-3">
+      <div *ngIf="IsTue">
+        <div class="row">
+          <div class="col-md-5">
+            <input type="time" [(ngModel)]="startTimeTuesday" (change)="checkTuesday($event)"
+              formControlName="tuesdayStart" class="form-control">
+              <small
+              *ngIf=" driverForm.controls['tuesdayStart'].touched && driverForm.controls['tuesdayStart'].invalid || submitted && errorHandling('tuesdayStart', 'required')"
+              class="text-danger d-inline-block pt-1">
+              *Start time is required
+            </small>
+          </div>
+          <div class="col-md-5">
+            <input type="time" [(ngModel)]="endTimeTuesday" (change)="checkTuesday($event)" formControlName="tuesdayEnd"
+              class="form-control">
+              <small
+              *ngIf=" driverForm.controls['tuesdayEnd'].touched && driverForm.controls['tuesdayEnd'].invalid || submitted && errorHandling('tuesdayEnd', 'required')"
+              class="text-danger d-inline-block pt-1">
+              *End time is required
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wednesday -->
+    <div class="col-md-4 mt-3">
+      <div class="row">
+        <div class="col-md-6"><label>Wednesday</label></div>
+        <div class="col-md-6">
+          <ui-switch labelOn="Open" switchColor="#4e73df" id="status" [ngModelOptions]="{ standalone: true }"
+           name="status" [(ngModel)]="IsWed" (change)="wednesday($event)" labelOff="Closed">
+            </ui-switch>
+          <!-- <mat-slide-toggle (change)="wednesday($event)" class="" [(ngModel)]="IsWed" [ngModelOptions]="{ standalone: true }" color="primary">
+            {{ IsWed == true ? "Open" : "Closed" }}</mat-slide-toggle> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 mt-3">
+      <div *ngIf="IsWed">
+        <div class="row">
+          <div class="col-md-5">
+            <input type="time" [(ngModel)]="startTimeWednesday" (change)="checkWednesday($event)"
+              formControlName="wednesdayStart" class="form-control">
+              <small
+              *ngIf=" driverForm.controls['wednesdayStart'].touched && driverForm.controls['wednesdayStart'].invalid || submitted && errorHandling('wednesdayStart', 'required')"
+              class="text-danger d-inline-block pt-1">
+              *Start time is required
+            </small>
+          </div>
+          <div class="col-md-5">
+            <input type="time" [(ngModel)]="endTimeWednesday" (change)="checkWednesday($event)"
+              formControlName="wednesdayEnd" class="form-control">
+              <small
+              *ngIf=" driverForm.controls['wednesdayEnd'].touched && driverForm.controls['wednesdayEnd'].invalid || submitted && errorHandling('wednesdayEnd', 'required')"
+              class="text-danger d-inline-block pt-1">
+              *End time is required
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Thrusday -->
+    <div class="col-md-4 mt-3">
+      <div class="row">
+        <div class="col-md-6"><label>Thrusday</label></div>
+        <div class="col-md-6">
+          <ui-switch labelOn="Open" switchColor="#4e73df" id="status" [ngModelOptions]="{ standalone: true }"
+           name="status" [(ngModel)]="IsThu" (change)="thrusday($event)" labelOff="Closed">
+            </ui-switch>
+          <!-- <mat-slide-toggle (change)="thrusday($event)" class="" [(ngModel)]="IsThu" [ngModelOptions]="{ standalone: true }" color="primary">
+            {{ IsThu == true ? "Open" : "Closed" }}</mat-slide-toggle> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 mt-3">
+      <div *ngIf="IsThu">
+        <div class="row">
+          <div class="col-md-5">
+            <input type="time" [(ngModel)]="startTimeThrusday" (change)="checkThrusday($event)"
+              formControlName="thrusdayStart" class="form-control">
+              <small
+              *ngIf=" driverForm.controls['thrusdayStart'].touched && driverForm.controls['thrusdayStart'].invalid || submitted && errorHandling('thrusdayStart', 'required')"
+              class="text-danger d-inline-block pt-1">
+              *Start time is required
+            </small>
+          </div>
+          <div class="col-md-5">
+            <input type="time" [(ngModel)]="endTimeThrusday" (change)="checkThrusday($event)"
+              formControlName="thrusdayEnd" class="form-control">
+              <small
+              *ngIf=" driverForm.controls['thrusdayEnd'].touched && driverForm.controls['thrusdayEnd'].invalid || submitted && errorHandling('thrusdayEnd', 'required')"
+              class="text-danger d-inline-block pt-1">
+              *End time is required
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Friday -->
+    <div class="col-md-4 mt-3">
+      <div class="row">
+        <div class="col-md-6"><label>Friday</label></div>
+        <div class="col-md-6">
+          <ui-switch labelOn="Open" switchColor="#4e73df" id="status" [ngModelOptions]="{ standalone: true }"
+           name="status" [(ngModel)]="IsFri" (change)="friday($event)" labelOff="Closed">
+            </ui-switch>
+          <!-- <mat-slide-toggle (change)="friday($event)" class="" [(ngModel)]="IsFri" [ngModelOptions]="{ standalone: true }" color="primary">
+            {{ IsFri == true ? "Open" : "Closed" }}</mat-slide-toggle> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 mt-3">
+      <div *ngIf="IsFri">
+        <div class="row">
+          <div class="col-md-5">
+            <input type="time" [(ngModel)]="startTimeFriday" (change)="checkFriday($event)"
+              formControlName="fridayStart" class="form-control">
+              <small
+              *ngIf=" driverForm.controls['fridayStart'].touched && driverForm.controls['fridayStart'].invalid || submitted && errorHandling('fridayStart', 'required')"
+              class="text-danger d-inline-block pt-1">
+              *Start time is required
+            </small>
+          </div>
+          <div class="col-md-5">
+            <input type="time" [(ngModel)]="endTimeFriday" (change)="checkFriday($event)" formControlName="fridayEnd"
+              class="form-control">
+              <small
+              *ngIf=" driverForm.controls['fridayEnd'].touched && driverForm.controls['fridayEnd'].invalid || submitted && errorHandling('fridayEnd', 'required')"
+              class="text-danger d-inline-block pt-1">
+              *End time is required
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Saturday -->
+    <div class="col-md-4 mt-3">
+      <div class="row">
+        <div class="col-md-6"><label>Saturday</label></div>
+        <div class="col-md-6">
+          <ui-switch labelOn="Open" switchColor="#4e73df" id="status" [ngModelOptions]="{ standalone: true }" name="status" [(ngModel)]="IsSat" (change)="saturday($event)" labelOff="Closed">
+          </ui-switch>
+          <!-- <mat-slide-toggle (change)="saturday($event)" class="" [(ngModel)]="IsSat" [ngModelOptions]="{ standalone: true }" color="primary">
+            {{ IsSat == true ? "Open" : "Closed" }}</mat-slide-toggle> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 mt-3">
+      <div *ngIf="IsSat">
+        <div class="row">
+          <div class="col-md-5">
+            <input type="time" [(ngModel)]="startTimeSaturday" (change)="checkSaturday($event)"
+              formControlName="saturdayStart" class="form-control">
+              <small
+              *ngIf=" driverForm.controls['saturdayStart'].touched && driverForm.controls['saturdayStart'].invalid || submitted && errorHandling('saturdayStart', 'required')"
+              class="text-danger d-inline-block pt-1">
+              *Start time is required
+            </small>
+          </div>
+          <div class="col-md-5">
+            <input type="time" [(ngModel)]="endTimeSaturday" (change)="checkSaturday($event)"
+              formControlName="saturdayEnd" class="form-control">
+              <small
+              *ngIf=" driverForm.controls['saturdayEnd'].touched && driverForm.controls['saturdayEnd'].invalid || submitted && errorHandling('saturdayEnd', 'required')"
+              class="text-danger d-inline-block pt-1">
+              *End time is required
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sunday -->
+    <div class="col-md-4 mt-3">
+      <div class="row">
+        <div class="col-md-6"><label>Sunday</label></div>
+        <div class="col-md-6">
+          <ui-switch labelOn="Open" switchColor="#4e73df" id="status" [ngModelOptions]="{ standalone: true }"
+           name="status" [(ngModel)]="IsSun" (change)="sunday($event)" labelOff="Closed">
+            </ui-switch>
+          <!-- <mat-slide-toggle (change)="sunday($event)" class="" [(ngModel)]="IsSun" [ngModelOptions]="{ standalone: true }" color="primary">
+            {{ IsSun == true ? "Open" : "Closed" }}</mat-slide-toggle> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 mt-3">
+      <div *ngIf="IsSun">
+        <div class="row">
+          <div class="col-md-5">
+            <input type="time" [(ngModel)]="startTimeSunday" (change)="checkSunday($event)"
+              formControlName="sundayStart" class="form-control">
+              <small
+              *ngIf=" driverForm.controls['sundayStart'].touched && driverForm.controls['sundayStart'].invalid || submitted && errorHandling('sundayStart', 'required')"
+              class="text-danger d-inline-block pt-1">
+              *Start time is required
+            </small>
+          </div>
+          <div class="col-md-5">
+            <input type="time" [(ngModel)]="endTimeSunday" (change)="checkSunday($event)" formControlName="sundayEnd"
+              class="form-control">
+              <small
+              *ngIf=" driverForm.controls['sundayEnd'].touched && driverForm.controls['sundayEnd'].invalid || submitted && errorHandling('sundayEnd', 'required')"
+              class="text-danger d-inline-block pt-1">
+              *End time is required
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+        </div>
+        <div class="form-group form-actions add_edit mt-3">
           <button
             i18n="@@Add"
             type="submit"

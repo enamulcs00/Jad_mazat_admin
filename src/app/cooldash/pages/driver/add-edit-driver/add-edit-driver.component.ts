@@ -19,6 +19,27 @@ import { MapsAPILoader } from "@agm/core";
 })
 export class AddEditDriverComponent implements OnInit {
   driverForm: FormGroup;
+  IsMon = false;
+  IsTue = false;
+  IsThu = false;
+  IsWed = false;
+  IsFri = false;
+  IsSat = false;
+  IsSun = false;
+  startTimeMonday: any;
+  endTimeMonday: any;
+  startTimeTuesday: any;
+  endTimeTuesday: any;
+  startTimeWednesday: any;
+  endTimeWednesday: any;
+  startTimeThrusday: any;
+  endTimeThrusday: any;
+  startTimeFriday: any;
+  endTimeFriday: any;
+  startTimeSaturday: any;
+  endTimeSaturday: any;
+  startTimeSunday: any;
+  endTimeSunday: any;
   history = window.history;
   submitted: boolean = false;
   File;
@@ -102,6 +123,20 @@ export class AddEditDriverComponent implements OnInit {
       }),
       vehicleTypeId: new FormControl("", Validators.required),
       password: new FormControl(""),
+      mondayStart: ["", [Validators.required]],
+      mondayEnd: ["", [Validators.required]],
+      tuesdayStart: ["", [Validators.required]],
+      tuesdayEnd: ["", [Validators.required]],
+      wednesdayStart: ["", [Validators.required]],
+      wednesdayEnd: ["", [Validators.required]],
+      thrusdayStart: ["", [Validators.required]],
+      thrusdayEnd: ["", [Validators.required]],
+      fridayStart: ["", [Validators.required]],
+      fridayEnd: ["", [Validators.required]],
+      saturdayStart: ["", [Validators.required]],
+      saturdayEnd: ["", [Validators.required]],
+      sundayStart: ["", [Validators.required]],
+      sundayEnd: ["", [Validators.required]],
       address: this.formBuilder.group({
         address: new FormControl("", Validators.required),
         latitude: new FormControl("", Validators.required),
@@ -109,6 +144,7 @@ export class AddEditDriverComponent implements OnInit {
         location: new FormControl("", Validators.required),
         zipcode: new FormControl("", Validators.required)
       })
+
     });
     this.comm.getCountryCode().subscribe(res => {
       this.countryCodes = res["countryArray"];
@@ -146,6 +182,27 @@ export class AddEditDriverComponent implements OnInit {
       this.driverForm.get('password').updateValueAndValidity();
       this.getAllVerticleType(this.byDefaultType);
     }
+
+    this.driverForm.controls["mondayStart"].disable();
+    this.driverForm.controls["mondayEnd"].disable();
+
+    this.driverForm.controls["tuesdayStart"].disable();
+    this.driverForm.controls["tuesdayEnd"].disable();
+
+    this.driverForm.controls["wednesdayStart"].disable();
+    this.driverForm.controls["wednesdayEnd"].disable();
+
+    this.driverForm.controls["thrusdayStart"].disable();
+    this.driverForm.controls["thrusdayEnd"].disable();
+
+    this.driverForm.controls["fridayStart"].disable();
+    this.driverForm.controls["fridayEnd"].disable();
+
+    this.driverForm.controls["saturdayStart"].disable();
+    this.driverForm.controls["saturdayEnd"].disable();
+
+    this.driverForm.controls["sundayStart"].disable();
+    this.driverForm.controls["sundayEnd"].disable();
   }
 
   getDriverById(id) {
@@ -355,5 +412,158 @@ export class AddEditDriverComponent implements OnInit {
       this.toastr.errorToastr("Please select the country code");
     }
   }
+
+  monday(event) {
+    if (event) {
+      this.driverForm.controls["mondayStart"].enable();
+      this.driverForm.controls["mondayEnd"].enable();
+    } else {
+      this.driverForm.controls["mondayStart"].disable();
+      this.driverForm.controls["mondayEnd"].disable();
+    }
+  }
+
+  tuesday(event) {
+    if (event) {
+      this.driverForm.controls["tuesdayStart"].enable();
+      this.driverForm.controls["tuesdayEnd"].enable();
+    } else {
+      this.driverForm.controls["tuesdayStart"].disable();
+      this.driverForm.controls["tuesdayEnd"].disable();
+    }
+  }
+
+  wednesday(event) {
+    if (event) {
+      this.driverForm.controls["wednesdayStart"].enable();
+      this.driverForm.controls["wednesdayEnd"].enable();
+    } else {
+      this.driverForm.controls["wednesdayStart"].disable();
+      this.driverForm.controls["wednesdayEnd"].disable();
+    }
+  }
+
+  thrusday(event) {
+    if (event) {
+      this.driverForm.controls["thrusdayStart"].enable();
+      this.driverForm.controls["thrusdayEnd"].enable();
+    } else {
+      this.driverForm.controls["thrusdayStart"].disable();
+      this.driverForm.controls["thrusdayEnd"].disable();
+    }
+  }
+
+  friday(event) {
+    // console.log("Event",event);
+    if (event) {
+      this.driverForm.controls["fridayStart"].enable();
+      this.driverForm.controls["fridayEnd"].enable();
+    } else {
+      this.driverForm.controls["fridayStart"].disable();
+      this.driverForm.controls["fridayEnd"].disable();
+    }
+  }
+
+  saturday(event) {
+    if (event) {
+      this.driverForm.controls["saturdayStart"].enable();
+      this.driverForm.controls["saturdayEnd"].enable();
+    } else {
+      this.driverForm.controls["saturdayStart"].disable();
+      this.driverForm.controls["saturdayEnd"].disable();
+    }
+  }
+
+  sunday(event) {
+    if (event) {
+      this.driverForm.controls["sundayStart"].enable();
+      this.driverForm.controls["sundayEnd"].enable();
+    } else {
+      this.driverForm.controls["sundayStart"].disable();
+      this.driverForm.controls["sundayEnd"].disable();
+    }
+  }
+
+  //Check the start time & end time of Monday
+  checkMonday() {
+    if (this.startTimeMonday && this.endTimeMonday) {
+      if (this.startTimeMonday >= this.endTimeMonday) {
+        this.driverForm.controls["mondayStart"].reset();
+        this.driverForm.controls["mondayEnd"].reset();
+        this.toastr.errorToastr("Invalid End Time");
+      }
+    }
+  }
+
+  // Check the start time & end time of Tuesday
+  checkTuesday() {
+    if (this.startTimeTuesday && this.endTimeTuesday) {
+      if (this.startTimeTuesday >= this.endTimeTuesday) {
+        this.driverForm.controls["tuesdayStart"].reset();
+        this.driverForm.controls["tuesdayEnd"].reset();
+        this.toastr.errorToastr("Invalid End Time");
+      }
+    }
+  }
+
+  // Check the start time & end time of Wednesday
+  checkWednesday() {
+    if (this.startTimeWednesday && this.endTimeWednesday) {
+      if (this.startTimeWednesday >= this.endTimeWednesday) {
+        this.driverForm.controls["wednesdayStart"].reset();
+        this.driverForm.controls["wednesdayEnd"].reset();
+        this.toastr.errorToastr("Invalid End Time");
+      }
+    }
+  }
+
+  // Check the start time & end time of Thrusday
+  checkThrusday() {
+    if (this.startTimeThrusday && this.endTimeThrusday) {
+      if (this.startTimeThrusday >= this.endTimeThrusday) {
+        this.driverForm.controls["thrusdayStart"].reset();
+        this.driverForm.controls["thrusdayEnd"].reset();
+        this.toastr.errorToastr("Invalid End Time");
+      }
+    }
+  }
+
+  // Check the start time & end time of Friday
+  checkFriday() {
+    if (this.startTimeFriday && this.endTimeFriday) {
+      if (this.startTimeFriday >= this.endTimeFriday) {
+        this.driverForm.controls["fridayStart"].reset();
+        this.driverForm.controls["fridayEnd"].reset();
+        this.toastr.errorToastr("Invalid End Time");
+      }
+    }
+  }
+
+  // Check the start time & end time of Saturday
+  checkSaturday() {
+    if (this.startTimeSaturday && this.endTimeSaturday) {
+      if (this.startTimeSaturday >= this.endTimeSaturday) {
+        this.driverForm.controls["saturdayStart"].reset();
+        this.driverForm.controls["saturdayEnd"].reset();
+        this.toastr.errorToastr("Invalid End Time");
+      }
+    }
+  }
+
+  // Check the start time & end time of Sunday
+  checkSunday() {
+    if (this.startTimeSunday && this.endTimeSunday) {
+      if (this.startTimeSunday >= this.endTimeSunday) {
+        this.driverForm.controls["sundayStart"].reset();
+        this.driverForm.controls["sundayEnd"].reset();
+        this.toastr.errorToastr("Invalid End Time");
+      }
+    }
+  }
+
+  // Error Handling
+  public errorHandling = (control: string, error: string) => {
+    return this.driverForm.controls[control].hasError(error);
+  };
 
 }
