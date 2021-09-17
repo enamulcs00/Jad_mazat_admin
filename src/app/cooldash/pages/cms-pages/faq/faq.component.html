@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-md-12 user_title">
+                    <h6 class="m-0 font-weight-bold text-primary">Frequently Asked Questions</h6>
+                </div>
+            </div>
+        </div>
+        <form [formGroup]="faqForm">
+        <div class="card-body mb-3" formArrayName="data">
+            <div *ngFor="let quantity of specification().controls; let i = index" [formGroupName]="i">
+
+                <div class="bg-light p-3 mb-3">
+                  <div class="form-group">
+                    <input #que (keydown.space)="avoidBlankSpace($event ,que.value)" formControlName="question" type="text" id="que" name="que" class="form-control"
+                      placeholder="Question">
+                      <small
+                      *ngIf="quantity.get('question').hasError('required') && quantity.get('question').touched"
+                      class="text-danger d-inline-block pt-1">
+                      *Question is required
+                  </small>
+                  </div>
+                  <div class="">
+                    <textarea #ans (keydown.space)="avoidBlankSpace($event ,ans.value)" formControlName="answer" class="form-control" rows="3" placeholder="Add Answer here"></textarea>
+                    <small
+                      *ngIf="quantity.get('answer').hasError('required') && quantity.get('answer').touched"
+                      class="text-danger d-inline-block pt-1">
+                      *Answer is required
+                  </small>
+                  </div>
+                </div>
+                <div class="showInputField"></div>
+                <div class="form-group">
+                  <button (click)="addNewSpecification()" class="btn btn-success">Add</button>
+                  <button *ngIf="showRemove"  (click)="removeSpecification(i)" class="btn btn-success ml-3" [disabled]="specification().length===1">Remove</button>
+                </div>
+    
+    
+    
+              </div>
+        </div>
+    </form>
+    </div>
+    <div class="form-group form-actions">
+        <button (click)="saveFaq()" type="submit" class="btn btn-sm btn-success">
+            Save
+        </button>
+    </div>
+</div>

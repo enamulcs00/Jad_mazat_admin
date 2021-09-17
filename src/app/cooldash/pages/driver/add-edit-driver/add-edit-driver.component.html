@@ -28,40 +28,19 @@
               <div class="form-group col-md-6">
                 <label i18n="@@First_Name" for="title">First Name</label>
                 <div class="input-group">
-                  <input
-                    type="text"
-                    id="name"
-                    class="form-control"
-                    formControlName="firstName"
-                    placeholder=""
-                  />
+                  <input type="text" id="name" class="form-control" formControlName="firstName" placeholder="" />
                 </div>
-                <div
-                  *ngIf="submitted && driverForm.controls.firstName.errors"
-                  class="invalid-feedback"
-                >
-                  <div
-                    i18n="@@First_Name_Required"
-                    *ngIf="driverForm.controls.firstName.errors.required"
-                  >
+                <div *ngIf="submitted && driverForm.controls.firstName.errors" class="invalid-feedback">
+                  <div i18n="@@First_Name_Required" *ngIf="driverForm.controls.firstName.errors.required">
                     First Name is required
                   </div>
-                  <div
-                    i18n="@@First_Name_3_chars"
-                    *ngIf="driverForm.controls.firstName.errors.minlength"
-                  >
+                  <div i18n="@@First_Name_3_chars" *ngIf="driverForm.controls.firstName.errors.minlength">
                     First Name must be at least 3 characters long.
                   </div>
-                  <div
-                    i18n="@@First_Name_max_16_chars"
-                    *ngIf="driverForm.controls.firstName.errors.maxlength"
-                  >
+                  <div i18n="@@First_Name_max_16_chars" *ngIf="driverForm.controls.firstName.errors.maxlength">
                     First Name can be max 16 characters long.
                   </div>
-                  <div
-                    i18n="@@Invalid_chars"
-                    *ngIf="driverForm.controls.firstName.errors.pattern"
-                  >
+                  <div i18n="@@Invalid_chars" *ngIf="driverForm.controls.firstName.errors.pattern">
                     Invalid character.
                   </div>
                 </div>
@@ -69,40 +48,19 @@
               <div class="form-group col-md-6">
                 <label i18n="@@Last_Name" for="title">Last Name</label>
                 <div class="input-group">
-                  <input
-                    type="text"
-                    id="name"
-                    class="form-control"
-                    formControlName="lastName"
-                    placeholder=""
-                  />
+                  <input type="text" id="name" class="form-control" formControlName="lastName" placeholder="" />
                 </div>
-                <div
-                  *ngIf="submitted && driverForm.controls.lastName.errors"
-                  class="invalid-feedback"
-                >
-                  <div
-                    i18n="@@Last_Name_Required"
-                    *ngIf="driverForm.controls.lastName.errors.required"
-                  >
+                <div *ngIf="submitted && driverForm.controls.lastName.errors" class="invalid-feedback">
+                  <div i18n="@@Last_Name_Required" *ngIf="driverForm.controls.lastName.errors.required">
                     Last Name is required
                   </div>
-                  <div
-                    i18n="@@Last_Name_3_chars"
-                    *ngIf="driverForm.controls.lastName.errors.minlength"
-                  >
+                  <div i18n="@@Last_Name_3_chars" *ngIf="driverForm.controls.lastName.errors.minlength">
                     Last Name must be at least 3 characters long.
                   </div>
-                  <div
-                    i18n="@@Last_Name_max_16"
-                    *ngIf="driverForm.controls.lastName.errors.maxlength"
-                  >
+                  <div i18n="@@Last_Name_max_16" *ngIf="driverForm.controls.lastName.errors.maxlength">
                     Last Name can be max 16 characters long.
                   </div>
-                  <div
-                    i18n="@@Invalid_chars"
-                    *ngIf="driverForm.controls.lastName.errors.pattern"
-                  >
+                  <div i18n="@@Invalid_chars" *ngIf="driverForm.controls.lastName.errors.pattern">
                     Invalid character.
                   </div>
                 </div>
@@ -112,28 +70,13 @@
           <div class="form-group col-md-6">
             <label i18n="@@Email" for="title">Email</label>
             <div class="input-group">
-              <input
-                type="text"
-                id="name"
-                class="form-control"
-                formControlName="email"
-                placeholder=""
-              />
+              <input type="text" id="name" class="form-control" formControlName="email" placeholder="" />
             </div>
-            <div
-              *ngIf="submitted && driverForm.controls.email.errors"
-              class="invalid-feedback"
-            >
-              <div
-                i18n="@@Email_required"
-                *ngIf="driverForm.controls.email.errors.required"
-              >
+            <div *ngIf="submitted && driverForm.controls.email.errors" class="invalid-feedback">
+              <div i18n="@@Email_required" *ngIf="driverForm.controls.email.errors.required">
                 Email is required
               </div>
-              <div
-                i18n="@@Email_not_valid"
-                *ngIf="driverForm.controls.email.errors.pattern"
-              >
+              <div i18n="@@Email_not_valid" *ngIf="driverForm.controls.email.errors.pattern">
                 Email is not valid
               </div>
             </div>
@@ -143,28 +86,13 @@
           <div class="form-group col-md-6" *ngIf="!id">
             <label i18n="@@Password" for="category">Password</label>
             <div class="input-group">
-              <input
-                type="password"
-                id="name"
-                class="form-control"
-                formControlName="password"
-                placeholder=""
-              />
+              <input type="password" id="name" class="form-control" formControlName="password" placeholder="" />
             </div>
-            <div
-              *ngIf="submitted && driverForm.controls.password.errors"
-              class="invalid-feedback"
-            >
-              <div
-                i18n="@@Password_required"
-                *ngIf="driverForm.controls.password.errors.required"
-              >
+            <div *ngIf="submitted && driverForm.controls.password.errors" class="invalid-feedback">
+              <div i18n="@@Password_required" *ngIf="driverForm.controls.password.errors.required">
                 Password is required
               </div>
-              <div
-                i18n="@@Password_min_8"
-                *ngIf="driverForm.controls.password.errors.minlength"
-              >
+              <div i18n="@@Password_min_8" *ngIf="driverForm.controls.password.errors.minlength">
                 Password must be atleast 8 characters
               </div>
             </div>
@@ -172,30 +100,16 @@
           <div class="form-group col-md-6" formGroupName="address">
             <label for="category" i18n="@@Invalid_chars">Address</label>
             <div class="input-group">
-              <input
-                class="form-control"
-                type="text"
-                name="name"
-                formControlName="location"
-                placeholder=""
-                ngx-google-places-autocomplete
-                #placesRef="ngx-places"
-                (onAddressChange)="handleAddress($event)"
-              />
+              <input class="form-control" type="text" name="name" formControlName="location" placeholder=""
+                ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddress($event)" />
             </div>
-            <div
-              *ngIf="
+            <div *ngIf="
                 submitted &&
                 driverForm.controls['address'].get('location').errors
-              "
-              class="invalid-feedback"
-            >
-              <div
-                i18n="@@Address_Required"
-                *ngIf="
+              " class="invalid-feedback">
+              <div i18n="@@Address_Required" *ngIf="
                   driverForm.controls['address'].get('location').errors.required
-                "
-              >
+                ">
                 Address is required
               </div>
             </div>
@@ -205,27 +119,15 @@
           <div class="form-group col-md-6">
             <label i18n="@@Street" for="category">Street</label>
             <div class="input-group">
-              <input
-                type="text"
-                id="name"
-                class="form-control"
-                formControlName="address"
-                placeholder=""
-              />
+              <input type="text" id="name" class="form-control" formControlName="address" placeholder="" />
             </div>
-            <div
-              *ngIf="
+            <div *ngIf="
                 submitted &&
                 driverForm.controls['address'].get('address').errors
-              "
-              class="invalid-feedback"
-            >
-              <div
-                i18n="@@Street_Required"
-                *ngIf="
+              " class="invalid-feedback">
+              <div i18n="@@Street_Required" *ngIf="
                   driverForm.controls['address'].get('address').errors.required
-                "
-              >
+                ">
                 Street is required
               </div>
             </div>
@@ -233,27 +135,15 @@
           <div class="form-group col-md-6">
             <label i18n="@@Zip_Code" for="category">Zip Code</label>
             <div class="input-group">
-              <input
-                class="form-control"
-                type="text"
-                name="name"
-                formControlName="zipcode"
-                placeholder=""
-              />
+              <input class="form-control" type="text" name="name" formControlName="zipcode" placeholder="" />
             </div>
-            <div
-              *ngIf="
+            <div *ngIf="
                 submitted &&
                 driverForm.controls['address'].get('zipcode').errors
-              "
-              class="invalid-feedback"
-            >
-              <div
-                i18n="@@Zip_Code_Required"
-                *ngIf="
+              " class="invalid-feedback">
+              <div i18n="@@Zip_Code_Required" *ngIf="
                   driverForm.controls['address'].get('zipcode').errors.required
-                "
-              >
+                ">
                 Zip Code is required
               </div>
             </div>
@@ -265,56 +155,28 @@
             <div class="row">
               <div class="col-4">
                 <div class="login_email country_code_div">
-                  <div
-                    class="loginmail_input"
-                    *ngIf="countryCodes && countryCodes.length > 0"
-                  >
-                    <ngx-select-dropdown
-                      (change)="selectionChanged1($event)"
-                      formControlName="countryCode"
-                      [config]="config1"
-                      [options]="countryCodes"
-                    >
+                  <div class="loginmail_input" *ngIf="countryCodes && countryCodes.length > 0">
+                    <ngx-select-dropdown (change)="selectionChanged1($event)" formControlName="countryCode"
+                      [config]="config1" [options]="countryCodes">
                     </ngx-select-dropdown>
                   </div>
                 </div>
               </div>
               <div class="col-8">
                 <div class="input-group">
-                  <input
-                    type="text"
-                    id="name"
-                    class="form-control"
-                    formControlName="phone"
-                    placeholder=""
-                  />
+                  <input type="text" id="name" class="form-control" formControlName="phone" placeholder="" />
                 </div>
-                <div
-                  *ngIf="submitted && driverForm.controls.phone.errors"
-                  class="invalid-feedback"
-                >
-                  <div
-                    i18n="@@Phone_Number_Required"
-                    *ngIf="driverForm.controls.phone.errors.required"
-                  >
+                <div *ngIf="submitted && driverForm.controls.phone.errors" class="invalid-feedback">
+                  <div i18n="@@Phone_Number_Required" *ngIf="driverForm.controls.phone.errors.required">
                     Phone Number is required
                   </div>
-                  <div
-                    i18n="@@Phone_number_min_7"
-                    *ngIf="driverForm.controls.phone.errors.minlength"
-                  >
+                  <div i18n="@@Phone_number_min_7" *ngIf="driverForm.controls.phone.errors.minlength">
                     Phone Number must be at least 7 characters long.
                   </div>
-                  <div
-                    i18n="@@phone_number_max_15"
-                    *ngIf="driverForm.controls.phone.errors.maxlength"
-                  >
+                  <div i18n="@@phone_number_max_15" *ngIf="driverForm.controls.phone.errors.maxlength">
                     Phone Number can be max 15 characters long.
                   </div>
-                  <div
-                    i18n="@@phone_not_valid"
-                    *ngIf="driverForm.controls.phone.errors.pattern"
-                  >
+                  <div i18n="@@phone_not_valid" *ngIf="driverForm.controls.phone.errors.pattern">
                     Phone Number is not valid.
                   </div>
                 </div>
@@ -322,77 +184,47 @@
             </div>
           </div>
           <div class="form-group col-md-6" formGroupName="emergencyPhone">
-            <label i18n="@@Invalid_chars" for="category"
-              >Emergency Phone Number</label
-            >
+            <label i18n="@@Invalid_chars" for="category">Emergency Phone Number</label>
             <div class="row">
               <div class="col-4">
                 <div class="login_email country_code_div">
-                  <div
-                    class="loginmail_input"
-                    *ngIf="countryCodes && countryCodes.length > 0"
-                  >
-                    <ngx-select-dropdown
-                      (change)="selectionChanged2($event)"
-                      formControlName="countryCode"
-                      [config]="config2"
-                      [options]="countryCodes"
-                    >
+                  <div class="loginmail_input" *ngIf="countryCodes && countryCodes.length > 0">
+                    <ngx-select-dropdown (change)="selectionChanged2($event)" formControlName="countryCode"
+                      [config]="config2" [options]="countryCodes">
                     </ngx-select-dropdown>
                   </div>
                 </div>
               </div>
               <div class="col-8">
                 <div class="input-group">
-                  <input
-                    type="text"
-                    id="name"
-                    class="form-control"
-                    formControlName="phone"
-                    placeholder=""
-                  />
+                  <input type="text" id="name" class="form-control" formControlName="phone" placeholder="" />
                 </div>
-                <div
-                  *ngIf="
+                <div *ngIf="
                     submitted &&
                     driverForm.controls['emergencyPhone'].get('phone').errors
-                  "
-                  class="invalid-feedback"
-                >
-                  <div
-                    i18n="@@Phone_Number_Required"
-                    *ngIf="
+                  " class="invalid-feedback">
+                  <div i18n="@@Phone_Number_Required" *ngIf="
                       driverForm.controls['emergencyPhone'].get('phone').errors
                         .required
-                    "
-                  >
+                    ">
                     Phone Number is required
                   </div>
-                  <div
-                    i18n="@@Phone_number_min_7"
-                    *ngIf="
+                  <div i18n="@@Phone_number_min_7" *ngIf="
                       driverForm.controls['emergencyPhone'].get('phone').errors
                         .minlength
-                    "
-                  >
+                    ">
                     Phone Number must be at least 7 characters long.
                   </div>
-                  <div
-                    i18n="@@phone_number_max_15"
-                    *ngIf="
+                  <div i18n="@@phone_number_max_15" *ngIf="
                       driverForm.controls['emergencyPhone'].get('phone').errors
                         .maxlength
-                    "
-                  >
+                    ">
                     Phone Number can be max 15 characters long.
                   </div>
-                  <div
-                    i18n="@@phone_not_valid"
-                    *ngIf="
+                  <div i18n="@@phone_not_valid" *ngIf="
                       driverForm.controls['emergencyPhone'].get('phone').errors
                         .pattern
-                    "
-                  >
+                    ">
                     Phone Number not valid.
                   </div>
                 </div>
@@ -404,13 +236,8 @@
           <div class="form-group col-md-6">
             <label i18n="@@user_type" for="types">User Type</label>
             <div class="input-group">
-              <select
-                [(ngModel)]="byDefaultType"
-                class="form-control"
-                formControlName="verticalType"
-                *ngIf="type"
-                (change)="onChange($event)"
-              >
+              <select [(ngModel)]="byDefaultType" class="form-control" formControlName="verticalType" *ngIf="type"
+                (change)="onChange($event)">
                 <option i18n="@@choose_here" value="" selected disabled hidden>
                   Choose here
                 </option>
@@ -418,14 +245,8 @@
                   {{ data.name }}
                 </option>
               </select>
-              <div
-                *ngIf="submitted && driverForm.controls.verticalType.errors"
-                class="invalid-feedback"
-              >
-                <div
-                  i18n="@@type_required"
-                  *ngIf="driverForm.controls.verticalType.errors.required"
-                >
+              <div *ngIf="submitted && driverForm.controls.verticalType.errors" class="invalid-feedback">
+                <div i18n="@@type_required" *ngIf="driverForm.controls.verticalType.errors.required">
                   Type is required
                 </div>
               </div>
@@ -434,11 +255,7 @@
           <div class="form-group col-md-6">
             <label i18n="@@Vehical_type" for="types">Vehicle Type</label>
             <div class="input-group">
-              <select
-                class="form-control"
-                formControlName="vehicleTypeId"
-                *ngIf="vehicleTypes"
-              >
+              <select class="form-control" formControlName="vehicleTypeId" *ngIf="vehicleTypes">
                 <option i18n="@@choose_here" value="" selected disabled hidden>
                   Choose here
                 </option>
@@ -446,14 +263,8 @@
                   {{ type.name }}
                 </option>
               </select>
-              <div
-                *ngIf="submitted && driverForm.controls.vehicleTypeId.errors"
-                class="invalid-feedback"
-              >
-                <div
-                  i18n="@@vehical_type_required"
-                  *ngIf="driverForm.controls.vehicleTypeId.errors.required"
-                >
+              <div *ngIf="submitted && driverForm.controls.vehicleTypeId.errors" class="invalid-feedback">
+                <div i18n="@@vehical_type_required" *ngIf="driverForm.controls.vehicleTypeId.errors.required">
                   Vehicle Type is required
                 </div>
               </div>
@@ -464,21 +275,9 @@
           <div class="form-group col-md-6">
             <label i18n="@@vehical_name" for="price">Vehicle Name</label>
             <div class="input-group">
-              <input
-                type="text"
-                id="vehicleName"
-                class="form-control"
-                formControlName="vehicleName"
-                placeholder=""
-              />
-              <div
-                *ngIf="submitted && driverForm.controls.vehicleName.errors"
-                class="invalid-feedback"
-              >
-                <div
-                  i18n="@@vehical_name_required"
-                  *ngIf="driverForm.controls.vehicleName.errors.required"
-                >
+              <input type="text" id="vehicleName" class="form-control" formControlName="vehicleName" placeholder="" />
+              <div *ngIf="submitted && driverForm.controls.vehicleName.errors" class="invalid-feedback">
+                <div i18n="@@vehical_name_required" *ngIf="driverForm.controls.vehicleName.errors.required">
                   Vehicle Name is required
                 </div>
               </div>
@@ -487,21 +286,10 @@
           <div class="form-group col-md-6">
             <label i18n="@@vehical_number" for="price">Vehicle Number</label>
             <div class="input-group">
-              <input
-                type="text"
-                id="vehicleNumber"
-                class="form-control"
-                formControlName="vehicleNumber"
-                placeholder=""
-              />
-              <div
-                *ngIf="submitted && driverForm.controls.vehicleNumber.errors"
-                class="invalid-feedback"
-              >
-                <div
-                  i18n="@@vehical_no_required"
-                  *ngIf="driverForm.controls.vehicleNumber.errors.required"
-                >
+              <input type="text" id="vehicleNumber" class="form-control" formControlName="vehicleNumber"
+                placeholder="" />
+              <div *ngIf="submitted && driverForm.controls.vehicleNumber.errors" class="invalid-feedback">
+                <div i18n="@@vehical_no_required" *ngIf="driverForm.controls.vehicleNumber.errors.required">
                   Vehicle Number is required
                 </div>
               </div>
@@ -515,323 +303,304 @@
               <div class="usr_profile_imgbx">
                 <div class="user_img">
                   <figure *ngIf="driverImage">
-                    <img
-                      style="height: 150px; width: 150px"
-                      [src]="driverImage"
-                    />
+                    <img style="height: 150px; width: 150px" [src]="driverImage" />
                   </figure>
                 </div>
               </div>
               <div class="user_profile_edit">
-                <input
-                  type="file"
-                  accept="image/*"
-                  (change)="profilePic($event)"
-                />
+                <input type="file" accept="image/*" (change)="profilePic($event)" />
               </div>
-              <div
-                i18n="@@image_required"
-                *ngIf="submitted && !driverImage"
-                class="invalid-feedback"
-              >
+              <div i18n="@@image_required" *ngIf="submitted && !driverImage" class="invalid-feedback">
                 Image is required
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12">
-            <h4>Opening days</h4>
-          </div>
-        </div>
-        <div class="row">
-          <!-- Monday -->
-    <div class="col-md-4">
+      </form>
       <div class="row">
-        <div class="col-md-6"><label>Monday</label></div>
-        <div class="col-md-6">
-          <ui-switch labelOn="Open" switchColor="#4e73df" id="status" [ngModelOptions]="{ standalone: true }"
-           name="status" [(ngModel)]="IsMon" (change)="monday($event)" labelOff="Closed">
-            </ui-switch>
-          <!-- <mat-slide-toggle class="" (change)="monday($event)" [(ngModel)]="IsMon"
+        <div class="col-md-12">
+          <h4>Timings</h4>
+        </div>
+      </div>
+      <form [formGroup]="driverForm1">
+      <div class="row mt-3">
+        <!-- Monday -->
+        <div class="col-md-4">
+          <div class="row">
+            <div class="col-md-6"><label>Monday</label></div>
+            <div class="col-md-6">
+              <ui-switch labelOn="Open" switchColor="#4e73df" id="status" [ngModelOptions]="{ standalone: true }"
+                name="status" [(ngModel)]="IsMon" (change)="monday($event)" labelOff="Closed">
+              </ui-switch>
+              <!-- <mat-slide-toggle class="" (change)="monday($event)" [(ngModel)]="IsMon"
             [ngModelOptions]="{ standalone: true }" color="primary">
             {{ IsMon == true ? "Open" : "Closed" }}</mat-slide-toggle> -->
-        </div>
-      </div>
-    </div>
-    <div class="col-md-8">
-      <div *ngIf="IsMon">
-        <div class="row">
-          <div class="col-md-5">
-            <input type="time" [(ngModel)]="startTimeMonday" (change)="checkMonday($event)"
-              formControlName="mondayStart" class="form-control">
-            <small
-              *ngIf=" driverForm.controls['mondayStart'].touched && driverForm.controls['mondayStart'].invalid || submitted && errorHandling('mondayStart', 'required')"
-              class="text-danger d-inline-block pt-1">
-              *Start time is required
-            </small>
-          </div>
-          <div class="col-md-5">
-            <input type="time" [(ngModel)]="endTimeMonday" (change)="checkMonday($event)" formControlName="mondayEnd"
-              class="form-control">
-            <small
-              *ngIf=" driverForm.controls['mondayEnd'].touched && driverForm.controls['mondayEnd'].invalid || submitted && errorHandling('mondayEnd', 'required')"
-              class="text-danger d-inline-block pt-1">
-              *End time is required
-            </small>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+        <div class="col-md-8">
+          <div *ngIf="IsMon">
+            <div class="row">
+              <div class="col-md-5">
+                <input type="time" [(ngModel)]="startTimeMonday" (change)="checkMonday($event)"
+                  formControlName="mondayStart" class="form-control">
+                <small
+                  *ngIf=" driverForm1.controls['mondayStart'].touched && driverForm1.controls['mondayStart'].invalid || submitted && errorHandling('mondayStart', 'required')"
+                  class="text-danger d-inline-block pt-1">
+                  *Start time is required
+                </small>
+              </div>
+              <div class="col-md-5">
+                <input type="time" [(ngModel)]="endTimeMonday" (change)="checkMonday($event)"
+                  formControlName="mondayEnd" class="form-control">
+                <small
+                  *ngIf=" driverForm1.controls['mondayEnd'].touched && driverForm1.controls['mondayEnd'].invalid || submitted && errorHandling('mondayEnd', 'required')"
+                  class="text-danger d-inline-block pt-1">
+                  *End time is required
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <!-- Tuesday -->
-    <div class="col-md-4 mt-3">
-      <div class="row">
-        <div class="col-md-6"><label>Tuesday</label></div>
-        <div class="col-md-6">
-          <ui-switch labelOn="Open" switchColor="#4e73df" id="status" [ngModelOptions]="{ standalone: true }"
-           name="status" [(ngModel)]="IsTue" (change)="tuesday($event)" labelOff="Closed">
-            </ui-switch>
-          <!-- <mat-slide-toggle (change)="tuesday($event)" class="" [(ngModel)]="IsTue" [ngModelOptions]="{ standalone: true }" color="primary">
+        <!-- Tuesday -->
+        <div class="col-md-4 mt-3">
+          <div class="row">
+            <div class="col-md-6"><label>Tuesday</label></div>
+            <div class="col-md-6">
+              <ui-switch labelOn="Open" switchColor="#4e73df" id="status" [ngModelOptions]="{ standalone: true }"
+                name="status" [(ngModel)]="IsTue" (change)="tuesday($event)" labelOff="Closed">
+              </ui-switch>
+              <!-- <mat-slide-toggle (change)="tuesday($event)" class="" [(ngModel)]="IsTue" [ngModelOptions]="{ standalone: true }" color="primary">
             {{ IsTue == true ? "Open" : "Closed" }}</mat-slide-toggle> -->
-        </div>
-      </div>
-    </div>
-    <div class="col-md-8 mt-3">
-      <div *ngIf="IsTue">
-        <div class="row">
-          <div class="col-md-5">
-            <input type="time" [(ngModel)]="startTimeTuesday" (change)="checkTuesday($event)"
-              formControlName="tuesdayStart" class="form-control">
-              <small
-              *ngIf=" driverForm.controls['tuesdayStart'].touched && driverForm.controls['tuesdayStart'].invalid || submitted && errorHandling('tuesdayStart', 'required')"
-              class="text-danger d-inline-block pt-1">
-              *Start time is required
-            </small>
-          </div>
-          <div class="col-md-5">
-            <input type="time" [(ngModel)]="endTimeTuesday" (change)="checkTuesday($event)" formControlName="tuesdayEnd"
-              class="form-control">
-              <small
-              *ngIf=" driverForm.controls['tuesdayEnd'].touched && driverForm.controls['tuesdayEnd'].invalid || submitted && errorHandling('tuesdayEnd', 'required')"
-              class="text-danger d-inline-block pt-1">
-              *End time is required
-            </small>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+        <div class="col-md-8 mt-3">
+          <div *ngIf="IsTue">
+            <div class="row">
+              <div class="col-md-5">
+                <input type="time" [(ngModel)]="startTimeTuesday" (change)="checkTuesday($event)"
+                  formControlName="tuesdayStart" class="form-control">
+                <small
+                  *ngIf=" driverForm1.controls['tuesdayStart'].touched && driverForm1.controls['tuesdayStart'].invalid || submitted && errorHandling('tuesdayStart', 'required')"
+                  class="text-danger d-inline-block pt-1">
+                  *Start time is required
+                </small>
+              </div>
+              <div class="col-md-5">
+                <input type="time" [(ngModel)]="endTimeTuesday" (change)="checkTuesday($event)"
+                  formControlName="tuesdayEnd" class="form-control">
+                <small
+                  *ngIf=" driverForm1.controls['tuesdayEnd'].touched && driverForm1.controls['tuesdayEnd'].invalid || submitted && errorHandling('tuesdayEnd', 'required')"
+                  class="text-danger d-inline-block pt-1">
+                  *End time is required
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <!-- Wednesday -->
-    <div class="col-md-4 mt-3">
-      <div class="row">
-        <div class="col-md-6"><label>Wednesday</label></div>
-        <div class="col-md-6">
-          <ui-switch labelOn="Open" switchColor="#4e73df" id="status" [ngModelOptions]="{ standalone: true }"
-           name="status" [(ngModel)]="IsWed" (change)="wednesday($event)" labelOff="Closed">
-            </ui-switch>
-          <!-- <mat-slide-toggle (change)="wednesday($event)" class="" [(ngModel)]="IsWed" [ngModelOptions]="{ standalone: true }" color="primary">
+        <!-- Wednesday -->
+        <div class="col-md-4 mt-3">
+          <div class="row">
+            <div class="col-md-6"><label>Wednesday</label></div>
+            <div class="col-md-6">
+              <ui-switch labelOn="Open" switchColor="#4e73df" id="status" [ngModelOptions]="{ standalone: true }"
+                name="status" [(ngModel)]="IsWed" (change)="wednesday($event)" labelOff="Closed">
+              </ui-switch>
+              <!-- <mat-slide-toggle (change)="wednesday($event)" class="" [(ngModel)]="IsWed" [ngModelOptions]="{ standalone: true }" color="primary">
             {{ IsWed == true ? "Open" : "Closed" }}</mat-slide-toggle> -->
-        </div>
-      </div>
-    </div>
-    <div class="col-md-8 mt-3">
-      <div *ngIf="IsWed">
-        <div class="row">
-          <div class="col-md-5">
-            <input type="time" [(ngModel)]="startTimeWednesday" (change)="checkWednesday($event)"
-              formControlName="wednesdayStart" class="form-control">
-              <small
-              *ngIf=" driverForm.controls['wednesdayStart'].touched && driverForm.controls['wednesdayStart'].invalid || submitted && errorHandling('wednesdayStart', 'required')"
-              class="text-danger d-inline-block pt-1">
-              *Start time is required
-            </small>
-          </div>
-          <div class="col-md-5">
-            <input type="time" [(ngModel)]="endTimeWednesday" (change)="checkWednesday($event)"
-              formControlName="wednesdayEnd" class="form-control">
-              <small
-              *ngIf=" driverForm.controls['wednesdayEnd'].touched && driverForm.controls['wednesdayEnd'].invalid || submitted && errorHandling('wednesdayEnd', 'required')"
-              class="text-danger d-inline-block pt-1">
-              *End time is required
-            </small>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+        <div class="col-md-8 mt-3">
+          <div *ngIf="IsWed">
+            <div class="row">
+              <div class="col-md-5">
+                <input type="time" [(ngModel)]="startTimeWednesday" (change)="checkWednesday($event)"
+                  formControlName="wednesdayStart" class="form-control">
+                <small
+                  *ngIf=" driverForm1.controls['wednesdayStart'].touched && driverForm1.controls['wednesdayStart'].invalid || submitted && errorHandling('wednesdayStart', 'required')"
+                  class="text-danger d-inline-block pt-1">
+                  *Start time is required
+                </small>
+              </div>
+              <div class="col-md-5">
+                <input type="time" [(ngModel)]="endTimeWednesday" (change)="checkWednesday($event)"
+                  formControlName="wednesdayEnd" class="form-control">
+                <small
+                  *ngIf=" driverForm1.controls['wednesdayEnd'].touched && driverForm1.controls['wednesdayEnd'].invalid || submitted && errorHandling('wednesdayEnd', 'required')"
+                  class="text-danger d-inline-block pt-1">
+                  *End time is required
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <!-- Thrusday -->
-    <div class="col-md-4 mt-3">
-      <div class="row">
-        <div class="col-md-6"><label>Thrusday</label></div>
-        <div class="col-md-6">
-          <ui-switch labelOn="Open" switchColor="#4e73df" id="status" [ngModelOptions]="{ standalone: true }"
-           name="status" [(ngModel)]="IsThu" (change)="thrusday($event)" labelOff="Closed">
-            </ui-switch>
-          <!-- <mat-slide-toggle (change)="thrusday($event)" class="" [(ngModel)]="IsThu" [ngModelOptions]="{ standalone: true }" color="primary">
+        <!-- Thrusday -->
+        <div class="col-md-4 mt-3">
+          <div class="row">
+            <div class="col-md-6"><label>Thrusday</label></div>
+            <div class="col-md-6">
+              <ui-switch labelOn="Open" switchColor="#4e73df" id="status" [ngModelOptions]="{ standalone: true }"
+                name="status" [(ngModel)]="IsThu" (change)="thrusday($event)" labelOff="Closed">
+              </ui-switch>
+              <!-- <mat-slide-toggle (change)="thrusday($event)" class="" [(ngModel)]="IsThu" [ngModelOptions]="{ standalone: true }" color="primary">
             {{ IsThu == true ? "Open" : "Closed" }}</mat-slide-toggle> -->
-        </div>
-      </div>
-    </div>
-    <div class="col-md-8 mt-3">
-      <div *ngIf="IsThu">
-        <div class="row">
-          <div class="col-md-5">
-            <input type="time" [(ngModel)]="startTimeThrusday" (change)="checkThrusday($event)"
-              formControlName="thrusdayStart" class="form-control">
-              <small
-              *ngIf=" driverForm.controls['thrusdayStart'].touched && driverForm.controls['thrusdayStart'].invalid || submitted && errorHandling('thrusdayStart', 'required')"
-              class="text-danger d-inline-block pt-1">
-              *Start time is required
-            </small>
-          </div>
-          <div class="col-md-5">
-            <input type="time" [(ngModel)]="endTimeThrusday" (change)="checkThrusday($event)"
-              formControlName="thrusdayEnd" class="form-control">
-              <small
-              *ngIf=" driverForm.controls['thrusdayEnd'].touched && driverForm.controls['thrusdayEnd'].invalid || submitted && errorHandling('thrusdayEnd', 'required')"
-              class="text-danger d-inline-block pt-1">
-              *End time is required
-            </small>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+        <div class="col-md-8 mt-3">
+          <div *ngIf="IsThu">
+            <div class="row">
+              <div class="col-md-5">
+                <input type="time" [(ngModel)]="startTimeThrusday" (change)="checkThrusday($event)"
+                  formControlName="thrusdayStart" class="form-control">
+                <small
+                  *ngIf=" driverForm1.controls['thrusdayStart'].touched && driverForm1.controls['thrusdayStart'].invalid || submitted && errorHandling('thrusdayStart', 'required')"
+                  class="text-danger d-inline-block pt-1">
+                  *Start time is required
+                </small>
+              </div>
+              <div class="col-md-5">
+                <input type="time" [(ngModel)]="endTimeThrusday" (change)="checkThrusday($event)"
+                  formControlName="thrusdayEnd" class="form-control">
+                <small
+                  *ngIf=" driverForm1.controls['thrusdayEnd'].touched && driverForm1.controls['thrusdayEnd'].invalid || submitted && errorHandling('thrusdayEnd', 'required')"
+                  class="text-danger d-inline-block pt-1">
+                  *End time is required
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <!-- Friday -->
-    <div class="col-md-4 mt-3">
-      <div class="row">
-        <div class="col-md-6"><label>Friday</label></div>
-        <div class="col-md-6">
-          <ui-switch labelOn="Open" switchColor="#4e73df" id="status" [ngModelOptions]="{ standalone: true }"
-           name="status" [(ngModel)]="IsFri" (change)="friday($event)" labelOff="Closed">
-            </ui-switch>
-          <!-- <mat-slide-toggle (change)="friday($event)" class="" [(ngModel)]="IsFri" [ngModelOptions]="{ standalone: true }" color="primary">
+        <!-- Friday -->
+        <div class="col-md-4 mt-3">
+          <div class="row">
+            <div class="col-md-6"><label>Friday</label></div>
+            <div class="col-md-6">
+              <ui-switch labelOn="Open" switchColor="#4e73df" id="status" [ngModelOptions]="{ standalone: true }"
+                name="status" [(ngModel)]="IsFri" (change)="friday($event)" labelOff="Closed">
+              </ui-switch>
+              <!-- <mat-slide-toggle (change)="friday($event)" class="" [(ngModel)]="IsFri" [ngModelOptions]="{ standalone: true }" color="primary">
             {{ IsFri == true ? "Open" : "Closed" }}</mat-slide-toggle> -->
-        </div>
-      </div>
-    </div>
-    <div class="col-md-8 mt-3">
-      <div *ngIf="IsFri">
-        <div class="row">
-          <div class="col-md-5">
-            <input type="time" [(ngModel)]="startTimeFriday" (change)="checkFriday($event)"
-              formControlName="fridayStart" class="form-control">
-              <small
-              *ngIf=" driverForm.controls['fridayStart'].touched && driverForm.controls['fridayStart'].invalid || submitted && errorHandling('fridayStart', 'required')"
-              class="text-danger d-inline-block pt-1">
-              *Start time is required
-            </small>
-          </div>
-          <div class="col-md-5">
-            <input type="time" [(ngModel)]="endTimeFriday" (change)="checkFriday($event)" formControlName="fridayEnd"
-              class="form-control">
-              <small
-              *ngIf=" driverForm.controls['fridayEnd'].touched && driverForm.controls['fridayEnd'].invalid || submitted && errorHandling('fridayEnd', 'required')"
-              class="text-danger d-inline-block pt-1">
-              *End time is required
-            </small>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+        <div class="col-md-8 mt-3">
+          <div *ngIf="IsFri">
+            <div class="row">
+              <div class="col-md-5">
+                <input type="time" [(ngModel)]="startTimeFriday" (change)="checkFriday($event)"
+                  formControlName="fridayStart" class="form-control">
+                <small
+                  *ngIf=" driverForm1.controls['fridayStart'].touched && driverForm1.controls['fridayStart'].invalid || submitted && errorHandling('fridayStart', 'required')"
+                  class="text-danger d-inline-block pt-1">
+                  *Start time is required
+                </small>
+              </div>
+              <div class="col-md-5">
+                <input type="time" [(ngModel)]="endTimeFriday" (change)="checkFriday($event)"
+                  formControlName="fridayEnd" class="form-control">
+                <small
+                  *ngIf=" driverForm1.controls['fridayEnd'].touched && driverForm1.controls['fridayEnd'].invalid || submitted && errorHandling('fridayEnd', 'required')"
+                  class="text-danger d-inline-block pt-1">
+                  *End time is required
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <!-- Saturday -->
-    <div class="col-md-4 mt-3">
-      <div class="row">
-        <div class="col-md-6"><label>Saturday</label></div>
-        <div class="col-md-6">
-          <ui-switch labelOn="Open" switchColor="#4e73df" id="status" [ngModelOptions]="{ standalone: true }" name="status" [(ngModel)]="IsSat" (change)="saturday($event)" labelOff="Closed">
-          </ui-switch>
-          <!-- <mat-slide-toggle (change)="saturday($event)" class="" [(ngModel)]="IsSat" [ngModelOptions]="{ standalone: true }" color="primary">
+        <!-- Saturday -->
+        <div class="col-md-4 mt-3">
+          <div class="row">
+            <div class="col-md-6"><label>Saturday</label></div>
+            <div class="col-md-6">
+              <ui-switch labelOn="Open" switchColor="#4e73df" id="status" [ngModelOptions]="{ standalone: true }"
+                name="status" [(ngModel)]="IsSat" (change)="saturday($event)" labelOff="Closed">
+              </ui-switch>
+              <!-- <mat-slide-toggle (change)="saturday($event)" class="" [(ngModel)]="IsSat" [ngModelOptions]="{ standalone: true }" color="primary">
             {{ IsSat == true ? "Open" : "Closed" }}</mat-slide-toggle> -->
-        </div>
-      </div>
-    </div>
-    <div class="col-md-8 mt-3">
-      <div *ngIf="IsSat">
-        <div class="row">
-          <div class="col-md-5">
-            <input type="time" [(ngModel)]="startTimeSaturday" (change)="checkSaturday($event)"
-              formControlName="saturdayStart" class="form-control">
-              <small
-              *ngIf=" driverForm.controls['saturdayStart'].touched && driverForm.controls['saturdayStart'].invalid || submitted && errorHandling('saturdayStart', 'required')"
-              class="text-danger d-inline-block pt-1">
-              *Start time is required
-            </small>
-          </div>
-          <div class="col-md-5">
-            <input type="time" [(ngModel)]="endTimeSaturday" (change)="checkSaturday($event)"
-              formControlName="saturdayEnd" class="form-control">
-              <small
-              *ngIf=" driverForm.controls['saturdayEnd'].touched && driverForm.controls['saturdayEnd'].invalid || submitted && errorHandling('saturdayEnd', 'required')"
-              class="text-danger d-inline-block pt-1">
-              *End time is required
-            </small>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+        <div class="col-md-8 mt-3">
+          <div *ngIf="IsSat">
+            <div class="row">
+              <div class="col-md-5">
+                <input type="time" [(ngModel)]="startTimeSaturday" (change)="checkSaturday($event)"
+                  formControlName="saturdayStart" class="form-control">
+                <small
+                  *ngIf=" driverForm1.controls['saturdayStart'].touched && driverForm1.controls['saturdayStart'].invalid || submitted && errorHandling('saturdayStart', 'required')"
+                  class="text-danger d-inline-block pt-1">
+                  *Start time is required
+                </small>
+              </div>
+              <div class="col-md-5">
+                <input type="time" [(ngModel)]="endTimeSaturday" (change)="checkSaturday($event)"
+                  formControlName="saturdayEnd" class="form-control">
+                <small
+                  *ngIf=" driverForm1.controls['saturdayEnd'].touched && driverForm1.controls['saturdayEnd'].invalid || submitted && errorHandling('saturdayEnd', 'required')"
+                  class="text-danger d-inline-block pt-1">
+                  *End time is required
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <!-- Sunday -->
-    <div class="col-md-4 mt-3">
-      <div class="row">
-        <div class="col-md-6"><label>Sunday</label></div>
-        <div class="col-md-6">
-          <ui-switch labelOn="Open" switchColor="#4e73df" id="status" [ngModelOptions]="{ standalone: true }"
-           name="status" [(ngModel)]="IsSun" (change)="sunday($event)" labelOff="Closed">
-            </ui-switch>
-          <!-- <mat-slide-toggle (change)="sunday($event)" class="" [(ngModel)]="IsSun" [ngModelOptions]="{ standalone: true }" color="primary">
+        <!-- Sunday -->
+        <div class="col-md-4 mt-3">
+          <div class="row">
+            <div class="col-md-6"><label>Sunday</label></div>
+            <div class="col-md-6">
+              <ui-switch labelOn="Open" switchColor="#4e73df" id="status" [ngModelOptions]="{ standalone: true }"
+                name="status" [(ngModel)]="IsSun" (change)="sunday($event)" labelOff="Closed">
+              </ui-switch>
+              <!-- <mat-slide-toggle (change)="sunday($event)" class="" [(ngModel)]="IsSun" [ngModelOptions]="{ standalone: true }" color="primary">
             {{ IsSun == true ? "Open" : "Closed" }}</mat-slide-toggle> -->
-        </div>
-      </div>
-    </div>
-    <div class="col-md-8 mt-3">
-      <div *ngIf="IsSun">
-        <div class="row">
-          <div class="col-md-5">
-            <input type="time" [(ngModel)]="startTimeSunday" (change)="checkSunday($event)"
-              formControlName="sundayStart" class="form-control">
-              <small
-              *ngIf=" driverForm.controls['sundayStart'].touched && driverForm.controls['sundayStart'].invalid || submitted && errorHandling('sundayStart', 'required')"
-              class="text-danger d-inline-block pt-1">
-              *Start time is required
-            </small>
-          </div>
-          <div class="col-md-5">
-            <input type="time" [(ngModel)]="endTimeSunday" (change)="checkSunday($event)" formControlName="sundayEnd"
-              class="form-control">
-              <small
-              *ngIf=" driverForm.controls['sundayEnd'].touched && driverForm.controls['sundayEnd'].invalid || submitted && errorHandling('sundayEnd', 'required')"
-              class="text-danger d-inline-block pt-1">
-              *End time is required
-            </small>
+            </div>
           </div>
         </div>
+        <div class="col-md-8 mt-3">
+          <div *ngIf="IsSun">
+            <div class="row">
+              <div class="col-md-5">
+                <input type="time" [(ngModel)]="startTimeSunday" (change)="checkSunday($event)"
+                  formControlName="sundayStart" class="form-control">
+                <small
+                  *ngIf=" driverForm1.controls['sundayStart'].touched && driverForm1.controls['sundayStart'].invalid || submitted && errorHandling('sundayStart', 'required')"
+                  class="text-danger d-inline-block pt-1">
+                  *Start time is required
+                </small>
+              </div>
+              <div class="col-md-5">
+                <input type="time" [(ngModel)]="endTimeSunday" (change)="checkSunday($event)"
+                  formControlName="sundayEnd" class="form-control">
+                <small
+                  *ngIf=" driverForm1.controls['sundayEnd'].touched && driverForm1.controls['sundayEnd'].invalid || submitted && errorHandling('sundayEnd', 'required')"
+                  class="text-danger d-inline-block pt-1">
+                  *End time is required
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-        </div>
-        <div class="form-group form-actions add_edit mt-3">
-          <button
-            i18n="@@Add"
-            type="submit"
-            class="btn btn-sm btn-success"
-            *ngIf="!id"
-            (click)="submit()"
-          >
-            Add
-          </button>
-          <button
-            i18n="@@Update"
-            type="submit"
-            class="btn btn-sm btn-success"
-            *ngIf="id"
-            (click)="update()"
-          >
-            Update
-          </button>
-        </div>
-      </form>
+    </form>
+      <div class="form-group form-actions add_edit mt-3">
+        <button i18n="@@Add" type="submit" class="btn btn-sm btn-success" *ngIf="!id" (click)="submit()">
+          Add
+        </button>
+        <button i18n="@@Update" type="submit" class="btn btn-sm btn-success" *ngIf="id" (click)="update()">
+          Update
+        </button>
+      </div>
+      
     </div>
   </div>
 </div>

@@ -1512,6 +1512,32 @@ class Watchdog {
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/cooldash/pages/cms-pages/contact/contact.component.html":
+/*!***************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/cooldash/pages/cms-pages/contact/contact.component.html ***!
+  \***************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\">\n    <div class=\"card shadow mb-4\">\n        <div class=\"card-header py-3\">\n            <div class=\"row\">\n                <div class=\"col-md-12 user_title\">\n                    <h6 class=\"m-0 font-weight-bold text-primary\">Admin Contact Details</h6>\n                </div>\n            </div>\n        </div>\n        <div class=\"card-body mb-3\">\n            <form [formGroup]=\"contactForm\">\n                <div class=\"row\">\n                    <div class=\"col-md-6\">\n                        <label for=\"email\">Email</label>\n                        <input formControlName=\"email\" type=\"text\" id=\"email\" class=\"form-control\">\n                        <small\n                            *ngIf=\" contactForm.controls['email'].touched && contactForm.controls['email'].invalid || submitted && errorHandling('email', 'required')\"\n                            class=\"text-danger d-inline-block pt-1\">\n                            *Please enter valid email\n                        </small>\n\n                    </div>\n\n                    <div class=\"col-md-6\">\n                        <label for=\"phn\">Phone Number</label>\n                        <input formControlName=\"phone\" (keypress)=\"numberOnly($event)\" type=\"text\" id=\"phn\"\n                            class=\"form-control\">\n                            <small\n                            *ngIf=\" contactForm.controls['phone'].touched && contactForm.controls['phone'].invalid || submitted && errorHandling('phone', 'required')\"\n                            class=\"text-danger d-inline-block pt-1\">\n                            *Please enter valid Phone number\n                        </small>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n    <div class=\"form-group form-actions\">\n        <button (click)=\"save()\" type=\"submit\" class=\"btn btn-sm btn-success\">\n            Save\n        </button>\n    </div>\n</div>");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/cooldash/pages/cms-pages/faq/faq.component.html":
+/*!*******************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/cooldash/pages/cms-pages/faq/faq.component.html ***!
+  \*******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\">\n    <div class=\"card shadow mb-4\">\n        <div class=\"card-header py-3\">\n            <div class=\"row\">\n                <div class=\"col-md-12 user_title\">\n                    <h6 class=\"m-0 font-weight-bold text-primary\">Frequently Asked Questions</h6>\n                </div>\n            </div>\n        </div>\n        <form [formGroup]=\"faqForm\">\n        <div class=\"card-body mb-3\" formArrayName=\"data\">\n            <div *ngFor=\"let quantity of specification().controls; let i = index\" [formGroupName]=\"i\">\n\n                <div class=\"bg-light p-3 mb-3\">\n                  <div class=\"form-group\">\n                    <input #que (keydown.space)=\"avoidBlankSpace($event ,que.value)\" formControlName=\"question\" type=\"text\" id=\"que\" name=\"que\" class=\"form-control\"\n                      placeholder=\"Question\">\n                      <small\n                      *ngIf=\"quantity.get('question').hasError('required') && quantity.get('question').touched\"\n                      class=\"text-danger d-inline-block pt-1\">\n                      *Question is required\n                  </small>\n                  </div>\n                  <div class=\"\">\n                    <textarea #ans (keydown.space)=\"avoidBlankSpace($event ,ans.value)\" formControlName=\"answer\" class=\"form-control\" rows=\"3\" placeholder=\"Add Answer here\"></textarea>\n                    <small\n                      *ngIf=\"quantity.get('answer').hasError('required') && quantity.get('answer').touched\"\n                      class=\"text-danger d-inline-block pt-1\">\n                      *Answer is required\n                  </small>\n                  </div>\n                </div>\n                <div class=\"showInputField\"></div>\n                <div class=\"form-group\">\n                  <button (click)=\"addNewSpecification()\" class=\"btn btn-success\">Add</button>\n                  <button *ngIf=\"showRemove\"  (click)=\"removeSpecification(i)\" class=\"btn btn-success ml-3\" [disabled]=\"specification().length===1\">Remove</button>\n                </div>\n    \n    \n    \n              </div>\n        </div>\n    </form>\n    </div>\n    <div class=\"form-group form-actions\">\n        <button (click)=\"saveFaq()\" type=\"submit\" class=\"btn btn-sm btn-success\">\n            Save\n        </button>\n    </div>\n</div>");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/cooldash/pages/cms-pages/privacy-policy/privacy-policy.component.html":
 /*!*****************************************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/cooldash/pages/cms-pages/privacy-policy/privacy-policy.component.html ***!
@@ -1521,7 +1547,7 @@ class Watchdog {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\">\n    <div class=\"card shadow mb-4\">\n        <div class=\"card-header py-3\">\n            <div class=\"row\">\n                <div class=\"col-md-12 user_title\">\n                    <h6 class=\"m-0 font-weight-bold text-primary\">Privacy Policy</h6>\n                </div>\n            </div>\n        </div>\n        <div class=\"card-body\">\n            <ckeditor [editor]=\"Editor\" [(ngModel)]=\"data\"></ckeditor>\n        </div>\n    </div>\n    <div class=\"form-group form-actions\">\n        <button type=\"submit\" class=\"btn btn-sm btn-success\" (click)=\"savePrivacyPolicy()\">\n            Save\n        </button>\n    </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\">\r\n    <div class=\"card shadow mb-4\">\r\n        <div class=\"card-header py-3\">\r\n            <div class=\"row\">\r\n                <div class=\"col-md-12 user_title\">\r\n                    <h6 class=\"m-0 font-weight-bold text-primary\">Privacy Policy</h6>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"card-body\">\r\n            <ckeditor [editor]=\"Editor\" [(ngModel)]=\"data\"></ckeditor>\r\n        </div>\r\n    </div>\r\n    <div class=\"form-group form-actions\">\r\n        <button type=\"submit\" class=\"btn btn-sm btn-success\" (click)=\"savePrivacyPolicy()\">\r\n            Save\r\n        </button>\r\n    </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -1534,7 +1560,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\">\n    <div class=\"card shadow mb-4\">\n        <div class=\"card-header py-3\">\n            <div class=\"row\">\n                <div class=\"col-md-12 user_title\">\n                    <h6 class=\"m-0 font-weight-bold text-primary\">Terms and Conditions</h6>\n                </div>\n            </div>\n        </div>\n        <div class=\"card-body\">\n            <ckeditor [editor]=\"Editor\" [(ngModel)]=\"data\"></ckeditor>\n        </div>\n    </div>\n    <div class=\"form-group form-actions\">\n        <button type=\"submit\" class=\"btn btn-sm btn-success\" (click)=\"saveTermsandConditions()\">\n            Save\n        </button>\n    </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\">\r\n    <div class=\"card shadow mb-4\">\r\n        <div class=\"card-header py-3\">\r\n            <div class=\"row\">\r\n                <div class=\"col-md-12 user_title\">\r\n                    <h6 class=\"m-0 font-weight-bold text-primary\">Terms and Conditions</h6>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"card-body\">\r\n            <ckeditor [editor]=\"Editor\" [(ngModel)]=\"data\"></ckeditor>\r\n        </div>\r\n    </div>\r\n    <div class=\"form-group form-actions\">\r\n        <button type=\"submit\" class=\"btn btn-sm btn-success\" (click)=\"saveTermsandConditions()\">\r\n            Save\r\n        </button>\r\n    </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -1553,6 +1579,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _terms_and_conditions_terms_and_conditions_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./terms-and-conditions/terms-and-conditions.component */ "./src/app/cooldash/pages/cms-pages/terms-and-conditions/terms-and-conditions.component.ts");
 /* harmony import */ var _privacy_policy_privacy_policy_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./privacy-policy/privacy-policy.component */ "./src/app/cooldash/pages/cms-pages/privacy-policy/privacy-policy.component.ts");
+/* harmony import */ var _contact_contact_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./contact/contact.component */ "./src/app/cooldash/pages/cms-pages/contact/contact.component.ts");
+/* harmony import */ var _faq_faq_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./faq/faq.component */ "./src/app/cooldash/pages/cms-pages/faq/faq.component.ts");
+
+
 
 
 
@@ -1575,6 +1605,20 @@ const routes = [
             {
                 path: "privacypolicy",
                 component: _privacy_policy_privacy_policy_component__WEBPACK_IMPORTED_MODULE_4__["PrivacyPolicyComponent"],
+                data: {
+                    title: ""
+                }
+            },
+            {
+                path: "contact",
+                component: _contact_contact_component__WEBPACK_IMPORTED_MODULE_5__["ContactComponent"],
+                data: {
+                    title: ""
+                }
+            },
+            {
+                path: "faq",
+                component: _faq_faq_component__WEBPACK_IMPORTED_MODULE_6__["FaqComponent"],
                 data: {
                     title: ""
                 }
@@ -1613,6 +1657,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ckeditor_ckeditor5_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ckeditor/ckeditor5-angular */ "./node_modules/@ckeditor/ckeditor5-angular/fesm2015/ckeditor-ckeditor5-angular.js");
 /* harmony import */ var _cms_pages_routing_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./cms-pages-routing.module */ "./src/app/cooldash/pages/cms-pages/cms-pages-routing.module.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _contact_contact_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./contact/contact.component */ "./src/app/cooldash/pages/cms-pages/contact/contact.component.ts");
+/* harmony import */ var _faq_faq_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./faq/faq.component */ "./src/app/cooldash/pages/cms-pages/faq/faq.component.ts");
+
+
 
 
 
@@ -1627,7 +1675,7 @@ CmsPagesModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
         declarations: [
             _terms_and_conditions_terms_and_conditions_component__WEBPACK_IMPORTED_MODULE_3__["TermsAndConditionsComponent"],
-            _privacy_policy_privacy_policy_component__WEBPACK_IMPORTED_MODULE_4__["PrivacyPolicyComponent"]
+            _privacy_policy_privacy_policy_component__WEBPACK_IMPORTED_MODULE_4__["PrivacyPolicyComponent"], _contact_contact_component__WEBPACK_IMPORTED_MODULE_8__["ContactComponent"], _faq_faq_component__WEBPACK_IMPORTED_MODULE_9__["FaqComponent"]
         ],
         imports: [
             _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
@@ -1638,6 +1686,323 @@ CmsPagesModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         ]
     })
 ], CmsPagesModule);
+
+
+
+/***/ }),
+
+/***/ "./src/app/cooldash/pages/cms-pages/contact/contact.component.scss":
+/*!*************************************************************************!*\
+  !*** ./src/app/cooldash/pages/cms-pages/contact/contact.component.scss ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2Nvb2xkYXNoL3BhZ2VzL2Ntcy1wYWdlcy9jb250YWN0L2NvbnRhY3QuY29tcG9uZW50LnNjc3MifQ== */");
+
+/***/ }),
+
+/***/ "./src/app/cooldash/pages/cms-pages/contact/contact.component.ts":
+/*!***********************************************************************!*\
+  !*** ./src/app/cooldash/pages/cms-pages/contact/contact.component.ts ***!
+  \***********************************************************************/
+/*! exports provided: ContactComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ContactComponent", function() { return ContactComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var ng6_toastr_notifications__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ng6-toastr-notifications */ "./node_modules/ng6-toastr-notifications/fesm2015/ng6-toastr-notifications.js");
+/* harmony import */ var _cooldash_services_api_api_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../cooldash/services/api/api.service */ "./src/app/cooldash/services/api/api.service.ts");
+/* harmony import */ var _cooldash_services_common_common_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../cooldash/services/common/common.service */ "./src/app/cooldash/services/common/common.service.ts");
+
+
+
+
+
+
+
+let ContactComponent = class ContactComponent {
+    constructor(formBuilder, comm, api, toastr, router, route) {
+        this.formBuilder = formBuilder;
+        this.comm = comm;
+        this.api = api;
+        this.toastr = toastr;
+        this.router = router;
+        this.route = route;
+        this.submitted = false;
+        // Error Handling
+        this.errorHandling = (control, error) => {
+            return this.contactForm.controls[control].hasError(error);
+        };
+        if (localStorage.getItem("admin")) {
+            const data = JSON.parse(localStorage.getItem("admin"));
+            if (data.id) {
+                this.id = data.id;
+            }
+        }
+    }
+    ngOnInit() {
+        this.contactForm = this.formBuilder.group({
+            email: ["", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].email]],
+            phone: [
+                "",
+                [
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required,
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(7),
+                    _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].maxLength(15),
+                ],
+            ],
+        });
+        this.getContact();
+    }
+    save() {
+        this.submitted = true;
+        if (this.contactForm.valid) {
+            let body = {
+                phone: this.contactForm.controls["phone"].value,
+                email: this.contactForm.controls["email"].value,
+                adminId: this.id
+            };
+            this.api.addCrm(body).subscribe(res => {
+                if (res['response']['success']) {
+                    this.toastr.successToastr(res['response']['message']);
+                    this.getContact();
+                }
+                else {
+                    this.toastr.errorToastr(res['response']['message']);
+                }
+            });
+        }
+        else {
+            this.toastr.errorToastr("Please fill the required fields");
+        }
+    }
+    getContact() {
+        this.api.getCrm(this.id).subscribe((res) => {
+            if (res["response"]["success"]) {
+                this.contactForm.controls["phone"].setValue(res["data"]["phone"]);
+                this.contactForm.controls["email"].setValue(res["data"]["email"]);
+            }
+        });
+    }
+    //text only number
+    numberOnly(event) {
+        const charCode = event.which ? event.which : event.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
+    // Avoid empty Blank Space
+    avoidBlankSpace(e, ref) {
+        if (!ref.length) {
+            e.preventDefault();
+        }
+    }
+};
+ContactComponent.ctorParameters = () => [
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"] },
+    { type: _cooldash_services_common_common_service__WEBPACK_IMPORTED_MODULE_6__["CommonService"] },
+    { type: _cooldash_services_api_api_service__WEBPACK_IMPORTED_MODULE_5__["ApiService"] },
+    { type: ng6_toastr_notifications__WEBPACK_IMPORTED_MODULE_4__["ToastrManager"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] }
+];
+ContactComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: "app-contact",
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./contact.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/cooldash/pages/cms-pages/contact/contact.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./contact.component.scss */ "./src/app/cooldash/pages/cms-pages/contact/contact.component.scss")).default]
+    })
+], ContactComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/cooldash/pages/cms-pages/faq/faq.component.scss":
+/*!*****************************************************************!*\
+  !*** ./src/app/cooldash/pages/cms-pages/faq/faq.component.scss ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2Nvb2xkYXNoL3BhZ2VzL2Ntcy1wYWdlcy9mYXEvZmFxLmNvbXBvbmVudC5zY3NzIn0= */");
+
+/***/ }),
+
+/***/ "./src/app/cooldash/pages/cms-pages/faq/faq.component.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/cooldash/pages/cms-pages/faq/faq.component.ts ***!
+  \***************************************************************/
+/*! exports provided: FaqComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FaqComponent", function() { return FaqComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var ng6_toastr_notifications__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ng6-toastr-notifications */ "./node_modules/ng6-toastr-notifications/fesm2015/ng6-toastr-notifications.js");
+/* harmony import */ var _cooldash_services_api_api_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../cooldash/services/api/api.service */ "./src/app/cooldash/services/api/api.service.ts");
+/* harmony import */ var _cooldash_services_common_common_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../cooldash/services/common/common.service */ "./src/app/cooldash/services/common/common.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
+
+
+
+
+
+
+let FaqComponent = class FaqComponent {
+    constructor(formBuilder, comm, api, toastr, router, route) {
+        this.formBuilder = formBuilder;
+        this.comm = comm;
+        this.api = api;
+        this.toastr = toastr;
+        this.router = router;
+        this.route = route;
+        this.submitted = false;
+        this.errorHandling = (control, error) => {
+            return this.faqForm.controls[control].hasError(error);
+        };
+        if (localStorage.getItem("admin")) {
+            const data = JSON.parse(localStorage.getItem("admin"));
+            if (data.id) {
+                this.id = data.id;
+            }
+        }
+        this.faqForm = formBuilder.group({
+            data: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormArray"]([], [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]),
+        });
+    }
+    ngOnInit() {
+        this.getFaqData();
+        this.dummyData = [
+            {
+                question: "",
+                answer: "",
+            },
+        ];
+    }
+    getFaqData() {
+        this.api.getCrm(this.id).subscribe((res) => {
+            if (res["response"]["success"]) {
+                if (res["data"]["faqs"]) {
+                    this.faqData = res["data"]["faqs"];
+                    if (this.faqData.length) {
+                        this.setSpecifications(this.faqData);
+                        this.showRemove = true;
+                    }
+                    if (!this.faqData.length) {
+                        this.setSpecifications(this.dummyData);
+                        this.showRemove = false;
+                    }
+                }
+                else {
+                    this.toastr.errorToastr("Failed to retrieve FAQ's from Server");
+                    this.setSpecifications(this.dummyData);
+                    this.showRemove = false;
+                }
+            }
+        });
+    }
+    setSpecifications(item) {
+        const formArray = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormArray"]([]);
+        for (let x of item) {
+            // console.log(x);
+            formArray.push(this.formBuilder.group({
+                question: x.question,
+                answer: x.answer,
+            }));
+        }
+        this.faqForm.setControl("data", formArray);
+    }
+    // Avoid empty Blank Space
+    avoidBlankSpace(e, ref) {
+        if (!ref.length) {
+            e.preventDefault();
+        }
+    }
+    saveFaq() {
+        this.submitted = true;
+        if (this.faqForm.valid) {
+            let body = {
+                faqs: this.faqForm.get("data").value,
+                adminId: this.id,
+            };
+            // console.log(body, "FAQ");
+            // return;
+            this.api.addCrm(body).subscribe((res) => {
+                if (res["response"]["success"]) {
+                    this.toastr.successToastr(res["response"]["message"]);
+                    this.getFaqData();
+                }
+                else {
+                    this.toastr.errorToastr(res["response"]["message"]);
+                }
+            });
+        }
+        else {
+            this.faqForm.markAllAsTouched();
+            this.toastr.errorToastr("Please fill the required fields");
+        }
+    }
+    addNewSpecification() {
+        this.showRemove = true;
+        this.specification().push(this.newSpecifiaction());
+    }
+    removeSpecification(i) {
+        this.specification().removeAt(i);
+    }
+    newSpecifiaction() {
+        return this.formBuilder.group({
+            question: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]),
+            answer: new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]("", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]),
+        });
+    }
+    specification() {
+        return this.faqForm.get("data");
+    }
+    add() {
+        let row = document.createElement("div");
+        row.className = "bg-light p-3 mb-3";
+        row.innerHTML = `
+      <div class="form-group">
+      <input type="text" class="form-control" placeholder="Add Quetions">
+      </div>
+      <div class="">
+      <textarea class="form-control" rows="3" placeholder="Add Answer here"></textarea>
+      </div>
+      `;
+        document.querySelector(".showInputField").appendChild(row);
+    }
+};
+FaqComponent.ctorParameters = () => [
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] },
+    { type: _cooldash_services_common_common_service__WEBPACK_IMPORTED_MODULE_5__["CommonService"] },
+    { type: _cooldash_services_api_api_service__WEBPACK_IMPORTED_MODULE_4__["ApiService"] },
+    { type: ng6_toastr_notifications__WEBPACK_IMPORTED_MODULE_3__["ToastrManager"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"] }
+];
+FaqComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: "app-faq",
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./faq.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/cooldash/pages/cms-pages/faq/faq.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./faq.component.scss */ "./src/app/cooldash/pages/cms-pages/faq/faq.component.scss")).default]
+    })
+], FaqComponent);
 
 
 

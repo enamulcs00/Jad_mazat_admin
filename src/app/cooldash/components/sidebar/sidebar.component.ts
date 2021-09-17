@@ -231,6 +231,18 @@ export class SidebarComponent implements OnInit {
             icon: "assets/icon/dashboard.png",
             class: "child",
           },
+          {
+            path: "/cms/contact",
+            title: "Contact Details",
+            icon: "assets/icon/dashboard.png",
+            class: "child",
+          },
+          {
+            path: "/cms/faq",
+            title: "FAQ",
+            icon: "assets/icon/dashboard.png",
+            class: "child",
+          },
         ],
       },
       {

@@ -19,6 +19,7 @@ import { MapsAPILoader } from "@agm/core";
 })
 export class AddEditDriverComponent implements OnInit {
   driverForm: FormGroup;
+  driverForm1: FormGroup;
   IsMon = false;
   IsTue = false;
   IsThu = false;
@@ -73,6 +74,7 @@ export class AddEditDriverComponent implements OnInit {
   countryStatus1: boolean = false;
   countryStatus2: boolean = false;
   address: { address: any; latitude: any; longitude: any; };
+  timings: any;
   constructor(
     private formBuilder: FormBuilder,
     public comm: CommonService,
@@ -123,6 +125,19 @@ export class AddEditDriverComponent implements OnInit {
       }),
       vehicleTypeId: new FormControl("", Validators.required),
       password: new FormControl(""),
+      
+      address: this.formBuilder.group({
+        address: new FormControl("", Validators.required),
+        latitude: new FormControl("", Validators.required),
+        longitude: new FormControl("", Validators.required),
+        location: new FormControl("", Validators.required),
+        zipcode: new FormControl("", Validators.required)
+      })
+
+    });
+
+    this.driverForm1 = this.formBuilder.group({
+      
       mondayStart: ["", [Validators.required]],
       mondayEnd: ["", [Validators.required]],
       tuesdayStart: ["", [Validators.required]],
@@ -137,14 +152,6 @@ export class AddEditDriverComponent implements OnInit {
       saturdayEnd: ["", [Validators.required]],
       sundayStart: ["", [Validators.required]],
       sundayEnd: ["", [Validators.required]],
-      address: this.formBuilder.group({
-        address: new FormControl("", Validators.required),
-        latitude: new FormControl("", Validators.required),
-        longitude: new FormControl("", Validators.required),
-        location: new FormControl("", Validators.required),
-        zipcode: new FormControl("", Validators.required)
-      })
-
     });
     this.comm.getCountryCode().subscribe(res => {
       this.countryCodes = res["countryArray"];
@@ -183,26 +190,26 @@ export class AddEditDriverComponent implements OnInit {
       this.getAllVerticleType(this.byDefaultType);
     }
 
-    this.driverForm.controls["mondayStart"].disable();
-    this.driverForm.controls["mondayEnd"].disable();
+    this.driverForm1.controls["mondayStart"].disable();
+    this.driverForm1.controls["mondayEnd"].disable();
 
-    this.driverForm.controls["tuesdayStart"].disable();
-    this.driverForm.controls["tuesdayEnd"].disable();
+    this.driverForm1.controls["tuesdayStart"].disable();
+    this.driverForm1.controls["tuesdayEnd"].disable();
 
-    this.driverForm.controls["wednesdayStart"].disable();
-    this.driverForm.controls["wednesdayEnd"].disable();
+    this.driverForm1.controls["wednesdayStart"].disable();
+    this.driverForm1.controls["wednesdayEnd"].disable();
 
-    this.driverForm.controls["thrusdayStart"].disable();
-    this.driverForm.controls["thrusdayEnd"].disable();
+    this.driverForm1.controls["thrusdayStart"].disable();
+    this.driverForm1.controls["thrusdayEnd"].disable();
 
-    this.driverForm.controls["fridayStart"].disable();
-    this.driverForm.controls["fridayEnd"].disable();
+    this.driverForm1.controls["fridayStart"].disable();
+    this.driverForm1.controls["fridayEnd"].disable();
 
-    this.driverForm.controls["saturdayStart"].disable();
-    this.driverForm.controls["saturdayEnd"].disable();
+    this.driverForm1.controls["saturdayStart"].disable();
+    this.driverForm1.controls["saturdayEnd"].disable();
 
-    this.driverForm.controls["sundayStart"].disable();
-    this.driverForm.controls["sundayEnd"].disable();
+    this.driverForm1.controls["sundayStart"].disable();
+    this.driverForm1.controls["sundayEnd"].disable();
   }
 
   getDriverById(id) {
@@ -376,7 +383,7 @@ export class AddEditDriverComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.driverForm.value);
+    // console.log(this.driverForm.value);
     this.submitted = true;
     this.driverForm.controls["countryCode"].setValue(this.driverForm.controls["countryCode"].value.Code);
     this.driverForm.controls['emergencyPhone'].get('countryCode').setValue(this.driverForm.controls["emergencyPhone"].value.countryCode.Code);
@@ -389,13 +396,109 @@ export class AddEditDriverComponent implements OnInit {
         this.driverForm.controls['emergencyPhone'].get('phone'))
     ) {
       if (this.address && this.updateAddrssStatus) {
-        if (this.submitted && this.driverForm.valid) {
+        if (this.submitted && this.driverForm.valid && this.driverForm1.valid) {
           var data = this.driverForm.value;
-          console.log(this.driverForm.value);
+          // console.log("Form Value",this.driverForm.value);
+
+          this.timings= [
+            {
+              days: "0",
+              openingTime:
+                this.driverForm1.value.sundayStart == undefined
+                  ? ""
+                  : this.driverForm1.value.sundayStart,
+              closingTime:
+                this.driverForm1.value.sundayEnd == undefined
+                  ? ""
+                  : this.driverForm1.value.sundayEnd,
+              isClosed: !this.IsSun,
+            },
+            {
+              days: "1",
+              openingTime:
+                this.driverForm1.value.mondayStart == undefined
+                  ? ""
+                  : this.driverForm1.value.mondayStart,
+              closingTime:
+                this.driverForm1.value.mondayEnd == undefined
+                  ? ""
+                  : this.driverForm1.value.mondayEnd,
+              isClosed: !this.IsMon,
+            },
+            {
+              days: "2",
+              openingTime:
+                this.driverForm1.value.tuesdayStart == undefined
+                  ? ""
+                  : this.driverForm1.value.tuesdayStart,
+              closingTime:
+                this.driverForm1.value.tuesdayEnd == undefined
+                  ? ""
+                  : this.driverForm1.value.tuesdayEnd,
+              isClosed: !this.IsTue,
+            },
+            {
+              days: "3",
+              openingTime:
+                this.driverForm1.value.wednesdayStart == undefined
+                  ? ""
+                  : this.driverForm1.value.wednesdayStart,
+              closingTime:
+                this.driverForm1.value.wednesdayEnd == undefined
+                  ? ""
+                  : this.driverForm1.value.wednesdayEnd,
+              isClosed: !this.IsWed,
+            },
+            {
+              days: "4",
+              openingTime:
+                this.driverForm1.value.thrusdayStart == undefined
+                  ? ""
+                  : this.driverForm1.value.thrusdayStart,
+              closingTime:
+                this.driverForm1.value.thrusdayEnd == undefined
+                  ? ""
+                  : this.driverForm1.value.thrusdayEnd,
+              isClosed: !this.IsThu,
+            },
+            {
+              days: "5",
+              openingTime:
+                this.driverForm1.value.fridayStart == undefined
+                  ? ""
+                  : this.driverForm1.value.fridayStart,
+              closingTime:
+                this.driverForm1.value.fridayEnd == undefined
+                  ? ""
+                  : this.driverForm1.value.fridayEnd,
+              isClosed: !this.IsFri,
+            },
+            {
+              days: "6",
+              openingTime:
+                this.driverForm1.value.saturdayStart == undefined
+                  ? ""
+                  : this.driverForm1.value.saturdayStart,
+              closingTime:
+                this.driverForm1.value.saturdayEnd == undefined
+                  ? ""
+                  : this.driverForm1.value.saturdayEnd,
+              isClosed: !this.IsSat,
+            },
+          ];
           let formData = new FormData();
           formData.append("data", JSON.stringify(data));
           formData.append("pic", this.File);
+          formData.append("timings", this.timings);
+          // console.log("Timings",this.timings);
+        //   for (var pair of formData.entries()) {
+        //     console.log(pair[0]+ ', ' + pair[1]); 
+        // }
+          // console.log("Data",formData);
+          // return;
           this.api.adddriver(formData).subscribe(res => {
+            // console.log("Response",res);
+            // return
             if (res["response"]["success"]) {
               this.toastr.successToastr("Driver register successfully");
               this.router.navigate(["/driver/driver"]);
@@ -415,72 +518,72 @@ export class AddEditDriverComponent implements OnInit {
 
   monday(event) {
     if (event) {
-      this.driverForm.controls["mondayStart"].enable();
-      this.driverForm.controls["mondayEnd"].enable();
+      this.driverForm1.controls["mondayStart"].enable();
+      this.driverForm1.controls["mondayEnd"].enable();
     } else {
-      this.driverForm.controls["mondayStart"].disable();
-      this.driverForm.controls["mondayEnd"].disable();
+      this.driverForm1.controls["mondayStart"].disable();
+      this.driverForm1.controls["mondayEnd"].disable();
     }
   }
 
   tuesday(event) {
     if (event) {
-      this.driverForm.controls["tuesdayStart"].enable();
-      this.driverForm.controls["tuesdayEnd"].enable();
+      this.driverForm1.controls["tuesdayStart"].enable();
+      this.driverForm1.controls["tuesdayEnd"].enable();
     } else {
-      this.driverForm.controls["tuesdayStart"].disable();
-      this.driverForm.controls["tuesdayEnd"].disable();
+      this.driverForm1.controls["tuesdayStart"].disable();
+      this.driverForm1.controls["tuesdayEnd"].disable();
     }
   }
 
   wednesday(event) {
     if (event) {
-      this.driverForm.controls["wednesdayStart"].enable();
-      this.driverForm.controls["wednesdayEnd"].enable();
+      this.driverForm1.controls["wednesdayStart"].enable();
+      this.driverForm1.controls["wednesdayEnd"].enable();
     } else {
-      this.driverForm.controls["wednesdayStart"].disable();
-      this.driverForm.controls["wednesdayEnd"].disable();
+      this.driverForm1.controls["wednesdayStart"].disable();
+      this.driverForm1.controls["wednesdayEnd"].disable();
     }
   }
 
   thrusday(event) {
     if (event) {
-      this.driverForm.controls["thrusdayStart"].enable();
-      this.driverForm.controls["thrusdayEnd"].enable();
+      this.driverForm1.controls["thrusdayStart"].enable();
+      this.driverForm1.controls["thrusdayEnd"].enable();
     } else {
-      this.driverForm.controls["thrusdayStart"].disable();
-      this.driverForm.controls["thrusdayEnd"].disable();
+      this.driverForm1.controls["thrusdayStart"].disable();
+      this.driverForm1.controls["thrusdayEnd"].disable();
     }
   }
 
   friday(event) {
     // console.log("Event",event);
     if (event) {
-      this.driverForm.controls["fridayStart"].enable();
-      this.driverForm.controls["fridayEnd"].enable();
+      this.driverForm1.controls["fridayStart"].enable();
+      this.driverForm1.controls["fridayEnd"].enable();
     } else {
-      this.driverForm.controls["fridayStart"].disable();
-      this.driverForm.controls["fridayEnd"].disable();
+      this.driverForm1.controls["fridayStart"].disable();
+      this.driverForm1.controls["fridayEnd"].disable();
     }
   }
 
   saturday(event) {
     if (event) {
-      this.driverForm.controls["saturdayStart"].enable();
-      this.driverForm.controls["saturdayEnd"].enable();
+      this.driverForm1.controls["saturdayStart"].enable();
+      this.driverForm1.controls["saturdayEnd"].enable();
     } else {
-      this.driverForm.controls["saturdayStart"].disable();
-      this.driverForm.controls["saturdayEnd"].disable();
+      this.driverForm1.controls["saturdayStart"].disable();
+      this.driverForm1.controls["saturdayEnd"].disable();
     }
   }
 
   sunday(event) {
     if (event) {
-      this.driverForm.controls["sundayStart"].enable();
-      this.driverForm.controls["sundayEnd"].enable();
+      this.driverForm1.controls["sundayStart"].enable();
+      this.driverForm1.controls["sundayEnd"].enable();
     } else {
-      this.driverForm.controls["sundayStart"].disable();
-      this.driverForm.controls["sundayEnd"].disable();
+      this.driverForm1.controls["sundayStart"].disable();
+      this.driverForm1.controls["sundayEnd"].disable();
     }
   }
 
@@ -488,8 +591,8 @@ export class AddEditDriverComponent implements OnInit {
   checkMonday() {
     if (this.startTimeMonday && this.endTimeMonday) {
       if (this.startTimeMonday >= this.endTimeMonday) {
-        this.driverForm.controls["mondayStart"].reset();
-        this.driverForm.controls["mondayEnd"].reset();
+        this.driverForm1.controls["mondayStart"].reset();
+        this.driverForm1.controls["mondayEnd"].reset();
         this.toastr.errorToastr("Invalid End Time");
       }
     }
@@ -499,8 +602,8 @@ export class AddEditDriverComponent implements OnInit {
   checkTuesday() {
     if (this.startTimeTuesday && this.endTimeTuesday) {
       if (this.startTimeTuesday >= this.endTimeTuesday) {
-        this.driverForm.controls["tuesdayStart"].reset();
-        this.driverForm.controls["tuesdayEnd"].reset();
+        this.driverForm1.controls["tuesdayStart"].reset();
+        this.driverForm1.controls["tuesdayEnd"].reset();
         this.toastr.errorToastr("Invalid End Time");
       }
     }
@@ -510,8 +613,8 @@ export class AddEditDriverComponent implements OnInit {
   checkWednesday() {
     if (this.startTimeWednesday && this.endTimeWednesday) {
       if (this.startTimeWednesday >= this.endTimeWednesday) {
-        this.driverForm.controls["wednesdayStart"].reset();
-        this.driverForm.controls["wednesdayEnd"].reset();
+        this.driverForm1.controls["wednesdayStart"].reset();
+        this.driverForm1.controls["wednesdayEnd"].reset();
         this.toastr.errorToastr("Invalid End Time");
       }
     }
@@ -521,8 +624,8 @@ export class AddEditDriverComponent implements OnInit {
   checkThrusday() {
     if (this.startTimeThrusday && this.endTimeThrusday) {
       if (this.startTimeThrusday >= this.endTimeThrusday) {
-        this.driverForm.controls["thrusdayStart"].reset();
-        this.driverForm.controls["thrusdayEnd"].reset();
+        this.driverForm1.controls["thrusdayStart"].reset();
+        this.driverForm1.controls["thrusdayEnd"].reset();
         this.toastr.errorToastr("Invalid End Time");
       }
     }
@@ -532,8 +635,8 @@ export class AddEditDriverComponent implements OnInit {
   checkFriday() {
     if (this.startTimeFriday && this.endTimeFriday) {
       if (this.startTimeFriday >= this.endTimeFriday) {
-        this.driverForm.controls["fridayStart"].reset();
-        this.driverForm.controls["fridayEnd"].reset();
+        this.driverForm1.controls["fridayStart"].reset();
+        this.driverForm1.controls["fridayEnd"].reset();
         this.toastr.errorToastr("Invalid End Time");
       }
     }
@@ -543,8 +646,8 @@ export class AddEditDriverComponent implements OnInit {
   checkSaturday() {
     if (this.startTimeSaturday && this.endTimeSaturday) {
       if (this.startTimeSaturday >= this.endTimeSaturday) {
-        this.driverForm.controls["saturdayStart"].reset();
-        this.driverForm.controls["saturdayEnd"].reset();
+        this.driverForm1.controls["saturdayStart"].reset();
+        this.driverForm1.controls["saturdayEnd"].reset();
         this.toastr.errorToastr("Invalid End Time");
       }
     }
@@ -554,8 +657,8 @@ export class AddEditDriverComponent implements OnInit {
   checkSunday() {
     if (this.startTimeSunday && this.endTimeSunday) {
       if (this.startTimeSunday >= this.endTimeSunday) {
-        this.driverForm.controls["sundayStart"].reset();
-        this.driverForm.controls["sundayEnd"].reset();
+        this.driverForm1.controls["sundayStart"].reset();
+        this.driverForm1.controls["sundayEnd"].reset();
         this.toastr.errorToastr("Invalid End Time");
       }
     }
@@ -563,7 +666,7 @@ export class AddEditDriverComponent implements OnInit {
 
   // Error Handling
   public errorHandling = (control: string, error: string) => {
-    return this.driverForm.controls[control].hasError(error);
+    return this.driverForm1.controls[control].hasError(error);
   };
 
 }
