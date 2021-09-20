@@ -133,6 +133,91 @@ let AddEditDriverComponent = class AddEditDriverComponent {
                     vehicleTypeId: data.vehicleTypeId,
                     verticalType: data.verticalType
                 });
+                if (data.timings[0].isClosed) {
+                    this.IsSun = false;
+                }
+                if (!data.timings[0].isClosed) {
+                    this.IsSun = true;
+                }
+                if (this.IsSun) {
+                    this.driverForm1.controls["sundayStart"].enable();
+                    this.driverForm1.controls["sundayEnd"].enable();
+                    this.startTimeSunday = data.timings[0].openingTime;
+                    this.endTimeSunday = data.timings[0].closingTime;
+                }
+                if (data.timings[1].isClosed) {
+                    this.IsMon = false;
+                }
+                if (!data.timings[1].isClosed) {
+                    this.IsMon = true;
+                }
+                if (this.IsMon) {
+                    this.driverForm1.controls["mondayStart"].enable();
+                    this.driverForm1.controls["mondayEnd"].enable();
+                    this.startTimeMonday = data.timings[1].openingTime;
+                    this.endTimeMonday = data.timings[1].closingTime;
+                }
+                // Tuesday
+                if (data.timings[2].isClosed) {
+                    this.IsTue = false;
+                }
+                if (!data.timings[2].isClosed) {
+                    this.IsTue = true;
+                }
+                if (this.IsTue) {
+                    this.driverForm1.controls["tuesdayStart"].enable();
+                    this.driverForm1.controls["tuesdayEnd"].enable();
+                    this.startTimeTuesday = data.timings[2].openingTime;
+                    this.endTimeTuesday = data.timings[2].closingTime;
+                }
+                if (data.timings[3].isClosed) {
+                    this.IsWed = false;
+                }
+                if (!data.timings[3].isClosed) {
+                    this.IsWed = true;
+                }
+                if (this.IsWed) {
+                    this.driverForm1.controls["wednesdayStart"].enable();
+                    this.driverForm1.controls["wednesdayEnd"].enable();
+                    this.startTimeWednesday = data.timings[3].openingTime;
+                    this.endTimeWednesday = data.timings[3].closingTime;
+                }
+                if (data.timings[4].isClosed) {
+                    this.IsThu = false;
+                }
+                if (!data.timings[4].isClosed) {
+                    this.IsThu = true;
+                }
+                if (this.IsThu) {
+                    this.driverForm1.controls["thrusdayStart"].enable();
+                    this.driverForm1.controls["thrusdayEnd"].enable();
+                    this.startTimeThrusday = data.timings[4].openingTime;
+                    this.endTimeThrusday = data.timings[4].closingTime;
+                }
+                if (data.timings[5].isClosed) {
+                    this.IsFri = false;
+                }
+                if (!data.timings[5].isClosed) {
+                    this.IsFri = true;
+                }
+                if (this.IsFri) {
+                    this.driverForm1.controls["fridayStart"].enable();
+                    this.driverForm1.controls["fridayEnd"].enable();
+                    this.startTimeFriday = data.timings[5].openingTime;
+                    this.endTimeFriday = data.timings[5].closingTime;
+                }
+                if (data.timings[6].isClosed) {
+                    this.IsSat = false;
+                }
+                if (!data.timings[6].isClosed) {
+                    this.IsSat = true;
+                }
+                if (this.IsSat) {
+                    this.driverForm1.controls["saturdayStart"].enable();
+                    this.driverForm1.controls["saturdayEnd"].enable();
+                    this.startTimeSaturday = data.timings[6].openingTime;
+                    this.endTimeSaturday = data.timings[6].closingTime;
+                }
                 if (data && data.emergencyPhone) {
                     this.driverForm.controls.emergencyPhone.patchValue({
                         phone: data.emergencyPhone.phone,
@@ -347,10 +432,83 @@ let AddEditDriverComponent = class AddEditDriverComponent {
         }
     }
     editAddressUpdate() {
-        if (this.driverForm.valid) {
+        if (this.driverForm.valid && this.driverForm1.valid) {
+            this.timings = [
+                {
+                    days: "0",
+                    openingTime: this.driverForm1.value.sundayStart == undefined
+                        ? ""
+                        : this.driverForm1.value.sundayStart,
+                    closingTime: this.driverForm1.value.sundayEnd == undefined
+                        ? ""
+                        : this.driverForm1.value.sundayEnd,
+                    isClosed: !this.IsSun,
+                },
+                {
+                    days: "1",
+                    openingTime: this.driverForm1.value.mondayStart == undefined
+                        ? ""
+                        : this.driverForm1.value.mondayStart,
+                    closingTime: this.driverForm1.value.mondayEnd == undefined
+                        ? ""
+                        : this.driverForm1.value.mondayEnd,
+                    isClosed: !this.IsMon,
+                },
+                {
+                    days: "2",
+                    openingTime: this.driverForm1.value.tuesdayStart == undefined
+                        ? ""
+                        : this.driverForm1.value.tuesdayStart,
+                    closingTime: this.driverForm1.value.tuesdayEnd == undefined
+                        ? ""
+                        : this.driverForm1.value.tuesdayEnd,
+                    isClosed: !this.IsTue,
+                },
+                {
+                    days: "3",
+                    openingTime: this.driverForm1.value.wednesdayStart == undefined
+                        ? ""
+                        : this.driverForm1.value.wednesdayStart,
+                    closingTime: this.driverForm1.value.wednesdayEnd == undefined
+                        ? ""
+                        : this.driverForm1.value.wednesdayEnd,
+                    isClosed: !this.IsWed,
+                },
+                {
+                    days: "4",
+                    openingTime: this.driverForm1.value.thrusdayStart == undefined
+                        ? ""
+                        : this.driverForm1.value.thrusdayStart,
+                    closingTime: this.driverForm1.value.thrusdayEnd == undefined
+                        ? ""
+                        : this.driverForm1.value.thrusdayEnd,
+                    isClosed: !this.IsThu,
+                },
+                {
+                    days: "5",
+                    openingTime: this.driverForm1.value.fridayStart == undefined
+                        ? ""
+                        : this.driverForm1.value.fridayStart,
+                    closingTime: this.driverForm1.value.fridayEnd == undefined
+                        ? ""
+                        : this.driverForm1.value.fridayEnd,
+                    isClosed: !this.IsFri,
+                },
+                {
+                    days: "6",
+                    openingTime: this.driverForm1.value.saturdayStart == undefined
+                        ? ""
+                        : this.driverForm1.value.saturdayStart,
+                    closingTime: this.driverForm1.value.saturdayEnd == undefined
+                        ? ""
+                        : this.driverForm1.value.saturdayEnd,
+                    isClosed: !this.IsSat,
+                },
+            ];
             this.countryStatus1 = false;
             this.countryStatus2 = false;
             var data = this.driverForm.value;
+            data["timings"] = this.timings;
             let formData = new FormData();
             formData.append("data", JSON.stringify(data));
             formData.append("pic", this.File);
@@ -403,7 +561,7 @@ let AddEditDriverComponent = class AddEditDriverComponent {
             if (this.address && this.updateAddrssStatus) {
                 if (this.submitted && this.driverForm.valid && this.driverForm1.valid) {
                     var data = this.driverForm.value;
-                    // console.log("Form Value",this.driverForm.value);
+                    console.log("Form Value", this.driverForm.value);
                     this.timings = [
                         {
                             days: "0",
@@ -476,15 +634,17 @@ let AddEditDriverComponent = class AddEditDriverComponent {
                             isClosed: !this.IsSat,
                         },
                     ];
+                    // data["timings"] = this.timings;
                     let formData = new FormData();
                     formData.append("data", JSON.stringify(data));
+                    formData.append("timings", JSON.stringify(this.timings));
                     formData.append("pic", this.File);
-                    formData.append("timings", this.timings);
-                    // console.log("Timings",this.timings);
-                    //   for (var pair of formData.entries()) {
-                    //     console.log(pair[0]+ ', ' + pair[1]); 
-                    // }
-                    // console.log("Data",formData);
+                    // formData.append("timings", this.timings);
+                    console.log("Timings", this.timings);
+                    for (var pair of formData.entries()) {
+                        console.log(pair[0] + ', ' + pair[1]);
+                    }
+                    console.log("Data", formData);
                     // return;
                     this.api.adddriver(formData).subscribe(res => {
                         // console.log("Response",res);
