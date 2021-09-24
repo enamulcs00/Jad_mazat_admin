@@ -83,6 +83,7 @@ export class AddStoreComponent implements OnInit {
       outlet: new FormControl(""),
       email: new FormControl(""),
       password: new FormControl(""),
+      instagram: new FormControl("",[Validators.required]),
       // currency: new FormControl("", Validators.compose([Validators.required])),
       // openTime: new FormControl("", Validators.compose([Validators.required])),
       // closeTime: new FormControl(
@@ -159,6 +160,7 @@ export class AddStoreComponent implements OnInit {
         // minOrderAmount: data.detail.minOrderAmount,
         avgOrderPrice: data.detail.avgOrderPrice,
         discountUpto: data.detail.discountUpto,
+        instagram: data.detail.instagram,
         categories: data.detail.categories,
         currency: data.detail.currency ? data.detail.currency : "K",
         payBill: data.detail.payBill ? data.detail.payBill : 0,

@@ -219,6 +219,22 @@
             </div>
           </div>
 
+          <div class="form-group col-md-6">
+            <label for="price">Instagram </label>
+            <div class="input-group">
+              <input type="text" id="instagram" maxlength="50" class="form-control" formControlName="instagram"
+                placeholder="" />
+              <div *ngIf="submitted && restaurantForm.controls.instagram.errors" class="invalid-feedback">
+                <div *ngIf="restaurantForm.controls.instagram.errors.required">
+                  Instagram ID is required
+                </div>
+                <!-- <div *ngIf="restaurantForm.controls.instagram.errors.pattern">
+                  Instagram ID is not valid
+                </div> -->
+              </div>
+            </div>
+          </div>
+
           <div class="form-group col-md-6 add_resurant">
             <label for="category">Restaurant Category</label>
             <div class="input-group" *ngIf="categoryList && categoryList.length > 0">

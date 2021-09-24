@@ -96,6 +96,10 @@ export class AddRestaurantComponent implements OnInit {
         "",
         Validators.compose([Validators.required])
       ),
+      instagram: new FormControl(
+        "",
+        Validators.compose([Validators.required])
+      ),
       // minOrderAmount: new FormControl("", [Validators.required, Validators.pattern(/^[.\d]+$/)]),
       avgOrderPrice: new FormControl("", [
         Validators.required,
@@ -186,6 +190,7 @@ export class AddRestaurantComponent implements OnInit {
         avgOrderPrice: data.detail.avgOrderPrice,
         discountUpto: data.detail.discountUpto,
         categories: data.detail.categories,
+        instagram: data.detail.instagram,
         // currency: data.detail.currency ? data.detail.currency : "K",
         payBill: data.detail.payBill ? data.detail.payBill : 0,
         tillNumber: data.detail.tillNumber ? data.detail.tillNumber : 0,
